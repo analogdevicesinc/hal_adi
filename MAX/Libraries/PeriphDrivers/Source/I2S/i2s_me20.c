@@ -49,9 +49,6 @@
 #include "i2s_reva.h"
 #include "i2s_regs.h"
 
-static mxc_i2s_clksrc_t g_i2s_clksrc = MXC_I2S_CLKSRC_ERFO;
-static uint32_t g_i2s_clkfreq = ERFO_FREQ;
-
 int MXC_I2S_Init(mxc_i2s_req_t *req)
 {
     MXC_I2S_Shutdown();
@@ -78,33 +75,6 @@ int MXC_I2S_Shutdown(void)
 int MXC_I2S_ConfigData(mxc_i2s_req_t *req)
 {
     return MXC_I2S_RevA_ConfigData((mxc_i2s_reva_regs_t *)MXC_I2S, req);
-}
-
-int MXC_I2S_SelectClockSource(mxc_i2s_clksrc_t clk_src, uint32_t freq_ext)
-{
-    // Check for bad parameters
-    if (clk_src < MXC_I2S_CLKSRC_ERFO || clk_src > MXC_I2S_CLKSRC_EXT) {
-        return E_BAD_PARAM;
-    } else if ((MXC_SYS_GetRevision() & 0xB0) != 0xB0 && clk_src == MXC_I2S_CLKSRC_EXT) {
-        // I2S External Only Supported on ME17 Rev. B chips
-        return E_NOT_SUPPORTED;
-    }
-
-    // Enable clock source and set frequency
-    if (clk_src == MXC_I2S_CLKSRC_EXT) {
-        MXC_GPIO_Config(&gpio_cfg_i2s0_clkext);
-        g_i2s_clkfreq = freq_ext;
-        MXC_I2S->ctrl1ch0 |= MXC_F_I2S_CTRL1CH0_EXTCLK_EN;
-    } else {
-        MXC_SYS_ClockSourceEnable(MXC_SYS_CLOCK_ERFO);
-        g_i2s_clkfreq = ERFO_FREQ;
-        MXC_I2S->ctrl1ch0 &= ~MXC_F_I2S_CTRL1CH0_EXTCLK_EN;
-    }
-
-    // Set clock source
-    g_i2s_clksrc = clk_src;
-
-    return E_NO_ERROR;
 }
 
 void MXC_I2S_TXEnable()
@@ -140,18 +110,18 @@ int MXC_I2S_SetFrequency(mxc_i2s_ch_mode_t mode, uint16_t clkdiv)
 int MXC_I2S_SetSampleRate(uint32_t smpl_rate, mxc_i2s_wsize_t smpl_sz)
 {
     return MXC_I2S_RevA_SetSampleRate((mxc_i2s_reva_regs_t *)MXC_I2S, smpl_rate, smpl_sz,
-                                      g_i2s_clkfreq);
+                                      ERFO_FREQ);
 }
 
 int MXC_I2S_GetSampleRate(void)
 {
-    return MXC_I2S_RevA_GetSampleRate((mxc_i2s_reva_regs_t *)MXC_I2S, g_i2s_clkfreq);
+    return MXC_I2S_RevA_GetSampleRate((mxc_i2s_reva_regs_t *)MXC_I2S, ERFO_FREQ);
 }
 
 int MXC_I2S_CalculateClockDiv(uint32_t smpl_rate, mxc_i2s_wsize_t smpl_sz)
 {
     return MXC_I2S_RevA_CalculateClockDiv((mxc_i2s_reva_regs_t *)MXC_I2S, smpl_rate, smpl_sz,
-                                          g_i2s_clkfreq);
+                                          ERFO_FREQ);
 }
 
 void MXC_I2S_Flush(void)
