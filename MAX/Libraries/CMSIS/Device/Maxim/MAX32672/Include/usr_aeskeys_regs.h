@@ -1,8 +1,8 @@
 /**
- * @file    lpcmp_regs.h
- * @brief   Registers, Bit Masks and Bit Positions for the LPCMP Peripheral Module.
+ * @file    usr_aeskeys_regs.h
+ * @brief   Registers, Bit Masks and Bit Positions for the USR_AESKEYS Peripheral Module.
  * @note    This file is @generated.
- * @ingroup lpcmp_registers
+ * @ingroup usr_aeskeys_registers
  */
 
 /******************************************************************************
@@ -38,8 +38,8 @@
  *
  ******************************************************************************/
 
-#ifndef LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32680_INCLUDE_LPCMP_REGS_H_
-#define LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32680_INCLUDE_LPCMP_REGS_H_
+#ifndef LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32672_INCLUDE_USR_AESKEYS_REGS_H_
+#define LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32672_INCLUDE_USR_AESKEYS_REGS_H_
 
 /* **** Includes **** */
 #include <stdint.h>
@@ -76,55 +76,39 @@ extern "C" {
 /* **** Definitions **** */
 
 /**
- * @ingroup     lpcmp
- * @defgroup    lpcmp_registers LPCMP_Registers
- * @brief       Registers, Bit Masks and Bit Positions for the LPCMP Peripheral Module.
- * @details     Low Power Comparator
+ * @ingroup     usr_aeskeys
+ * @ingroup     aes
+ * @defgroup    usr_aeskeys_registers USR_AESKEYS_Registers
+ * @brief       Registers, Bit Masks and Bit Positions for the USR_AESKEYS Peripheral Module.
+ * @details     User AES Key Registers.
  */
 
 /**
- * @ingroup lpcmp_registers
- * Structure type to access the LPCMP Registers.
+ * @ingroup usr_aeskeys_registers
+ * Structure type to access the USR_AESKEYS Registers.
  */
 typedef struct {
-    __IO uint32_t ctrl[3];              /**< <tt>\b 0x00:</tt> LPCMP CTRL Register */
-} mxc_lpcmp_regs_t;
+    __IO uint32_t sram_key;             /**< <tt>\b 0x00:</tt> USR_AESKEYS SRAM_KEY Register */
+    __R  uint32_t rsv_0x4_0x1f[7];
+    __IO uint32_t code_key;             /**< <tt>\b 0x20:</tt> USR_AESKEYS CODE_KEY Register */
+    __R  uint32_t rsv_0x24_0x3f[7];
+    __IO uint32_t data_key;             /**< <tt>\b 0x40:</tt> USR_AESKEYS DATA_KEY Register */
+} mxc_usr_aeskeys_regs_t;
 
-/* Register offsets for module LPCMP */
+/* Register offsets for module USR_AESKEYS */
 /**
- * @ingroup    lpcmp_registers
- * @defgroup   LPCMP_Register_Offsets Register Offsets
- * @brief      LPCMP Peripheral Register Offsets from the LPCMP Base Peripheral Address.
+ * @ingroup    usr_aeskeys_registers
+ * @defgroup   USR_AESKEYS_Register_Offsets Register Offsets
+ * @brief      USR_AESKEYS Peripheral Register Offsets from the USR_AESKEYS Base Peripheral Address.
  * @{
  */
-#define MXC_R_LPCMP_CTRL                   ((uint32_t)0x00000000UL) /**< Offset from LPCMP Base Address: <tt> 0x0000</tt> */
-/**@} end of group lpcmp_registers */
-
-/**
- * @ingroup  lpcmp_registers
- * @defgroup LPCMP_CTRL LPCMP_CTRL
- * @brief    Comparator Control Register.
- * @{
- */
-#define MXC_F_LPCMP_CTRL_EN_POS                        0 /**< CTRL_EN Position */
-#define MXC_F_LPCMP_CTRL_EN                            ((uint32_t)(0x1UL << MXC_F_LPCMP_CTRL_EN_POS)) /**< CTRL_EN Mask */
-
-#define MXC_F_LPCMP_CTRL_POL_POS                       5 /**< CTRL_POL Position */
-#define MXC_F_LPCMP_CTRL_POL                           ((uint32_t)(0x1UL << MXC_F_LPCMP_CTRL_POL_POS)) /**< CTRL_POL Mask */
-
-#define MXC_F_LPCMP_CTRL_INT_EN_POS                    6 /**< CTRL_INT_EN Position */
-#define MXC_F_LPCMP_CTRL_INT_EN                        ((uint32_t)(0x1UL << MXC_F_LPCMP_CTRL_INT_EN_POS)) /**< CTRL_INT_EN Mask */
-
-#define MXC_F_LPCMP_CTRL_OUT_POS                       14 /**< CTRL_OUT Position */
-#define MXC_F_LPCMP_CTRL_OUT                           ((uint32_t)(0x1UL << MXC_F_LPCMP_CTRL_OUT_POS)) /**< CTRL_OUT Mask */
-
-#define MXC_F_LPCMP_CTRL_INT_FL_POS                    15 /**< CTRL_INT_FL Position */
-#define MXC_F_LPCMP_CTRL_INT_FL                        ((uint32_t)(0x1UL << MXC_F_LPCMP_CTRL_INT_FL_POS)) /**< CTRL_INT_FL Mask */
-
-/**@} end of group LPCMP_CTRL_Register */
+#define MXC_R_USR_AESKEYS_SRAM_KEY         ((uint32_t)0x00000000UL) /**< Offset from USR_AESKEYS Base Address: <tt> 0x0000</tt> */
+#define MXC_R_USR_AESKEYS_CODE_KEY         ((uint32_t)0x00000020UL) /**< Offset from USR_AESKEYS Base Address: <tt> 0x0020</tt> */
+#define MXC_R_USR_AESKEYS_DATA_KEY         ((uint32_t)0x00000040UL) /**< Offset from USR_AESKEYS Base Address: <tt> 0x0040</tt> */
+/**@} end of group usr_aeskeys_registers */
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32680_INCLUDE_LPCMP_REGS_H_
+#endif // LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32672_INCLUDE_USR_AESKEYS_REGS_H_
