@@ -41,6 +41,7 @@ zephyr_include_directories(
 )
 
 zephyr_library_sources(
+    ./max32xxx_system.c
 
     ${MSDK_CMSIS_DIR}/Source/system_max32665.c
 
