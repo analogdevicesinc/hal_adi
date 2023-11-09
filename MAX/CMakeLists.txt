@@ -27,6 +27,7 @@ set(MSDK_PERIPH_SRC_DIR  ${MSDK_PERIPH_DIR}/Source)
 set(MSDK_PERIPH_INC_DIR  ${MSDK_PERIPH_DIR}/Include/${TARGET_UC})
 
 zephyr_include_directories(
+    ./Include
     ${MSDK_CMSIS_DIR}/Include
     ${MSDK_PERIPH_INC_DIR}
 )
