@@ -156,7 +156,7 @@ zephyr_library_sources(
 )
 endif()
 
-if (CONFIG_OWM_MAX32)
+if (CONFIG_W1_MAX32)
 zephyr_library_sources(
     ${MSDK_PERIPH_SRC_DIR}/OWM/owm_me14.c
     ${MSDK_PERIPH_SRC_DIR}/OWM/owm_reva.c
