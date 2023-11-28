@@ -99,14 +99,14 @@ zephyr_library_sources(
 )
 endif()
 
-if (CONFIG_SPI_MAX32_V1)
+if (CONFIG_SPI_MAX32)
 zephyr_library_sources(
     ${MSDK_PERIPH_SRC_DIR}/SPI/spi_me18.c
     ${MSDK_PERIPH_SRC_DIR}/SPI/spi_reva1.c
 )
 endif()
 
-if (CONFIG_I2C_MAX32_V1)
+if (CONFIG_I2C_MAX32)
 zephyr_library_sources(
     ${MSDK_PERIPH_SRC_DIR}/I2C/i2c_me18.c
     ${MSDK_PERIPH_SRC_DIR}/I2C/i2c_reva.c
