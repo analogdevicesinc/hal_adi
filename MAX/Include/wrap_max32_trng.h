@@ -26,7 +26,6 @@
 extern "C" {
 #endif
 
-
 /*
  *  MAX32665, MAX32666 related mapping
  */
@@ -39,7 +38,7 @@ static inline int Wrap_MXC_TRNG_RandomInt_NonBlocking(uint32_t *data)
     }
     *data = MXC_TRNG->data;
 
-    return  0;
+    return 0;
 }
 
 /*
@@ -54,10 +53,9 @@ static inline int Wrap_MXC_TRNG_RandomInt_NonBlocking(uint32_t *data)
     }
     *data = MXC_TRNG->data;
 
-    return  0;
+    return 0;
 }
-#endif  // part number
-
+#endif // part number
 
 #ifdef __cplusplus
 }

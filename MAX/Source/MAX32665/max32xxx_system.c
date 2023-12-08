@@ -24,7 +24,6 @@
 #include "simo_regs.h"
 #include "mcr_regs.h"
 
-
 static int pre_init(void)
 {
     uint32_t psc = MXC_GCR->clkcn & MXC_F_GCR_CLKCN_PSC;

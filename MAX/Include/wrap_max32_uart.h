@@ -31,9 +31,9 @@ extern "C" {
 #define ADI_MAX32_UART_RX_EMPTY MXC_F_UART_STATUS_RX_EMPTY
 #define ADI_MAX32_UART_TX_EMPTY MXC_F_UART_STATUS_TX_EMPTY
 // error flags
-#define ADI_MAX32_UART_ERROR_OVERRUN  MXC_F_UART_INT_FL_RX_OVERRUN
-#define ADI_MAX32_UART_ERROR_PARITY   MXC_F_UART_INT_FL_RX_PARITY_ERROR
-#define ADI_MAX32_UART_ERROR_FRAMING  MXC_F_UART_INT_FL_RX_FRAME_ERROR
+#define ADI_MAX32_UART_ERROR_OVERRUN MXC_F_UART_INT_FL_RX_OVERRUN
+#define ADI_MAX32_UART_ERROR_PARITY MXC_F_UART_INT_FL_RX_PARITY_ERROR
+#define ADI_MAX32_UART_ERROR_FRAMING MXC_F_UART_INT_FL_RX_FRAME_ERROR
 // interrupt flag
 #define ADI_MAX32_UART_INT_EOT MXC_F_UART_INT_EN_LAST_BREAK // End Of Transmission Interrupt
 #define ADI_MAX32_UART_INT_OE MXC_F_UART_INT_EN_RX_OVERRUN // Overrun Error Interrupt
@@ -45,11 +45,11 @@ extern "C" {
 #define ADI_MAX32_UART_INT_RX MXC_F_UART_INT_EN_RX_FIFO_THRESH // Receive Interrupt
 #define ADI_MAX32_UART_INT_CTS MXC_F_UART_INT_EN_CTS_CHANGE // CTS Modem Interrupt
 // parity
-#define	ADI_MAX32_UART_CFG_PARITY_NONE MXC_UART_PARITY_DISABLE
-#define	ADI_MAX32_UART_CFG_PARITY_ODD MXC_UART_PARITY_ODD
-#define	ADI_MAX32_UART_CFG_PARITY_EVEN MXC_UART_PARITY_EVEN
-#define	ADI_MAX32_UART_CFG_PARITY_MARK MXC_UART_PARITY_MARK
-#define	ADI_MAX32_UART_CFG_PARITY_SPACE MXC_UART_PARITY_SPACE
+#define ADI_MAX32_UART_CFG_PARITY_NONE MXC_UART_PARITY_DISABLE
+#define ADI_MAX32_UART_CFG_PARITY_ODD MXC_UART_PARITY_ODD
+#define ADI_MAX32_UART_CFG_PARITY_EVEN MXC_UART_PARITY_EVEN
+#define ADI_MAX32_UART_CFG_PARITY_MARK MXC_UART_PARITY_MARK
+#define ADI_MAX32_UART_CFG_PARITY_SPACE MXC_UART_PARITY_SPACE
 
 /* Error interrupts */
 #define ADI_MAX32_UART_ERROR_INTERRUPTS \
@@ -58,7 +58,7 @@ extern "C" {
 static inline int Wrap_MXC_UART_Init(mxc_uart_regs_t *uart)
 {
     int ret;
-    
+
     ret = MXC_UART_SetRXThreshold(uart, 1);
     if (ret) {
         return ret;
@@ -71,13 +71,14 @@ static inline int Wrap_MXC_UART_Init(mxc_uart_regs_t *uart)
     }
 
     uart->ctrl |= MXC_F_UART_CTRL_ENABLE;
-    
+
     return ret;
 }
 
-static inline int Wrap_MXC_UART_SetFrequency(mxc_uart_regs_t *uart, unsigned int baud, int clock_source)
+static inline int Wrap_MXC_UART_SetFrequency(mxc_uart_regs_t *uart, unsigned int baud,
+                                             int clock_source)
 {
-    (void) clock_source;
+    (void)clock_source;
     return MXC_UART_SetFrequency(uart, baud);
 }
 
@@ -119,9 +120,9 @@ static inline void Wrap_MXC_UART_DisableRxDMA(mxc_uart_regs_t *uart)
 #define ADI_MAX32_UART_RX_EMPTY MXC_F_UART_STATUS_RX_EM
 #define ADI_MAX32_UART_TX_EMPTY MXC_F_UART_STATUS_TX_EM
 // error flags
-#define ADI_MAX32_UART_ERROR_OVERRUN  MXC_F_UART_INT_FL_RX_OV
-#define ADI_MAX32_UART_ERROR_PARITY   MXC_F_UART_INT_FL_RX_PAR
-#define ADI_MAX32_UART_ERROR_FRAMING  MXC_F_UART_INT_FL_RX_FERR
+#define ADI_MAX32_UART_ERROR_OVERRUN MXC_F_UART_INT_FL_RX_OV
+#define ADI_MAX32_UART_ERROR_PARITY MXC_F_UART_INT_FL_RX_PAR
+#define ADI_MAX32_UART_ERROR_FRAMING MXC_F_UART_INT_FL_RX_FERR
 // interrupt flag
 #define ADI_MAX32_UART_INT_OE MXC_F_UART_INT_EN_RX_OV // Overrun Error Interrupt
 #define ADI_MAX32_UART_INT_PE MXC_F_UART_INT_EN_RX_PAR // Parity Error Interrupt
@@ -133,9 +134,9 @@ static inline void Wrap_MXC_UART_DisableRxDMA(mxc_uart_regs_t *uart)
 //#define ADI_MAX32_UART_INT_BE   // Break Error Interrupt
 //#define ADI_MAX32_UART_INT_EOT  // End Of Transmission Interrupt
 // parity
-#define	ADI_MAX32_UART_CFG_PARITY_NONE MXC_UART_PARITY_DISABLE
-#define	ADI_MAX32_UART_CFG_PARITY_ODD MXC_UART_PARITY_ODD_0
-#define	ADI_MAX32_UART_CFG_PARITY_EVEN MXC_UART_PARITY_EVEN_0
+#define ADI_MAX32_UART_CFG_PARITY_NONE MXC_UART_PARITY_DISABLE
+#define ADI_MAX32_UART_CFG_PARITY_ODD MXC_UART_PARITY_ODD_0
+#define ADI_MAX32_UART_CFG_PARITY_EVEN MXC_UART_PARITY_EVEN_0
 //#define	ADI_MAX32_UART_CFG_PARITY_MARK
 //#define	ADI_MAX32_UART_CFG_PARITY_SPACE
 
@@ -146,13 +147,14 @@ static inline void Wrap_MXC_UART_DisableRxDMA(mxc_uart_regs_t *uart)
 static inline int Wrap_MXC_UART_Init(mxc_uart_regs_t *uart)
 {
     int ret;
-    
+
     ret = MXC_UART_SetRXThreshold(uart, 1);
-    
+
     return ret;
 }
 
-static inline int Wrap_MXC_UART_SetFrequency(mxc_uart_regs_t *uart, unsigned int baud, int clock_source)
+static inline int Wrap_MXC_UART_SetFrequency(mxc_uart_regs_t *uart, unsigned int baud,
+                                             int clock_source)
 {
     return MXC_UART_SetFrequency(uart, baud, (mxc_uart_clock_t)clock_source);
 }

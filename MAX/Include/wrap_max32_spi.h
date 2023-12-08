@@ -36,7 +36,7 @@ extern "C" {
 #define ADI_MAX32_SPI_DMA_RX_FIFO_CLEAR MXC_F_SPI_DMA_RX_FIFO_CLEAR
 #define ADI_MAX32_SPI_DMA_RX_DMA_EN MXC_F_SPI_DMA_RX_DMA_EN
 
-static inline int Wrap_MXC_SPI_Init(mxc_spi_regs_t *spi, int masterMode, int quadModeUsed, 
+static inline int Wrap_MXC_SPI_Init(mxc_spi_regs_t *spi, int masterMode, int quadModeUsed,
                                     int numSlaves, unsigned ssPolarity, unsigned int hz)
 {
     return MXC_SPI_Init(spi, masterMode, quadModeUsed, numSlaves, ssPolarity, hz, (sys_map_t)0);
@@ -52,15 +52,14 @@ static inline int Wrap_MXC_SPI_Init(mxc_spi_regs_t *spi, int masterMode, int qua
 #define ADI_MAX32_SPI_DMA_RX_FIFO_CLEAR MXC_F_SPI_DMA_RX_FLUSH
 #define ADI_MAX32_SPI_DMA_RX_DMA_EN MXC_F_SPI_DMA_DMA_RX_EN
 
-static inline int Wrap_MXC_SPI_Init(mxc_spi_regs_t *spi, int masterMode, int quadModeUsed, 
+static inline int Wrap_MXC_SPI_Init(mxc_spi_regs_t *spi, int masterMode, int quadModeUsed,
                                     int numSlaves, unsigned ssPolarity, unsigned int hz)
 {
-    mxc_spi_pins_t tmp;// not used
+    mxc_spi_pins_t tmp; // not used
     return MXC_SPI_Init(spi, masterMode, quadModeUsed, numSlaves, ssPolarity, hz, tmp);
 }
 
-#endif  // part number
-
+#endif // part number
 
 #ifdef __cplusplus
 }

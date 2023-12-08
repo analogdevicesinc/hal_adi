@@ -19,7 +19,6 @@
 #include "max32690.h"
 #include "icc.h"
 
-
 /* 
  * This function is called during boot up.
  */

@@ -21,7 +21,6 @@
 #include "icc.h"
 #include "simo.h"
 
-
 static int pre_init(void)
 {
     uint32_t psc = MXC_GCR->clkctrl & MXC_F_GCR_CLKCTRL_SYSCLK_DIV;
@@ -46,7 +45,7 @@ static int pre_init(void)
 void max32xx_system_init(void)
 {
     pre_init();
-    
+
     /* Enable instruction cache */
     MXC_ICC_Enable(MXC_ICC0);
 

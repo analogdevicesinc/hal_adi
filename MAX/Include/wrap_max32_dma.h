@@ -46,7 +46,7 @@ static inline int MXC_DMA_GetIntFlags(mxc_dma_regs_t *dma)
     return dma->intr;
 }
 
-static inline int Wrap_MXC_DMA_Init(mxc_dma_regs_t *dma) 
+static inline int Wrap_MXC_DMA_Init(mxc_dma_regs_t *dma)
 {
     return MXC_DMA_Init(dma);
 }
@@ -67,17 +67,17 @@ static inline void Wrap_MXC_DMA_Handler(mxc_dma_regs_t *dma)
 }
 
 static inline int Wrap_MXC_DMA_MemCpy(mxc_dma_regs_t *dma, void *dest, void *src, int len,
-                   mxc_dma_complete_cb_t callback)
+                                      mxc_dma_complete_cb_t callback)
 {
     return MXC_DMA_MemCpy(dma, dest, src, len, callback);
 }
 
-static inline int Wrap_MXC_DMA_DoTransfer(mxc_dma_regs_t *dma, mxc_dma_config_t config, mxc_dma_srcdst_t firstSrcDst,
-                       mxc_dma_trans_chain_t callback)
+static inline int Wrap_MXC_DMA_DoTransfer(mxc_dma_regs_t *dma, mxc_dma_config_t config,
+                                          mxc_dma_srcdst_t firstSrcDst,
+                                          mxc_dma_trans_chain_t callback)
 {
-   return MXC_DMA_DoTransfer(dma, config, firstSrcDst, callback);
+    return MXC_DMA_DoTransfer(dma, config, firstSrcDst, callback);
 }
-
 
 /*
  *  MAX32690, MAX32655 related mapping
@@ -99,46 +99,46 @@ static inline int MXC_DMA_GetIntFlags(mxc_dma_regs_t *dma)
     return dma->intfl;
 }
 
-static inline int Wrap_MXC_DMA_Init(mxc_dma_regs_t *dma) 
+static inline int Wrap_MXC_DMA_Init(mxc_dma_regs_t *dma)
 {
-    (void) dma;
+    (void)dma;
     return MXC_DMA_Init();
 }
 
 static inline void Wrap_MXC_DMA_DeInit(mxc_dma_regs_t *dma)
 {
-    (void) dma;
+    (void)dma;
     MXC_DMA_DeInit();
 }
 
 static inline int Wrap_MXC_DMA_AcquireChannel(mxc_dma_regs_t *dma)
 {
-    (void) dma;
+    (void)dma;
     return MXC_DMA_AcquireChannel();
 }
 
 static inline void Wrap_MXC_DMA_Handler(mxc_dma_regs_t *dma)
 {
-    (void) dma;
+    (void)dma;
     MXC_DMA_Handler();
 }
 
 static inline int Wrap_MXC_DMA_MemCpy(mxc_dma_regs_t *dma, void *dest, void *src, int len,
-                   mxc_dma_complete_cb_t callback)
+                                      mxc_dma_complete_cb_t callback)
 {
-    (void) dma;
+    (void)dma;
     return MXC_DMA_MemCpy(dest, src, len, callback);
 }
 
-static inline int Wrap_MXC_DMA_DoTransfer(mxc_dma_regs_t *dma, mxc_dma_config_t config, mxc_dma_srcdst_t firstSrcDst,
-                       mxc_dma_trans_chain_t callback)
+static inline int Wrap_MXC_DMA_DoTransfer(mxc_dma_regs_t *dma, mxc_dma_config_t config,
+                                          mxc_dma_srcdst_t firstSrcDst,
+                                          mxc_dma_trans_chain_t callback)
 {
-    (void) dma;
+    (void)dma;
     return MXC_DMA_DoTransfer(config, firstSrcDst, callback);
 }
 
-#endif  // part number
-
+#endif // part number
 
 #ifdef __cplusplus
 }

@@ -60,14 +60,14 @@ static inline int Wrap_MXC_WDT_Init(mxc_wdt_regs_t *wdt, wrap_mxc_wdt_cfg_t *cfg
 
 static inline void Wrap_MXC_WDT_SetResetPeriod(mxc_wdt_regs_t *wdt, wrap_mxc_wdt_cfg_t *cfg)
 {
-    (void) cfg;
+    (void)cfg;
 
     MXC_WDT_SetResetPeriod(wdt, cfg->upperResetPeriod);
 }
 
 static inline void Wrap_MXC_WDT_SetIntPeriod(mxc_wdt_regs_t *wdt, wrap_mxc_wdt_cfg_t *cfg)
-{    
-    return  MXC_WDT_SetIntPeriod(wdt, cfg->upperIntPeriod);
+{
+    return MXC_WDT_SetIntPeriod(wdt, cfg->upperIntPeriod);
 }
 
 /*
@@ -79,35 +79,34 @@ static inline int Wrap_MXC_WDT_Init(mxc_wdt_regs_t *wdt, wrap_mxc_wdt_cfg_t *cfg
 {
     mxc_wdt_cfg_t mxc_cfg;
 
-    mxc_cfg.mode = (mxc_wdt_mode_t) cfg->mode;
+    mxc_cfg.mode = (mxc_wdt_mode_t)cfg->mode;
     mxc_cfg.upperResetPeriod = cfg->upperResetPeriod;
     mxc_cfg.lowerResetPeriod = cfg->lowerResetPeriod;
     mxc_cfg.upperIntPeriod = cfg->upperIntPeriod;
     mxc_cfg.lowerIntPeriod = cfg->lowerIntPeriod;
-    
-    return  MXC_WDT_Init(wdt, &mxc_cfg);
+
+    return MXC_WDT_Init(wdt, &mxc_cfg);
 }
 
 static inline void Wrap_MXC_WDT_SetResetPeriod(mxc_wdt_regs_t *wdt, wrap_mxc_wdt_cfg_t *cfg)
 {
-    MXC_WDT_SetResetPeriod(wdt, (mxc_wdt_cfg_t *) cfg);
+    MXC_WDT_SetResetPeriod(wdt, (mxc_wdt_cfg_t *)cfg);
 }
 
 static inline void Wrap_MXC_WDT_SetIntPeriod(mxc_wdt_regs_t *wdt, wrap_mxc_wdt_cfg_t *cfg)
 {
     mxc_wdt_cfg_t mxc_cfg;
 
-    mxc_cfg.mode = (mxc_wdt_mode_t) cfg->mode;
+    mxc_cfg.mode = (mxc_wdt_mode_t)cfg->mode;
     mxc_cfg.upperResetPeriod = cfg->upperResetPeriod;
     mxc_cfg.lowerResetPeriod = cfg->lowerResetPeriod;
     mxc_cfg.upperIntPeriod = cfg->upperIntPeriod;
     mxc_cfg.lowerIntPeriod = cfg->lowerIntPeriod;
-    
-    return  MXC_WDT_SetIntPeriod(wdt, &mxc_cfg);
+
+    return MXC_WDT_SetIntPeriod(wdt, &mxc_cfg);
 }
 
-#endif  // part number
-
+#endif // part number
 
 #ifdef __cplusplus
 }

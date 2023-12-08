@@ -26,10 +26,9 @@
 extern "C" {
 #endif
 
-
 typedef struct {
-    mxc_tmr_pres_t pres; 
-    mxc_tmr_mode_t mode; 
+    mxc_tmr_pres_t pres;
+    mxc_tmr_mode_t mode;
     int bitMode; /* Some PN does not support it, check mxc_tmr_bit_mode_t in tmr.h file */
     int clock; /* Some PN does not support it, check mxc_tmr_clock_t in tmr.h file */
     uint32_t cmp_cnt; /**< Compare register value in timer ticks */
@@ -77,10 +76,10 @@ static inline int Wrap_MXC_TMR_Init(mxc_tmr_regs_t *tmr, wrap_mxc_tmr_cfg_t *cfg
     mxc_cfg.mode = cfg->mode;
     mxc_cfg.cmp_cnt = cfg->cmp_cnt;
     mxc_cfg.pol = cfg->pol;
-    mxc_cfg.bitMode = (mxc_tmr_bit_mode_t) cfg->bitMode;
-    mxc_cfg.clock = (mxc_tmr_clock_t) cfg->clock;
-    
-    return  MXC_TMR_Init(tmr, &mxc_cfg, 0); // init_pins not used
+    mxc_cfg.bitMode = (mxc_tmr_bit_mode_t)cfg->bitMode;
+    mxc_cfg.clock = (mxc_tmr_clock_t)cfg->clock;
+
+    return MXC_TMR_Init(tmr, &mxc_cfg, 0); // init_pins not used
 }
 
 static inline int Wrap_MXC_TMR_GetClockIndex(int z_clock)
@@ -107,8 +106,7 @@ static inline int Wrap_MXC_TMR_GetClockIndex(int z_clock)
     return -1; /* Not supported */
 }
 
-#endif  // part number
-
+#endif // part number
 
 #ifdef __cplusplus
 }
