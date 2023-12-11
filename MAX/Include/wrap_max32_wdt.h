@@ -39,6 +39,8 @@ typedef struct {
  */
 #if defined(CONFIG_SOC_MAX32665) || (CONFIG_SOC_MAX32666)
 
+#define WRAP_MXC_F_WDT_CTRL_EN MXC_F_WDT_CTRL_WDT_EN
+
 typedef enum {
     MXC_WDT_COMPATIBILITY = 0,
     MXC_WDT_WINDOWED = 1, /* Not support on MAX32665/6, added here to get common zephyr driver */
@@ -70,10 +72,20 @@ static inline void Wrap_MXC_WDT_SetIntPeriod(mxc_wdt_regs_t *wdt, wrap_mxc_wdt_c
     return MXC_WDT_SetIntPeriod(wdt, cfg->upperIntPeriod);
 }
 
+static inline int Wrap_MXC_WDT_SelectClockSource(mxc_wdt_regs_t *wdt, uint32_t clock_src)
+{
+    (void)wdt;
+    (void)clock_src;
+
+    return 0;
+}
+
 /*
  *  MAX32690, MAX32655 related mapping
  */
 #elif defined(CONFIG_SOC_MAX32690) || (CONFIG_SOC_MAX32655)
+
+#define WRAP_MXC_F_WDT_CTRL_EN MXC_F_WDT_CTRL_EN
 
 static inline int Wrap_MXC_WDT_Init(mxc_wdt_regs_t *wdt, wrap_mxc_wdt_cfg_t *cfg)
 {
@@ -104,6 +116,30 @@ static inline void Wrap_MXC_WDT_SetIntPeriod(mxc_wdt_regs_t *wdt, wrap_mxc_wdt_c
     mxc_cfg.lowerIntPeriod = cfg->lowerIntPeriod;
 
     return MXC_WDT_SetIntPeriod(wdt, &mxc_cfg);
+}
+
+static inline int Wrap_MXC_WDT_SelectClockSource(mxc_wdt_regs_t *wdt, uint32_t clock_src)
+{
+    mxc_wdt_clock_t clk_src;
+
+    switch (clock_src) {
+    case ADI_MAX32_PRPH_CLK_SRC_PCLK:
+        clk_src = MXC_WDT_PCLK;
+        break;
+    case ADI_MAX32_PRPH_CLK_SRC_IBRO:
+        clk_src = MXC_WDT_IBRO_CLK;
+        break;
+    case ADI_MAX32_PRPH_CLK_SRC_INRO:
+        clk_src = MXC_WDT_INRO_CLK;
+        break;
+    case ADI_MAX32_PRPH_CLK_SRC_ERTCO:
+        clk_src = MXC_WDT_ERTCO_CLK;
+        break;
+    default:
+        return -1;
+    }
+
+    return MXC_WDT_SetClockSource(wdt, clk_src);
 }
 
 #endif // part number
