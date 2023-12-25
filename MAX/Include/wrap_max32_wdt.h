@@ -123,16 +123,16 @@ static inline int Wrap_MXC_WDT_SelectClockSource(mxc_wdt_regs_t *wdt, uint32_t c
     mxc_wdt_clock_t clk_src;
 
     switch (clock_src) {
-    case ADI_MAX32_PRPH_CLK_SRC_PCLK:
+    case 0: // ADI_MAX32_PRPH_CLK_SRC_PCLK
         clk_src = MXC_WDT_PCLK;
         break;
-    case ADI_MAX32_PRPH_CLK_SRC_IBRO:
+    case 2: // ADI_MAX32_PRPH_CLK_SRC_IBRO
         clk_src = MXC_WDT_IBRO_CLK;
         break;
-    case ADI_MAX32_PRPH_CLK_SRC_INRO:
+    case 5: // ADI_MAX32_PRPH_CLK_SRC_INRO
         clk_src = MXC_WDT_INRO_CLK;
         break;
-    case ADI_MAX32_PRPH_CLK_SRC_ERTCO:
+    case 4: // ADI_MAX32_PRPH_CLK_SRC_ERTCO
         clk_src = MXC_WDT_ERTCO_CLK;
         break;
     default:
