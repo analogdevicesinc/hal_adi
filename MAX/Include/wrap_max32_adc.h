@@ -21,6 +21,7 @@
 
 /***** Includes *****/
 #include <adc.h>
+#include <wrap_utils.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -65,15 +66,13 @@ static inline int Wrap_MXC_ADC_Init(wrap_mxc_adc_req_t *req)
 static inline void Wrap_MXC_ADC_ChannelSelect(uint32_t *sample_channels)
 {
     mxc_adc_regs_t *adc = MXC_ADC;
-    uint8_t channel_id = 0;
-    uint8_t channel_index = 0;
+    int channel_id;
 
-    for (channel_index = 0; channel_index < 32; channel_index++) {
-        if (*sample_channels & (1 << channel_index)) {
-            channel_id = channel_index;
-            break;
-        }
+    channel_id = wrap_utils_find_lsb_set(*sample_channels);
+    if (channel_id == 0) {
+        return;
     }
+    --channel_id;
 
     adc->ctrl &= ~(MXC_F_ADC_CTRL_CH_SEL);
     adc->ctrl |= (channel_id << MXC_F_ADC_CTRL_CH_SEL_POS) & MXC_F_ADC_CTRL_CH_SEL;
@@ -116,15 +115,13 @@ static inline void Wrap_MXC_ADC_DisableConversion(void)
 
 static inline int Wrap_MXC_ADC_StartConversion(uint32_t *sample_channels)
 {
-    uint8_t channel_id = 0;
-    uint8_t channel_index = 0;
+    int channel_id;
 
-    for (channel_index = 0; channel_index < 32; channel_index++) {
-        if (*sample_channels & (1 << channel_index)) {
-            channel_id = channel_index;
-            break;
-        }
+    channel_id = wrap_utils_find_lsb_set(*sample_channels);
+    if (channel_id == 0) {
+        return -1;
     }
+    --channel_id;
 
     return MXC_ADC_StartConversion((mxc_adc_chsel_t)channel_id);
 }
@@ -132,15 +129,13 @@ static inline int Wrap_MXC_ADC_StartConversion(uint32_t *sample_channels)
 static inline int Wrap_MXC_ADC_StartConversionAsync(uint32_t *sample_channels,
                                                     mxc_adc_complete_cb_t callback)
 {
-    uint8_t channel_id = 0;
-    uint8_t channel_index = 0;
+    int channel_id;
 
-    for (channel_index = 0; channel_index < 32; channel_index++) {
-        if (*sample_channels & (1 << channel_index)) {
-            channel_id = channel_index;
-            break;
-        }
+    channel_id = wrap_utils_find_lsb_set(*sample_channels);
+    if (channel_id == 0) {
+        return -1;
     }
+    --channel_id;
 
     return MXC_ADC_StartConversionAsync((mxc_adc_chsel_t)channel_id, callback);
 }
@@ -218,18 +213,16 @@ static inline void Wrap_MXC_ADC_ChannelSelect(uint32_t *sample_channels)
     mxc_adc_slot_req_t slots[num_of_channels];
     mxc_adc_conversion_req_t req;
     uint8_t slot_index = 0;
-    uint8_t channel_id = 0;
-    uint8_t channel_index = 0;
+    int channel_id;
 
     req.num_slots = num_of_channels - 1;
 
     for (slot_index = 0; slot_index < num_of_channels; slot_index++) {
-        for (channel_index = 0; channel_index < 32; channel_index++) {
-            if (*sample_channels & (1 << channel_index)) {
-                channel_id = channel_index;
-                break;
-            }
+        channel_id = wrap_utils_find_lsb_set(*sample_channels);
+        if (channel_id == 0) {
+            continue;
         }
+        --channel_id;
 
         slots[slot_index].channel = (mxc_adc_chsel_t)channel_id;
         *sample_channels &= ~(1 << channel_id);
