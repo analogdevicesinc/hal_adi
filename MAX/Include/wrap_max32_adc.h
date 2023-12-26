@@ -122,6 +122,7 @@ static inline int Wrap_MXC_ADC_StartConversion(uint32_t *sample_channels)
         return -1;
     }
     --channel_id;
+    *sample_channels &= ~(1 << channel_id);
 
     return MXC_ADC_StartConversion((mxc_adc_chsel_t)channel_id);
 }
@@ -136,6 +137,7 @@ static inline int Wrap_MXC_ADC_StartConversionAsync(uint32_t *sample_channels,
         return -1;
     }
     --channel_id;
+    *sample_channels &= ~(1 << channel_id);
 
     return MXC_ADC_StartConversionAsync((mxc_adc_chsel_t)channel_id, callback);
 }
