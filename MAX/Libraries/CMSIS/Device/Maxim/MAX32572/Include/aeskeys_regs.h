@@ -1,8 +1,8 @@
 /**
- * @file    trimsir_regs.h
- * @brief   Registers, Bit Masks and Bit Positions for the TRIMSIR Peripheral Module.
+ * @file    aeskeys_regs.h
+ * @brief   Registers, Bit Masks and Bit Positions for the AESKEYS Peripheral Module.
  * @note    This file is @generated.
- * @ingroup trimsir_registers
+ * @ingroup aeskeys_registers
  */
 
 /******************************************************************************
@@ -26,8 +26,8 @@
  *
  ******************************************************************************/
 
-#ifndef LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32572_INCLUDE_TRIMSIR_REGS_H_
-#define LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32572_INCLUDE_TRIMSIR_REGS_H_
+#ifndef LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32572_INCLUDE_AESKEYS_REGS_H_
+#define LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32572_INCLUDE_AESKEYS_REGS_H_
 
 /* **** Includes **** */
 #include <stdint.h>
@@ -64,35 +64,35 @@ extern "C" {
 /* **** Definitions **** */
 
 /**
- * @ingroup     trimsir
- * @defgroup    trimsir_registers TRIMSIR_Registers
- * @brief       Registers, Bit Masks and Bit Positions for the TRIMSIR Peripheral Module.
- * @details     Trim System Initilazation Registers
+ * @ingroup     aeskeys
+ * @ingroup     aes
+ * @defgroup    aeskeys_registers AESKEYS_Registers
+ * @brief       Registers, Bit Masks and Bit Positions for the AESKEYS Peripheral Module.
+ * @details     AES Key Registers.
  */
 
 /**
- * @ingroup trimsir_registers
- * Structure type to access the TRIMSIR Registers.
+ * @ingroup aeskeys_registers
+ * Structure type to access the AESKEYS Registers.
  */
 typedef struct {
-    __R  uint32_t rsv_0x0_0x7[2];
-    __I  uint32_t bbsir2;               /**< <tt>\b 0x08:</tt> TRIMSIR BBSIR2 Register */
-    __I  uint32_t bbsir3;               /**< <tt>\b 0x0C:</tt> TRIMSIR BBSIR3 Register */
-} mxc_trimsir_regs_t;
+    __IO uint32_t meu[8];               /**< <tt>\b 0x00:</tt> AESKEYS MEU Register */
+    __IO uint32_t xip[4];               /**< <tt>\b 0x20:</tt> AESKEYS XIP Register */
+} mxc_aeskeys_regs_t;
 
-/* Register offsets for module TRIMSIR */
+/* Register offsets for module AESKEYS */
 /**
- * @ingroup    trimsir_registers
- * @defgroup   TRIMSIR_Register_Offsets Register Offsets
- * @brief      TRIMSIR Peripheral Register Offsets from the TRIMSIR Base Peripheral Address.
+ * @ingroup    aeskeys_registers
+ * @defgroup   AESKEYS_Register_Offsets Register Offsets
+ * @brief      AESKEYS Peripheral Register Offsets from the AESKEYS Base Peripheral Address.
  * @{
  */
-#define MXC_R_TRIMSIR_BBSIR2               ((uint32_t)0x00000008UL) /**< Offset from TRIMSIR Base Address: <tt> 0x0008</tt> */
-#define MXC_R_TRIMSIR_BBSIR3               ((uint32_t)0x0000000CUL) /**< Offset from TRIMSIR Base Address: <tt> 0x000C</tt> */
-/**@} end of group trimsir_registers */
+#define MXC_R_AESKEYS_MEU                  ((uint32_t)0x00000000UL) /**< Offset from AESKEYS Base Address: <tt> 0x0000</tt> */
+#define MXC_R_AESKEYS_XIP                  ((uint32_t)0x00000020UL) /**< Offset from AESKEYS Base Address: <tt> 0x0020</tt> */
+/**@} end of group aeskeys_registers */
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32572_INCLUDE_TRIMSIR_REGS_H_
+#endif // LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32572_INCLUDE_AESKEYS_REGS_H_
