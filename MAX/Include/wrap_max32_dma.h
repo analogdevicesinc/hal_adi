@@ -82,7 +82,7 @@ static inline int Wrap_MXC_DMA_DoTransfer(mxc_dma_regs_t *dma, mxc_dma_config_t 
 /*
  *  MAX32690, MAX32655 related mapping
  */
-#elif defined(CONFIG_SOC_MAX32690) || (CONFIG_SOC_MAX32655)
+#elif defined(CONFIG_SOC_MAX32690) || (CONFIG_SOC_MAX32655) || (CONFIG_SOC_MAX32670)
 
 #define ADI_MAX32_DMA_CTRL_DIS_IE MXC_F_DMA_CTRL_DIS_IE
 #define ADI_MAX32_DMA_CTRL_CTZIEN MXC_F_DMA_CTRL_CTZ_IE

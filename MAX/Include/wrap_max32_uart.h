@@ -115,7 +115,7 @@ static inline void Wrap_MXC_UART_DisableRxDMA(mxc_uart_regs_t *uart)
 /*
  *  MAX32690, MAX32655 related mapping
  */
-#elif defined(CONFIG_SOC_MAX32690) || (CONFIG_SOC_MAX32655)
+#elif defined(CONFIG_SOC_MAX32690) || (CONFIG_SOC_MAX32655) || (CONFIG_SOC_MAX32670)
 // status flags
 #define ADI_MAX32_UART_RX_EMPTY MXC_F_UART_STATUS_RX_EM
 #define ADI_MAX32_UART_TX_EMPTY MXC_F_UART_STATUS_TX_EM

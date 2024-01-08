@@ -83,7 +83,7 @@ static inline int Wrap_MXC_WDT_SelectClockSource(mxc_wdt_regs_t *wdt, uint32_t c
 /*
  *  MAX32690, MAX32655 related mapping
  */
-#elif defined(CONFIG_SOC_MAX32690) || (CONFIG_SOC_MAX32655)
+#elif defined(CONFIG_SOC_MAX32690) || (CONFIG_SOC_MAX32655) || (CONFIG_SOC_MAX32670)
 
 #define WRAP_MXC_F_WDT_CTRL_EN MXC_F_WDT_CTRL_EN
 
