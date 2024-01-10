@@ -66,7 +66,8 @@ static inline int Wrap_MXC_TMR_GetClockIndex(int z_clock)
 /*
  *  MAX32690, MAX32655 related mapping
  */
-#elif defined(CONFIG_SOC_MAX32690) || (CONFIG_SOC_MAX32655) || (CONFIG_SOC_MAX32670)
+#elif defined(CONFIG_SOC_MAX32690) || (CONFIG_SOC_MAX32655) || (CONFIG_SOC_MAX32670) || \
+    (CONFIG_SOC_MAX32672)
 
 static inline int Wrap_MXC_TMR_Init(mxc_tmr_regs_t *tmr, wrap_mxc_tmr_cfg_t *cfg)
 {
@@ -96,7 +97,7 @@ static inline int Wrap_MXC_TMR_GetClockIndex(int z_clock)
     case 4: //ADI_MAX32_PRPH_CLK_SRC_ERTCO
         return MXC_TMR_32K_CLK;
     case 5: //ADI_MAX32_PRPH_CLK_SRC_INRO
-#if defined(CONFIG_SOC_MAX32670)
+#if defined(CONFIG_SOC_MAX32670) || (CONFIG_SOC_MAX32672)
         return MXC_TMR_80K_CLK;
 #else
         return MXC_TMR_8K_CLK;
