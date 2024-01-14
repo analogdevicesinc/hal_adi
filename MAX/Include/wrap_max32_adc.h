@@ -151,7 +151,7 @@ static inline void Wrap_MXC_ADC_GetData(uint16_t **outdata)
 /*
  *  MAX32690,  related mapping
  */
-#elif defined(CONFIG_SOC_MAX32690) || (CONFIG_SOC_MAX32672)
+#elif defined(CONFIG_SOC_MAX32690) || (CONFIG_SOC_MAX32672) || (CONFIG_SOC_MAX32662)
 
 #define WRAP_MXC_F_ADC_CONV_DONE_IE MXC_F_ADC_INTEN_SEQ_DONE
 #define WRAP_MXC_F_ADC_CONV_DONE_IF MXC_F_ADC_INTFL_SEQ_DONE

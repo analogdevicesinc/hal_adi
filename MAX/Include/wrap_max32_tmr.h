@@ -67,7 +67,7 @@ static inline int Wrap_MXC_TMR_GetClockIndex(int z_clock)
  *  MAX32690, MAX32655 related mapping
  */
 #elif defined(CONFIG_SOC_MAX32690) || (CONFIG_SOC_MAX32655) || (CONFIG_SOC_MAX32670) || \
-    (CONFIG_SOC_MAX32672)
+    (CONFIG_SOC_MAX32672) || (CONFIG_SOC_MAX32662)
 
 static inline int Wrap_MXC_TMR_Init(mxc_tmr_regs_t *tmr, wrap_mxc_tmr_cfg_t *cfg)
 {
@@ -80,7 +80,11 @@ static inline int Wrap_MXC_TMR_Init(mxc_tmr_regs_t *tmr, wrap_mxc_tmr_cfg_t *cfg
     mxc_cfg.bitMode = (mxc_tmr_bit_mode_t)cfg->bitMode;
     mxc_cfg.clock = (mxc_tmr_clock_t)cfg->clock;
 
+#if defined(CONFIG_SOC_MAX32662)
+    return MXC_TMR_Init(tmr, &mxc_cfg, 0, (sys_map_t)0);
+#else
     return MXC_TMR_Init(tmr, &mxc_cfg, 0); // init_pins not used
+#endif
 }
 
 static inline int Wrap_MXC_TMR_GetClockIndex(int z_clock)
