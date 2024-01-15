@@ -30,7 +30,7 @@ extern "C" {
  *  MAX32665, MAX32666 related mapping
  */
 #if defined(CONFIG_SOC_MAX32665) || (CONFIG_SOC_MAX32666) || (CONFIG_SOC_MAX32670) || \
-    (CONFIG_SOC_MAX32672) || (CONFIG_SOC_MAX32662)
+    (CONFIG_SOC_MAX32672) || (CONFIG_SOC_MAX32662) || (CONFIG_SOC_MAX32675)
 
 static inline void Wrap_MXC_LP_EnterLowPowerMode(void)
 {

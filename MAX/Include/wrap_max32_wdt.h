@@ -84,7 +84,7 @@ static inline int Wrap_MXC_WDT_SelectClockSource(mxc_wdt_regs_t *wdt, uint32_t c
  *  MAX32690, MAX32655 related mapping
  */
 #elif defined(CONFIG_SOC_MAX32690) || (CONFIG_SOC_MAX32655) || (CONFIG_SOC_MAX32670) || \
-    (CONFIG_SOC_MAX32672) || (CONFIG_SOC_MAX32662)
+    (CONFIG_SOC_MAX32672) || (CONFIG_SOC_MAX32662) || (CONFIG_SOC_MAX32675)
 
 #define WRAP_MXC_F_WDT_CTRL_EN MXC_F_WDT_CTRL_EN
 
@@ -137,9 +137,11 @@ static inline int Wrap_MXC_WDT_SelectClockSource(mxc_wdt_regs_t *wdt, uint32_t c
         clk_src = MXC_WDT_INRO_CLK;
 #endif
         break;
+#if !defined(CONFIG_SOC_MAX32675)
     case 4: // ADI_MAX32_PRPH_CLK_SRC_ERTCO
         clk_src = MXC_WDT_ERTCO_CLK;
         break;
+#endif
     default:
         return -1;
     }
