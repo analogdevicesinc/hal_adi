@@ -44,6 +44,7 @@ extern "C" {
 #define ADI_MAX32_UART_INT_TX MXC_F_UART_INT_EN_TX_FIFO_THRESH // Transmit Interrupt
 #define ADI_MAX32_UART_INT_RX MXC_F_UART_INT_EN_RX_FIFO_THRESH // Receive Interrupt
 #define ADI_MAX32_UART_INT_CTS MXC_F_UART_INT_EN_CTS_CHANGE // CTS Modem Interrupt
+#define ADI_MAX32_UART_INT_TX_OEM MXC_F_UART_INT_EN_TX_FIFO_ALMOST_EMPTY // TX FIFO Almost Empty Interrupt
 // parity
 #define ADI_MAX32_UART_CFG_PARITY_NONE MXC_UART_PARITY_DISABLE
 #define ADI_MAX32_UART_CFG_PARITY_ODD MXC_UART_PARITY_ODD
@@ -134,6 +135,7 @@ static inline void Wrap_MXC_UART_DisableRxDMA(mxc_uart_regs_t *uart)
 #define ADI_MAX32_UART_INT_TX MXC_F_UART_INTEN_TX_HE // Transmit Interrupt
 #define ADI_MAX32_UART_INT_RX MXC_F_UART_INTEN_RX_THD // Receive Interrupt
 #define ADI_MAX32_UART_INT_CTS MXC_F_UART_INTEN_CTS_EV // CTS Modem Interrupt
+#define ADI_MAX32_UART_INT_TX_OEM MXC_F_UART_INTEN_TX_OB // TX FIFO Almost Empty Interrupt
 #else
 // error flags
 #define ADI_MAX32_UART_ERROR_OVERRUN MXC_F_UART_INT_FL_RX_OV
@@ -146,6 +148,7 @@ static inline void Wrap_MXC_UART_DisableRxDMA(mxc_uart_regs_t *uart)
 #define ADI_MAX32_UART_INT_TX MXC_F_UART_INT_EN_TX_HE // Transmit Interrupt
 #define ADI_MAX32_UART_INT_RX MXC_F_UART_INT_EN_RX_THD // Receive Interrupt
 #define ADI_MAX32_UART_INT_CTS MXC_F_UART_INT_EN_CTS_EV // CTS Modem Interrupt
+#define ADI_MAX32_UART_INT_TX_OEM MXC_F_UART_INT_EN_TX_OB // TX FIFO Almost Empty Interrupt
 #endif
 //#define ADI_MAX32_UART_INT_RT   // Receive Timeout Interrupt
 //#define ADI_MAX32_UART_INT_BE   // Break Error Interrupt
