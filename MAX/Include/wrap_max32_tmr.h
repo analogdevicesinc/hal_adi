@@ -40,6 +40,9 @@ typedef struct {
  */
 #if defined(CONFIG_SOC_MAX32665) || (CONFIG_SOC_MAX32666)
 
+/* All timers are 32bits */
+#define WRAP_MXC_IS_32B_TIMER(idx) (1)
+
 static inline int Wrap_MXC_TMR_Init(mxc_tmr_regs_t *tmr, wrap_mxc_tmr_cfg_t *cfg)
 {
     mxc_tmr_cfg_t mxc_cfg;
@@ -69,6 +72,16 @@ static inline int Wrap_MXC_TMR_GetClockIndex(int z_clock)
 #elif defined(CONFIG_SOC_MAX32690) || (CONFIG_SOC_MAX32655) || (CONFIG_SOC_MAX32670) || \
     (CONFIG_SOC_MAX32672) || (CONFIG_SOC_MAX32662) || (CONFIG_SOC_MAX32675) ||          \
     (CONFIG_SOC_MAX32680)
+
+#if defined(CONFIG_SOC_MAX32672) || (CONFIG_SOC_MAX32675)
+/* All timers are 32bits */
+#define WRAP_MXC_IS_32B_TIMER(idx) (1)
+#elif defined(CONFIG_SOC_MAX32662)
+#define WRAP_MXC_IS_32B_TIMER(idx) (MXC_TMR_GET_IDX(idx) == 3 ? 0 : 1)
+#else
+#define WRAP_MXC_IS_32B_TIMER(idx) \
+    (MXC_TMR_GET_IDX(idx) == 4 ? 0 : MXC_TMR_GET_IDX(idx) == 5 ? 0 : 1)
+#endif
 
 static inline int Wrap_MXC_TMR_Init(mxc_tmr_regs_t *tmr, wrap_mxc_tmr_cfg_t *cfg)
 {
