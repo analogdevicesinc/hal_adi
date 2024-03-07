@@ -21,6 +21,7 @@
 
 /***** Includes *****/
 #include <tmr.h>
+#include <lp.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -64,6 +65,17 @@ static inline int Wrap_MXC_TMR_GetClockIndex(int z_clock)
     } else {
         return -1; /* Not supported */
     }
+}
+
+void Wrap_MXC_TMR_EnableWakeup(mxc_tmr_regs_t *tmr, wrap_mxc_tmr_cfg_t *cfg)
+{
+    (void)tmr;
+    (void)cfg;
+}
+
+void Wrap_MXC_TMR_ClearWakeupFlags(mxc_tmr_regs_t *tmr)
+{
+    (void)tmr;
 }
 
 /*
@@ -127,6 +139,31 @@ static inline int Wrap_MXC_TMR_GetClockIndex(int z_clock)
     }
 
     return -1; /* Not supported */
+}
+
+void Wrap_MXC_TMR_EnableWakeup(mxc_tmr_regs_t *tmr, wrap_mxc_tmr_cfg_t *cfg)
+{
+    mxc_tmr_cfg_t mxc_cfg;
+
+    mxc_cfg.pres = cfg->pres;
+    mxc_cfg.mode = cfg->mode;
+    mxc_cfg.cmp_cnt = cfg->cmp_cnt;
+    mxc_cfg.pol = cfg->pol;
+    mxc_cfg.bitMode = (mxc_tmr_bit_mode_t)cfg->bitMode;
+    mxc_cfg.clock = (mxc_tmr_clock_t)cfg->clock;
+
+    // Enable wakeup source in power seq register
+    MXC_LP_EnableTimerWakeup(tmr);
+    // Enable Timer wake-up source
+    MXC_TMR_EnableWakeup(tmr, &mxc_cfg);
+}
+
+void Wrap_MXC_TMR_ClearWakeupFlags(mxc_tmr_regs_t *tmr)
+{
+    if (tmr->wkfl & MXC_F_TMR_WKFL_A) {
+        // Write 1 to clear
+        tmr->wkfl |= MXC_F_TMR_WKFL_A;
+    }
 }
 
 #endif // part number
