@@ -78,6 +78,26 @@ void Wrap_MXC_TMR_ClearWakeupFlags(mxc_tmr_regs_t *tmr)
     (void)tmr;
 }
 
+void Wrap_MXC_TMR_DisableInt(mxc_tmr_regs_t *tmr)
+{
+    (void)tmr;
+}
+
+void Wrap_MXC_TMR_EnableInt(mxc_tmr_regs_t *tmr)
+{
+    (void)tmr;
+}
+
+int Wrap_MXC_TMR_GetPendingInt(mxc_tmr_regs_t *tmr)
+{
+    uint32_t mask = MXC_F_TMR_INTR_IRQ;
+    uint32_t flags;
+
+    flags = MXC_TMR_GetFlags(tmr);
+
+    return ((flags & mask) == mask);
+}
+
 /*
  *  MAX32690, MAX32655 related mapping
  */
@@ -164,6 +184,26 @@ void Wrap_MXC_TMR_ClearWakeupFlags(mxc_tmr_regs_t *tmr)
         // Write 1 to clear
         tmr->wkfl |= MXC_F_TMR_WKFL_A;
     }
+}
+
+void Wrap_MXC_TMR_DisableInt(mxc_tmr_regs_t *tmr)
+{
+    MXC_TMR_DisableInt(tmr);
+}
+
+void Wrap_MXC_TMR_EnableInt(mxc_tmr_regs_t *tmr)
+{
+    MXC_TMR_EnableInt(tmr);
+}
+
+int Wrap_MXC_TMR_GetPendingInt(mxc_tmr_regs_t *tmr)
+{
+    uint32_t mask = MXC_F_TMR_INTFL_IRQ_A | MXC_F_TMR_INTFL_IRQ_B;
+    uint32_t flags;
+
+    flags = MXC_TMR_GetFlags(tmr);
+
+    return ((flags & mask) == mask);
 }
 
 #endif // part number
