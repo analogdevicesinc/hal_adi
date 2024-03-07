@@ -101,7 +101,7 @@ zephyr_library_sources(
 )
 endif()
 
-if (CONFIG_PWM_MAX32 OR CONFIG_TIMER_MAX32) 
+if (CONFIG_PWM_MAX32 OR CONFIG_TIMER_MAX32 OR CONFIG_COUNTER_TIMER_MAX32) 
 zephyr_library_sources(
     ${MSDK_PERIPH_SRC_DIR}/TMR/tmr_common.c
     ${MSDK_PERIPH_SRC_DIR}/TMR/tmr_me15.c
