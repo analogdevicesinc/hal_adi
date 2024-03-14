@@ -18,12 +18,16 @@
 
 #include "max32680.h"
 #include "icc.h"
+#include "mcr_regs.h"
 
 /* 
  * This function is called during boot up.
  */
 void max32xx_system_init(void)
 {
+    /* Disable SRAM ECC until it is handled on zephyr side */
+    MXC_MCR->eccen &= ~MXC_F_MCR_ECCEN_RAM0;
+
     /* Enable instruction cache */
     MXC_ICC_Enable(MXC_ICC0);
 }

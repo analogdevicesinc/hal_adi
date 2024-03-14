@@ -54,6 +54,11 @@ void max32xx_system_init(void)
 {
     pre_init();
 
+    /* Disable SRAM ECC until it is handled on zephyr side */
+    MXC_MCR->eccen &= ~(MXC_F_MCR_ECCEN_SYSRAM0ECCEN | MXC_F_MCR_ECCEN_SYSRAM1ECCEN |
+                        MXC_F_MCR_ECCEN_SYSRAM2ECCEN | MXC_F_MCR_ECCEN_SYSRAM3ECCEN |
+                        MXC_F_MCR_ECCEN_SYSRAM4ECCEN | MXC_F_MCR_ECCEN_SYSRAM5ECCEN);
+
     /* We'd like to switch to the fast clock, but can only do so if the 
      * core's operating voltage (VregO_B) is high enough to support it
      * Otherwise, we need to remain on the slow clock

@@ -19,12 +19,16 @@
 #include "max32670.h"
 #include "pwrseq_regs.h"
 #include "mxc_sys.h"
+#include "ecc_regs.h"
 
 /* 
  * This function is called during boot up.
  */
 void max32xx_system_init(void)
 {
+    /* Disable SRAM ECC until it is handled on zephyr side */
+    MXC_ECC->en &= ~MXC_F_ECC_EN_SRAM;
+
     /* Make sure INRO is enabled. INRO should already be enabled during power up. */
     MXC_PWRSEQ->lpcn |= MXC_F_PWRSEQ_LPCN_INRO_EN;
 }

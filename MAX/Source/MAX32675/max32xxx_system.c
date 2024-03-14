@@ -16,10 +16,14 @@
  *
  ******************************************************************************/
 
+#include "max32675.h"
+#include "ecc_regs.h"
+
 /* 
  * This function is called during boot up.
  */
 void max32xx_system_init(void)
 {
-
+    /* Disable SRAM ECC until it is handled on zephyr side */
+    MXC_ECC->en &= ~MXC_F_ECC_EN_SRAM;
 }

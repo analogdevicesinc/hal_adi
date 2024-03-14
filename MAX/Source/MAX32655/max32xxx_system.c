@@ -20,6 +20,7 @@
 #include "gcr_regs.h"
 #include "icc.h"
 #include "simo.h"
+#include "mcr_regs.h"
 
 static int pre_init(void)
 {
@@ -45,6 +46,9 @@ static int pre_init(void)
 void max32xx_system_init(void)
 {
     pre_init();
+
+    /* Disable SRAM ECC until it is handled on zephyr side */
+    MXC_MCR->eccen &= ~MXC_F_MCR_ECCEN_RAM0;
 
     /* Enable instruction cache */
     MXC_ICC_Enable(MXC_ICC0);
