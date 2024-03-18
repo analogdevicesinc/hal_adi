@@ -107,7 +107,7 @@ zephyr_library_sources(
 )
 endif()
 
-if (CONFIG_RTC_MAX32)
+if (CONFIG_RTC_MAX32 OR CONFIG_COUNTER_RTC_MAX32)
 zephyr_library_sources(
     ${MSDK_PERIPH_SRC_DIR}/RTC/rtc_me21.c
     ${MSDK_PERIPH_SRC_DIR}/RTC/rtc_reva.c
