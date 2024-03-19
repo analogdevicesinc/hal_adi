@@ -39,12 +39,12 @@ static inline void Wrap_MXC_LP_EnterLowPowerMode(void)
 
 static inline void Wrap_MXC_LP_EnterMicroPowerMode(void)
 {
-    // not support
+    MXC_LP_EnterDeepSleepMode();
 }
 
 static inline void Wrap_MXC_LP_EnterStandbyMode(void)
 {
-    // not support
+    MXC_LP_EnterDeepSleepMode();
 }
 
 static inline void Wrap_MXC_LP_EnterPowerDownMode(void)
