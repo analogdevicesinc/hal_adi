@@ -59,14 +59,6 @@ extern "C" {
 #include <max78002.h>
 #endif
 
-#if __MPU_PRESENT == 1
-#undef __MPU_PRESENT
-#endif
-
-#if __FPU_PRESENT == 1
-#undef __FPU_PRESENT
-#endif
-
 #ifdef __cplusplus
 }
 #endif
