@@ -147,14 +147,10 @@ static inline int Wrap_MXC_TMR_GetClockIndex(int z_clock)
     case 4: //ADI_MAX32_PRPH_CLK_SRC_ERTCO
         return MXC_TMR_32K_CLK;
     case 5: //ADI_MAX32_PRPH_CLK_SRC_INRO
-#if defined(CONFIG_SOC_MAX32670) || (CONFIG_SOC_MAX32672) || (CONFIG_SOC_MAX32675)
-        return MXC_TMR_80K_CLK;
-#else
-        return MXC_TMR_8K_CLK;
-#endif
+        return MXC_TMR_INRO_CLK;
 #if defined(CONFIG_SOC_MAX32690)
     case 6: //ADI_MAX32_PRPH_CLK_SRC_ISO
-        return MXC_TMR_60M_CLK;
+        return MXC_TMR_ISO_CLK;
 #endif
     }
 
