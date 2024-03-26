@@ -22,6 +22,7 @@
 /***** Includes *****/
 #include <adc.h>
 #include <wrap_utils.h>
+#include <mxc_delay.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -188,6 +189,13 @@ static inline int Wrap_MXC_ADC_Init(wrap_mxc_adc_req_t *req)
     default:
         return -1;
     }
+
+    /*
+    TODO: MXC_ADC_RevB_Init function calls MXC_Delay function which uses SysTick and
+    program stucks in this function. Added following line to solve the problem until
+    develop a Zephyr compatible 'mxc_delay.c' file.
+    */
+    MXC_DelayAsync(1000, NULL);
 
     return MXC_ADC_Init(&mxc_req);
 }
