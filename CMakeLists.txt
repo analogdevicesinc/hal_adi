@@ -5,4 +5,4 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-add_subdirectory_ifdef(CONFIG_SOC_SERIES_MAX32 MAX)
+add_subdirectory_ifdef(CONFIG_SOC_FAMILY_MAX32 MAX)
