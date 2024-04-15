@@ -16,8 +16,8 @@
  *
  ******************************************************************************/
 
-#ifndef _WRAP_MAX32_UART_H_
-#define _WRAP_MAX32_UART_H_
+#ifndef LIBRARIES_ZEPHYR_MAX_INCLUDE_WRAP_MAX32_UART_H_
+#define LIBRARIES_ZEPHYR_MAX_INCLUDE_WRAP_MAX32_UART_H_
 
 /***** Includes *****/
 #include <uart.h>
@@ -44,7 +44,8 @@ extern "C" {
 #define ADI_MAX32_UART_INT_TX MXC_F_UART_INT_EN_TX_FIFO_THRESH // Transmit Interrupt
 #define ADI_MAX32_UART_INT_RX MXC_F_UART_INT_EN_RX_FIFO_THRESH // Receive Interrupt
 #define ADI_MAX32_UART_INT_CTS MXC_F_UART_INT_EN_CTS_CHANGE // CTS Modem Interrupt
-#define ADI_MAX32_UART_INT_TX_OEM MXC_F_UART_INT_EN_TX_FIFO_ALMOST_EMPTY // TX FIFO Almost Empty Interrupt
+#define ADI_MAX32_UART_INT_TX_OEM \
+    MXC_F_UART_INT_EN_TX_FIFO_ALMOST_EMPTY // TX FIFO Almost Empty Interrupt
 // parity
 #define ADI_MAX32_UART_CFG_PARITY_NONE MXC_UART_PARITY_DISABLE
 #define ADI_MAX32_UART_CFG_PARITY_ODD MXC_UART_PARITY_ODD
@@ -158,8 +159,8 @@ static inline void Wrap_MXC_UART_DisableRxDMA(mxc_uart_regs_t *uart)
 #define ADI_MAX32_UART_CFG_PARITY_NONE MXC_UART_PARITY_DISABLE
 #define ADI_MAX32_UART_CFG_PARITY_ODD MXC_UART_PARITY_ODD_0
 #define ADI_MAX32_UART_CFG_PARITY_EVEN MXC_UART_PARITY_EVEN_0
-//#define	ADI_MAX32_UART_CFG_PARITY_MARK
-//#define	ADI_MAX32_UART_CFG_PARITY_SPACE
+//#define ADI_MAX32_UART_CFG_PARITY_MARK
+//#define ADI_MAX32_UART_CFG_PARITY_SPACE
 
 /* Error interrupts */
 #define ADI_MAX32_UART_ERROR_INTERRUPTS \
@@ -216,4 +217,4 @@ static inline void Wrap_MXC_UART_DisableRxDMA(mxc_uart_regs_t *uart)
 }
 #endif
 
-#endif // _WRAP_MAX32_UART_H_
+#endif // LIBRARIES_ZEPHYR_MAX_INCLUDE_WRAP_MAX32_UART_H_
