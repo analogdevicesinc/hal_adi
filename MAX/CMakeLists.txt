@@ -32,13 +32,6 @@ zephyr_compile_definitions(
     -DMSDK_NO_LOCKING=1
 )
 
-if (CONFIG_MAX32_SECURE_SOC)
-zephyr_compile_definitions(
-    -D__SLA_FWK__
-    -DUSE_ZEPHYR_SECTIONS=1
-)
-endif()
-
 get_filename_component(MSDK_LIBRARY_DIR "./Libraries" ABSOLUTE)
 set(MSDK_CMSIS_DIR       ${MSDK_LIBRARY_DIR}/CMSIS/Device/Maxim/${TARGET_UC})
 set(MSDK_PERIPH_DIR      ${MSDK_LIBRARY_DIR}/PeriphDrivers)
@@ -47,36 +40,15 @@ set(MSDK_PERIPH_INC_DIR  ${MSDK_PERIPH_DIR}/Include/${TARGET_UC})
 
 zephyr_include_directories(
     ./Include
-    ./Source/${TARGET_UC}
-    ${MSDK_LIBRARY_DIR}/CMSIS/Include
     ${MSDK_CMSIS_DIR}/Include
     ${MSDK_PERIPH_INC_DIR}
 )
-
-if (CONFIG_UDC_MAX32)
-    zephyr_compile_definitions(
-        -DUSE_ZEPHYR_USB_STACK=1
-    )
-
-    set(MSDK_MAXUSB_DIR ${MSDK_LIBRARY_DIR}/MAXUSB)
-
-    zephyr_include_directories(
-        ${MSDK_MAXUSB_DIR}/include/core
-        ${MSDK_MAXUSB_DIR}/include/core/musbhsfc
-    )
-
-    zephyr_library_sources(
-        ${MSDK_MAXUSB_DIR}/src/core/usb_event.c
-        ${MSDK_MAXUSB_DIR}/src/core/musbhsfc/usb.c
-    )
-endif()
 
 add_subdirectory_ifdef(CONFIG_SOC_MAX32520 Source/MAX32520)
 add_subdirectory_ifdef(CONFIG_SOC_MAX32570 Source/MAX32570)
 add_subdirectory_ifdef(CONFIG_SOC_MAX32572 Source/MAX32572)
 add_subdirectory_ifdef(CONFIG_SOC_MAX32650 Source/MAX32650)
 add_subdirectory_ifdef(CONFIG_SOC_MAX32655 Source/MAX32655)
-add_subdirectory_ifdef(CONFIG_SOC_MAX32657 Source/MAX32657)
 add_subdirectory_ifdef(CONFIG_SOC_MAX32660 Source/MAX32660)
 add_subdirectory_ifdef(CONFIG_SOC_MAX32662 Source/MAX32662)
 add_subdirectory_ifdef(CONFIG_SOC_MAX32665 Source/MAX32665)
