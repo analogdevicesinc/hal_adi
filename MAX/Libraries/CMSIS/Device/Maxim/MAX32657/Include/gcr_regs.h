@@ -91,7 +91,7 @@ typedef struct {
     __IO uint32_t sysinten;             /**< <tt>\b 0x54:</tt> GCR SYSINTEN Register */
     __R  uint32_t rsv_0x58_0x63[3];
     __IO uint32_t eccerr;               /**< <tt>\b 0x64:</tt> GCR ECCERR Register */
-    __R  uint32_t rsv_0x68;
+    __IO uint32_t eccced;               /**< <tt>\b 0x68:</tt> GCR ECCCED Register */
     __IO uint32_t eccinten;             /**< <tt>\b 0x6C:</tt> GCR ECCINTEN Register */
     __IO uint32_t eccaddr;              /**< <tt>\b 0x70:</tt> GCR ECCADDR Register */
     __IO uint32_t btleldoctrl;          /**< <tt>\b 0x74:</tt> GCR BTLELDOCTRL Register */
@@ -120,6 +120,7 @@ typedef struct {
 #define MXC_R_GCR_REVISION                 ((uint32_t)0x00000050UL) /**< Offset from GCR Base Address: <tt> 0x0050</tt> */
 #define MXC_R_GCR_SYSINTEN                 ((uint32_t)0x00000054UL) /**< Offset from GCR Base Address: <tt> 0x0054</tt> */
 #define MXC_R_GCR_ECCERR                   ((uint32_t)0x00000064UL) /**< Offset from GCR Base Address: <tt> 0x0064</tt> */
+#define MXC_R_GCR_ECCCED                   ((uint32_t)0x00000068UL) /**< Offset from GCR Base Address: <tt> 0x0068</tt> */
 #define MXC_R_GCR_ECCINTEN                 ((uint32_t)0x0000006CUL) /**< Offset from GCR Base Address: <tt> 0x006C</tt> */
 #define MXC_R_GCR_ECCADDR                  ((uint32_t)0x00000070UL) /**< Offset from GCR Base Address: <tt> 0x0070</tt> */
 #define MXC_R_GCR_BTLELDOCTRL              ((uint32_t)0x00000074UL) /**< Offset from GCR Base Address: <tt> 0x0074</tt> */
@@ -427,6 +428,9 @@ typedef struct {
 #define MXC_F_GCR_RST1_AES_POS                         10 /**< RST1_AES Position */
 #define MXC_F_GCR_RST1_AES                             ((uint32_t)(0x1UL << MXC_F_GCR_RST1_AES_POS)) /**< RST1_AES Mask */
 
+#define MXC_F_GCR_RST1_AUTOCAL_POS                     12 /**< RST1_AUTOCAL Position */
+#define MXC_F_GCR_RST1_AUTOCAL                         ((uint32_t)(0x1UL << MXC_F_GCR_RST1_AUTOCAL_POS)) /**< RST1_AUTOCAL Mask */
+
 /**@} end of group GCR_RST1_Register */
 
 /**
@@ -443,9 +447,6 @@ typedef struct {
 
 #define MXC_F_GCR_PCLKDIS1_AES_POS                     15 /**< PCLKDIS1_AES Position */
 #define MXC_F_GCR_PCLKDIS1_AES                         ((uint32_t)(0x1UL << MXC_F_GCR_PCLKDIS1_AES_POS)) /**< PCLKDIS1_AES Mask */
-
-#define MXC_F_GCR_PCLKDIS1_SPI_POS                     16 /**< PCLKDIS1_SPI Position */
-#define MXC_F_GCR_PCLKDIS1_SPI                         ((uint32_t)(0x1UL << MXC_F_GCR_PCLKDIS1_SPI_POS)) /**< PCLKDIS1_SPI Mask */
 
 #define MXC_F_GCR_PCLKDIS1_DMA1_POS                    21 /**< PCLKDIS1_DMA1 Position */
 #define MXC_F_GCR_PCLKDIS1_DMA1                        ((uint32_t)(0x1UL << MXC_F_GCR_PCLKDIS1_DMA1_POS)) /**< PCLKDIS1_DMA1 Mask */
@@ -507,11 +508,22 @@ typedef struct {
 
 /**
  * @ingroup  gcr_registers
+ * @defgroup GCR_ECCCED GCR_ECCCED
+ * @brief    ECC Correctable Error Detect Register.
+ * @{
+ */
+#define MXC_F_GCR_ECCCED_FLASH_POS                     0 /**< ECCCED_FLASH Position */
+#define MXC_F_GCR_ECCCED_FLASH                         ((uint32_t)(0x1UL << MXC_F_GCR_ECCCED_FLASH_POS)) /**< ECCCED_FLASH Mask */
+
+/**@} end of group GCR_ECCCED_Register */
+
+/**
+ * @ingroup  gcr_registers
  * @defgroup GCR_ECCINTEN GCR_ECCINTEN
  * @brief    ECC Interrupt Enable Register
  * @{
  */
-#define MXC_F_GCR_ECCINTEN_FLASH_POS                   11 /**< ECCINTEN_FLASH Position */
+#define MXC_F_GCR_ECCINTEN_FLASH_POS                   0 /**< ECCINTEN_FLASH Position */
 #define MXC_F_GCR_ECCINTEN_FLASH                       ((uint32_t)(0x1UL << MXC_F_GCR_ECCINTEN_FLASH_POS)) /**< ECCINTEN_FLASH Mask */
 
 /**@} end of group GCR_ECCINTEN_Register */
@@ -548,47 +560,47 @@ typedef struct {
  * @brief    BTLE LDO Control Register
  * @{
  */
-#define MXC_F_GCR_BTLELDOCTRL_TX_EN_POS                0 /**< BTLELDOCTRL_TX_EN Position */
-#define MXC_F_GCR_BTLELDOCTRL_TX_EN                    ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_TX_EN_POS)) /**< BTLELDOCTRL_TX_EN Mask */
+#define MXC_F_GCR_BTLELDOCTRL_RF_EN_POS                0 /**< BTLELDOCTRL_RF_EN Position */
+#define MXC_F_GCR_BTLELDOCTRL_RF_EN                    ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_RF_EN_POS)) /**< BTLELDOCTRL_RF_EN Mask */
 
-#define MXC_F_GCR_BTLELDOCTRL_TX_PD_EN_POS             1 /**< BTLELDOCTRL_TX_PD_EN Position */
-#define MXC_F_GCR_BTLELDOCTRL_TX_PD_EN                 ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_TX_PD_EN_POS)) /**< BTLELDOCTRL_TX_PD_EN Mask */
+#define MXC_F_GCR_BTLELDOCTRL_RF_PD_EN_POS             1 /**< BTLELDOCTRL_RF_PD_EN Position */
+#define MXC_F_GCR_BTLELDOCTRL_RF_PD_EN                 ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_RF_PD_EN_POS)) /**< BTLELDOCTRL_RF_PD_EN Mask */
 
-#define MXC_F_GCR_BTLELDOCTRL_TX_VSEL_POS              2 /**< BTLELDOCTRL_TX_VSEL Position */
-#define MXC_F_GCR_BTLELDOCTRL_TX_VSEL                  ((uint32_t)(0x3UL << MXC_F_GCR_BTLELDOCTRL_TX_VSEL_POS)) /**< BTLELDOCTRL_TX_VSEL Mask */
+#define MXC_F_GCR_BTLELDOCTRL_RF_VSEL_POS              2 /**< BTLELDOCTRL_RF_VSEL Position */
+#define MXC_F_GCR_BTLELDOCTRL_RF_VSEL                  ((uint32_t)(0x3UL << MXC_F_GCR_BTLELDOCTRL_RF_VSEL_POS)) /**< BTLELDOCTRL_RF_VSEL Mask */
 
-#define MXC_F_GCR_BTLELDOCTRL_RX_EN_POS                4 /**< BTLELDOCTRL_RX_EN Position */
-#define MXC_F_GCR_BTLELDOCTRL_RX_EN                    ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_RX_EN_POS)) /**< BTLELDOCTRL_RX_EN Mask */
+#define MXC_F_GCR_BTLELDOCTRL_BB_EN_POS                4 /**< BTLELDOCTRL_BB_EN Position */
+#define MXC_F_GCR_BTLELDOCTRL_BB_EN                    ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_BB_EN_POS)) /**< BTLELDOCTRL_BB_EN Mask */
 
-#define MXC_F_GCR_BTLELDOCTRL_RX_PD_EN_POS             5 /**< BTLELDOCTRL_RX_PD_EN Position */
-#define MXC_F_GCR_BTLELDOCTRL_RX_PD_EN                 ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_RX_PD_EN_POS)) /**< BTLELDOCTRL_RX_PD_EN Mask */
+#define MXC_F_GCR_BTLELDOCTRL_BB_PD_EN_POS             5 /**< BTLELDOCTRL_BB_PD_EN Position */
+#define MXC_F_GCR_BTLELDOCTRL_BB_PD_EN                 ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_BB_PD_EN_POS)) /**< BTLELDOCTRL_BB_PD_EN Mask */
 
-#define MXC_F_GCR_BTLELDOCTRL_RX_VSEL_POS              6 /**< BTLELDOCTRL_RX_VSEL Position */
-#define MXC_F_GCR_BTLELDOCTRL_RX_VSEL                  ((uint32_t)(0x3UL << MXC_F_GCR_BTLELDOCTRL_RX_VSEL_POS)) /**< BTLELDOCTRL_RX_VSEL Mask */
+#define MXC_F_GCR_BTLELDOCTRL_BB_VSEL_POS              6 /**< BTLELDOCTRL_BB_VSEL Position */
+#define MXC_F_GCR_BTLELDOCTRL_BB_VSEL                  ((uint32_t)(0x3UL << MXC_F_GCR_BTLELDOCTRL_BB_VSEL_POS)) /**< BTLELDOCTRL_BB_VSEL Mask */
 
-#define MXC_F_GCR_BTLELDOCTRL_RX_BP_EN_POS             8 /**< BTLELDOCTRL_RX_BP_EN Position */
-#define MXC_F_GCR_BTLELDOCTRL_RX_BP_EN                 ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_RX_BP_EN_POS)) /**< BTLELDOCTRL_RX_BP_EN Mask */
+#define MXC_F_GCR_BTLELDOCTRL_BB_BP_EN_POS             8 /**< BTLELDOCTRL_BB_BP_EN Position */
+#define MXC_F_GCR_BTLELDOCTRL_BB_BP_EN                 ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_BB_BP_EN_POS)) /**< BTLELDOCTRL_BB_BP_EN Mask */
 
-#define MXC_F_GCR_BTLELDOCTRL_RX_DISCH_POS             9 /**< BTLELDOCTRL_RX_DISCH Position */
-#define MXC_F_GCR_BTLELDOCTRL_RX_DISCH                 ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_RX_DISCH_POS)) /**< BTLELDOCTRL_RX_DISCH Mask */
+#define MXC_F_GCR_BTLELDOCTRL_BB_DISCH_POS             9 /**< BTLELDOCTRL_BB_DISCH Position */
+#define MXC_F_GCR_BTLELDOCTRL_BB_DISCH                 ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_BB_DISCH_POS)) /**< BTLELDOCTRL_BB_DISCH Mask */
 
-#define MXC_F_GCR_BTLELDOCTRL_TX_BP_EN_POS             10 /**< BTLELDOCTRL_TX_BP_EN Position */
-#define MXC_F_GCR_BTLELDOCTRL_TX_BP_EN                 ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_TX_BP_EN_POS)) /**< BTLELDOCTRL_TX_BP_EN Mask */
+#define MXC_F_GCR_BTLELDOCTRL_RF_BP_EN_POS             10 /**< BTLELDOCTRL_RF_BP_EN Position */
+#define MXC_F_GCR_BTLELDOCTRL_RF_BP_EN                 ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_RF_BP_EN_POS)) /**< BTLELDOCTRL_RF_BP_EN Mask */
 
-#define MXC_F_GCR_BTLELDOCTRL_TX_DISCH_POS             11 /**< BTLELDOCTRL_TX_DISCH Position */
-#define MXC_F_GCR_BTLELDOCTRL_TX_DISCH                 ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_TX_DISCH_POS)) /**< BTLELDOCTRL_TX_DISCH Mask */
+#define MXC_F_GCR_BTLELDOCTRL_RF_DISCH_POS             11 /**< BTLELDOCTRL_RF_DISCH Position */
+#define MXC_F_GCR_BTLELDOCTRL_RF_DISCH                 ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_RF_DISCH_POS)) /**< BTLELDOCTRL_RF_DISCH Mask */
 
-#define MXC_F_GCR_BTLELDOCTRL_TX_EN_DLY_POS            12 /**< BTLELDOCTRL_TX_EN_DLY Position */
-#define MXC_F_GCR_BTLELDOCTRL_TX_EN_DLY                ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_TX_EN_DLY_POS)) /**< BTLELDOCTRL_TX_EN_DLY Mask */
+#define MXC_F_GCR_BTLELDOCTRL_RF_EN_DLY_POS            12 /**< BTLELDOCTRL_RF_EN_DLY Position */
+#define MXC_F_GCR_BTLELDOCTRL_RF_EN_DLY                ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_RF_EN_DLY_POS)) /**< BTLELDOCTRL_RF_EN_DLY Mask */
 
-#define MXC_F_GCR_BTLELDOCTRL_RX_EN_DLY_POS            13 /**< BTLELDOCTRL_RX_EN_DLY Position */
-#define MXC_F_GCR_BTLELDOCTRL_RX_EN_DLY                ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_RX_EN_DLY_POS)) /**< BTLELDOCTRL_RX_EN_DLY Mask */
+#define MXC_F_GCR_BTLELDOCTRL_BB_EN_DLY_POS            13 /**< BTLELDOCTRL_BB_EN_DLY Position */
+#define MXC_F_GCR_BTLELDOCTRL_BB_EN_DLY                ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_BB_EN_DLY_POS)) /**< BTLELDOCTRL_BB_EN_DLY Mask */
 
-#define MXC_F_GCR_BTLELDOCTRL_RX_BP_EN_DLY_POS         14 /**< BTLELDOCTRL_RX_BP_EN_DLY Position */
-#define MXC_F_GCR_BTLELDOCTRL_RX_BP_EN_DLY             ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_RX_BP_EN_DLY_POS)) /**< BTLELDOCTRL_RX_BP_EN_DLY Mask */
+#define MXC_F_GCR_BTLELDOCTRL_BB_BP_EN_DLY_POS         14 /**< BTLELDOCTRL_BB_BP_EN_DLY Position */
+#define MXC_F_GCR_BTLELDOCTRL_BB_BP_EN_DLY             ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_BB_BP_EN_DLY_POS)) /**< BTLELDOCTRL_BB_BP_EN_DLY Mask */
 
-#define MXC_F_GCR_BTLELDOCTRL_TX_BP_EN_DLY_POS         15 /**< BTLELDOCTRL_TX_BP_EN_DLY Position */
-#define MXC_F_GCR_BTLELDOCTRL_TX_BP_EN_DLY             ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_TX_BP_EN_DLY_POS)) /**< BTLELDOCTRL_TX_BP_EN_DLY Mask */
+#define MXC_F_GCR_BTLELDOCTRL_RF_BP_EN_DLY_POS         15 /**< BTLELDOCTRL_RF_BP_EN_DLY Position */
+#define MXC_F_GCR_BTLELDOCTRL_RF_BP_EN_DLY             ((uint32_t)(0x1UL << MXC_F_GCR_BTLELDOCTRL_RF_BP_EN_DLY_POS)) /**< BTLELDOCTRL_RF_BP_EN_DLY Mask */
 
 /**@} end of group GCR_BTLELDOCTRL_Register */
 
@@ -601,11 +613,11 @@ typedef struct {
 #define MXC_F_GCR_BTLELDODLY_BP_CNT_POS                0 /**< BTLELDODLY_BP_CNT Position */
 #define MXC_F_GCR_BTLELDODLY_BP_CNT                    ((uint32_t)(0xFFUL << MXC_F_GCR_BTLELDODLY_BP_CNT_POS)) /**< BTLELDODLY_BP_CNT Mask */
 
-#define MXC_F_GCR_BTLELDODLY_RX_CNT_POS                8 /**< BTLELDODLY_RX_CNT Position */
-#define MXC_F_GCR_BTLELDODLY_RX_CNT                    ((uint32_t)(0x1FFUL << MXC_F_GCR_BTLELDODLY_RX_CNT_POS)) /**< BTLELDODLY_RX_CNT Mask */
+#define MXC_F_GCR_BTLELDODLY_BB_CNT_POS                8 /**< BTLELDODLY_BB_CNT Position */
+#define MXC_F_GCR_BTLELDODLY_BB_CNT                    ((uint32_t)(0x1FFUL << MXC_F_GCR_BTLELDODLY_BB_CNT_POS)) /**< BTLELDODLY_BB_CNT Mask */
 
-#define MXC_F_GCR_BTLELDODLY_TX_CNT_POS                20 /**< BTLELDODLY_TX_CNT Position */
-#define MXC_F_GCR_BTLELDODLY_TX_CNT                    ((uint32_t)(0x1FFUL << MXC_F_GCR_BTLELDODLY_TX_CNT_POS)) /**< BTLELDODLY_TX_CNT Mask */
+#define MXC_F_GCR_BTLELDODLY_RF_CNT_POS                20 /**< BTLELDODLY_RF_CNT Position */
+#define MXC_F_GCR_BTLELDODLY_RF_CNT                    ((uint32_t)(0x1FFUL << MXC_F_GCR_BTLELDODLY_RF_CNT_POS)) /**< BTLELDODLY_RF_CNT Mask */
 
 /**@} end of group GCR_BTLELDODLY_Register */
 
