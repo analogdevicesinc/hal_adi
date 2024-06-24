@@ -23,12 +23,8 @@
 #include "mxc_sys.h"
 #include "max32657.h"
 #include "system_max32657.h"
-#include "gcr_regs.h"
-
-
-#if defined(__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3U)
 #include "partition_max32657.h"
-#endif
+#include "gcr_regs.h"
 
 extern void (*const __isr_vector[])(void);
 
@@ -150,7 +146,7 @@ __weak void SystemInit(void)
 #endif
 
     /* Security Extension Features */
-#if defined(__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3U)
+#if IS_SECURE_ENVIRONMENT
     /* Settings for TrustZone SAU setup are defined in partitions_max32657.h */
     TZ_SAU_Setup();
 #endif /* TrustZone */
