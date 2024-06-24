@@ -148,7 +148,7 @@ typedef enum {
 #define __SAUREGION_PRESENT 1U /**< Presence of FPU  */
 #define __TZ_PRESENT 1U /**< Presence of TrustZone */
 #define __VTOR_PRESENT 1U /**< Presence of VTOR register in SCB  */
-#define __NVIC_PRIO_BITS 4U /**< NVIC interrupt priority bits */
+#define __NVIC_PRIO_BITS 3U /**< NVIC interrupt priority bits */
 #define __Vendor_SysTickConfig 0U /**< Is 1 if different SysTick counter is used */
 
 #include <core_cm33.h>
@@ -168,6 +168,26 @@ typedef void __ns_call (*mxc_ns_call_t) (void);
 /* ================================================================================ */
 /* ==================       Device Specific Memory Section       ================== */
 /* ================================================================================ */
+
+/* Physical Memory Definitions */
+/* Bit 28 (security alias bit) of address is cleared. */
+#define MXC_PHY_FLASH_MEM_BASE 0x01000000UL
+#define MXC_PHY_FLASH_MEM_SIZE 0x00100000UL
+#define MXC_PHY_FLASH_PAGE_SIZE 0x00002000UL
+
+#define MXC_PHY_SRAM_MEM_BASE 0x20000000UL
+#define MXC_PHY_SRAM_MEM_SIZE 0x00040000UL
+
+#define MXC_PHY_SRAM0_MEM_BASE 0x20000000UL
+#define MXC_PHY_SRAM0_MEM_SIZE 0x00008000UL // 32KB
+#define MXC_PHY_SRAM1_MEM_BASE 0x20008000UL
+#define MXC_PHY_SRAM1_MEM_SIZE 0x00008000UL // 32KB
+#define MXC_PHY_SRAM2_MEM_BASE 0x20010000UL
+#define MXC_PHY_SRAM2_MEM_SIZE 0x00010000UL // 64KB
+#define MXC_PHY_SRAM3_MEM_BASE 0x20020000UL
+#define MXC_PHY_SRAM3_MEM_SIZE 0x00010000UL // 64KB
+#define MXC_PHY_SRAM4_MEM_BASE 0x20030000UL
+#define MXC_PHY_SRAM4_MEM_SIZE 0x00010000UL // 64KB
 
 /* Non-secure Regions */
 #define MXC_FLASH_NS_MEM_BASE 0x01000000UL
@@ -290,22 +310,22 @@ typedef void __ns_call (*mxc_ns_call_t) (void);
 #endif
 
 /******************************************************************************/
-/*                                                             SVM Controller */
+/*                                                            RSTZ Controller */
 
 /* Non-secure Mapping */
-#define MXC_BASE_SVM_NS ((uint32_t)0x40004800UL)
-#define MXC_SVM_NS 0 //TODO(ME30): Add SVM controller registers.
+#define MXC_BASE_RSTZ_NS ((uint32_t)0x40004800UL)
+#define MXC_RSTZ_NS ((mxc_rstz_regs_t *)MXC_BASE_RSTZ_S)
 
 /* Secure Mapping */
-#define MXC_BASE_SVM_S ((uint32_t)0x50004800UL)
-#define MXC_SVM_S 0 //TODO(ME30): Add SVM controller registers.
+#define MXC_BASE_RSTZ_S ((uint32_t)0x50004800UL)
+#define MXC_RSTZ_S ((mxc_rstz_regs_t *)MXC_BASE_RSTZ_S)
 
 #if IS_SECURE_ENVIRONMENT
-#define MXC_BASE_SVM MXC_BASE_SVM_S
-#define MXC_SVM MXC_SVM_S //TODO(ME30): Add SVM controller registers
+#define MXC_BASE_RSTZ MXC_BASE_RSTZ_S
+#define MXC_RSTZ MXC_RSTZ_S //TODO(ME30): Add SVM controller registers
 #else
-#define MXC_BASE_SVM MXC_BASE_SVM_NS
-#define MXC_SVM MXC_SVM_NS
+#define MXC_BASE_RSTZ MXC_BASE_RSTZ_NS
+#define MXC_RSTZ MXC_RSTZ_NS
 #endif
 
 /******************************************************************************/
@@ -313,11 +333,11 @@ typedef void __ns_call (*mxc_ns_call_t) (void);
 
 /* Non-secure Mapping */
 #define MXC_BASE_BOOST_NS ((uint32_t)0x40004C00UL)
-#define MXC_BOOST_NS 0 //TODO(ME30): Add Boost controller registers.
+#define MXC_BOOST_NS ((mxc_boost_regs_t *)MXC_BASE_BOOST_NS)
 
 /* Secure Mapping */
 #define MXC_BASE_BOOST_S ((uint32_t)0x50004C00UL)
-#define MXC_BOOST_S 0 //TODO(ME30): Add Boost controller registers.
+#define MXC_BOOST_S ((mxc_boost_regs_t *)MXC_BASE_BOOST_S)
 
 #if IS_SECURE_ENVIRONMENT
 #define MXC_BASE_BOOST MXC_BASE_BOOST_S
@@ -797,27 +817,6 @@ We may want to handle GET_IRQ better...
 #else
 #define MXC_BASE_TRNG MXC_BASE_TRNG_NS
 #define MXC_TRNG MXC_TRNG_NS
-#endif
-
-/******************************************************************************/
-/*                                                                       BTLE */
-// TODO(ME30): Verify with bluetooth team. This section does not exist in our prev
-//              bluetooth-supported parts.
-/* Non-secure Mapping */
-#define MXC_BASE_BTLE_NS ((uint32_t)0x40050000UL)
-#define MXC_BTLE_NS // TODO(ME30): Add BTLE related registers? This section doesn't exist for ME17.
-
-/* Secure Mapping */
-#define MXC_BASE_BTLE_S ((uint32_t)0x50050000UL)
-#define MXC_BTLE_S // TODO(ME30): Add BTLE related registers? This section doesn't exist for ME17.
-
-#if IS_SECURE_ENVIRONMENT
-// TODO(ME30): Does this have registers?
-#define MXC_BASE_BTLE MXC_BASE_BTLE_S
-#define MXC_BTLE MXC_BTLE_S
-#else
-#define MXC_BASE_BTLE MXC_BASE_BTLE_NS
-#define MXC_BTLE MXC_BTLE_NS
 #endif
 
 /******************************************************************************/
