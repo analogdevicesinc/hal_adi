@@ -25,10 +25,10 @@
  * limitations under the License.
  */
 
-#ifndef LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32657_SOURCE_TEMPLATE_PARTITION_MAX32657_H_
-#define LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32657_SOURCE_TEMPLATE_PARTITION_MAX32657_H_
+#ifndef LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32657_INCLUDE_PARTITION_MAX32657_H_
+#define LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32657_INCLUDE_PARTITION_MAX32657_H_
 
-#include "mxc_device.h"
+#include "max32657.h"
 
 // clang-format off
 #if IS_SECURE_ENVIRONMENT
@@ -70,7 +70,7 @@
 */
 /**
  *  Analog Devices, Inc.
- *  4 Memory Spaces in the MAX32657.
+ *  4 Regions in the MAX32657.
  *    1. Non-Secure Flash
  *    2. Secure Flash
  *    3. Non-Secure SRAM
@@ -92,18 +92,6 @@
  *    Secure SRAM2 (64kB)     0x3001.0000 - 0x3001.FFFF
  *    Secure SRAM3 (64kB)     0x3002.0000 - 0x3002.FFFF
  *    Secure SRAM4 (64kB)     0x3003.0000 - 0x3003.FFFF
- * 
- *  Note: The total physical space for Flash is 1MB, and SRAM is 256KB.
- *    The total size between the non-secure and secure Flash regions
- *    should be 1MB.
- *    The total size between the non-secure and secure SRAM regions
- *    should be 256KB.
- *      - By default, this file sets the following regions:
- *          Secure Flash            (504KB): 0x1100.0000 - 0x1107.DFFF
- *          Non-Secure Callable Flash (8KB): 0x1107.E000 - 0x1107.FFFF
- *          Non-Secure Flash        (512KB): 0x0108.0000 - 0x010F.FFFF
- *          Secure SRAM (0-2)       (128KB): 0x3000.0000 - 0x3001.FFFF
- *          Non-Secure SRAM (3-4)   (128KB): 0x2002.0000 - 0x2003.FFFF
  */
 #define SAU_REGIONS_MAX     4                 /* Max. number of SAU regions */
 
@@ -116,12 +104,12 @@
 /*
 //     <o>Start Address <0-0xFFFFFFE0>
 */
-#define SAU_INIT_START0     $FLASH_ORIGIN_S$      /* start address of SAU region 0 (ROM) */
+#define SAU_INIT_START0     0x11000000      /* start address of SAU region 0 (ROM) */
 
 /*
 //     <o>End Address <0x1F-0xFFFFFFFF>
 */
-#define SAU_INIT_END0       $FLASH_END_S_NSC$      /* end address of SAU region 0 */
+#define SAU_INIT_END0       0x110FFFFF      /* end address of SAU region 0 */
 
 /*
 //     <o>Region is
@@ -142,12 +130,12 @@
 /*
 //     <o>Start Address <0-0xFFFFFFE0>
 */
-#define SAU_INIT_START1     $FLASH_ORIGIN_NS$
+#define SAU_INIT_START1     0x01000000
 
 /*
 //     <o>End Address <0x1F-0xFFFFFFFF>
 */
-#define SAU_INIT_END1       $FLASH_END_NS$
+#define SAU_INIT_END1       0x010FFFFF
 
 /*
 //     <o>Region is
@@ -160,7 +148,7 @@
 */
 
 /*
-//   <e>Initialize SAU Region 2 (Secure SRAM (0-2))
+//   <e>Initialize SAU Region 2 (Secure SRAM)
 //   <i> Setup SAU Region 2 memory attributes
 */
 #define SAU_INIT_REGION2    1
@@ -168,12 +156,12 @@
 /*
 //     <o>Start Address <0-0xFFFFFFE0>
 */
-#define SAU_INIT_START2     $SRAM_ORIGIN_S$
+#define SAU_INIT_START2     0x30000000
 
 /*
 //     <o>End Address <0x1F-0xFFFFFFFF>
 */
-#define SAU_INIT_END2       $SRAM_END_S$
+#define SAU_INIT_END2       0x3003FFFF
 
 /*
 //     <o>Region is
@@ -186,7 +174,7 @@
 */
 
 /*
-//   <e>Initialize SAU Region 3 (Non-Secure SRAM (3-4))
+//   <e>Initialize SAU Region 3 (Non-Secure SRAM)
 //   <i> Setup SAU Region 3 memory attributes
 */
 #define SAU_INIT_REGION3    1
@@ -194,12 +182,12 @@
 /*
 //     <o>Start Address <0-0xFFFFFFE0>
 */
-#define SAU_INIT_START3     $SRAM_ORIGIN_NS$
+#define SAU_INIT_START3     0x20000000
 
 /*
 //     <o>End Address <0x1F-0xFFFFFFFF>
 */
-#define SAU_INIT_END3       $SRAM_END_NS$
+#define SAU_INIT_END3       0x2003FFFF
 
 /*
 //     <o>Region is
@@ -212,7 +200,7 @@
 */
 
 /*
-//   <e>Initialize SAU Region 4 (Non-Secure SRAM)
+//   <e>Initialize SAU Region 4
 //   <i> Setup SAU Region 4 memory attributes
 */
 #define SAU_INIT_REGION4    0
@@ -1197,7 +1185,7 @@ __STATIC_INLINE void TZ_SAU_Setup (void)
 
   #if defined (SAU_INIT_CTRL) && (SAU_INIT_CTRL == 1U)
     SAU->CTRL = ((SAU_INIT_CTRL_ENABLE << SAU_CTRL_ENABLE_Pos) & SAU_CTRL_ENABLE_Msk) |
-                ((SAU_INIT_CTRL_ALLNS  << SAU_CTRL_ALLNS_Pos)  & SAU_CTRL_ALLNS_Msk);
+                ((SAU_INIT_CTRL_ALLNS  << SAU_CTRL_ALLNS_Pos)  & SAU_CTRL_ALLNS_Msk)   ;
   #endif
 
   #if defined (SCB_CSR_AIRCR_INIT) && (SCB_CSR_AIRCR_INIT == 1U)
@@ -1295,4 +1283,4 @@ __STATIC_INLINE void TZ_SAU_Setup (void)
 
 #endif // IS_SECURE_EVIRONMENT
 
-#endif LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32657_SOURCE_TEMPLATE_PARTITION_MAX32657_H_
+#endif // LIBRARIES_CMSIS_DEVICE_MAXIM_MAX32657_INCLUDE_PARTITION_MAX32657_H_

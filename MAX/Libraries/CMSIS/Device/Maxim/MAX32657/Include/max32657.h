@@ -123,7 +123,7 @@ typedef enum {
     BTLE_RX_AES_IRQn,       /* 0x3B  0x00EC  59: BTLE RX AES Done */
     BTLE_INV_APB_ADDR_IRQn, /* 0x3C  0x00F0  60: BTLE Invalid APB Address */
     BTLE_IQ_DATA_VALID_IRQn, /* 0x3D  0x00F4  61:BTLE IQ Data Valid */
-    BTLE_RX_CRC_IRQn,       /* 0x3E  0x00F8  62: BTLE RX CRC */
+    BTLE_XXXX_IRQn,         /* 0x3E  0x00F8  62: BTLE XXXX TODO(ME30): Verify BTLE IRQs */
     RSV47_IRQn,             /* 0x3F  0x00FC  63: Reserved */
     MPC_IRQn,               /* 0x40  0x0100  64: MPC Combined (Secure) */
     PPC_IRQn,               /* 0x41  0x0104  65: PPC Combined (Secure) */
@@ -148,46 +148,20 @@ typedef enum {
 #define __SAUREGION_PRESENT 1U /**< Presence of FPU  */
 #define __TZ_PRESENT 1U /**< Presence of TrustZone */
 #define __VTOR_PRESENT 1U /**< Presence of VTOR register in SCB  */
-#define __NVIC_PRIO_BITS 3U /**< NVIC interrupt priority bits */
+#define __NVIC_PRIO_BITS 4U /**< NVIC interrupt priority bits */
 #define __Vendor_SysTickConfig 0U /**< Is 1 if different SysTick counter is used */
 
 #include <core_cm33.h>
-#include <cmsis_gcc.h>
 #include <arm_cmse.h>
-
-#if defined(__GNUC__)
 #if defined(__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3U)
-// Type used for secure code to call non-secure code.
-#define __ns_call __attribute((cmse_nonsecure_call))
-typedef void __ns_call (*mxc_ns_call_t) (void); 
-// Type used for non-secure code to call secure code.
-#define __ns_entry __attribute((cmse_nonsecure_entry))
-#endif
+#define IS_SECURE_ENVIRONMENT 1
+#else
+#define IS_SECURE_ENVIRONMENT 0
 #endif
 
 /* ================================================================================ */
 /* ==================       Device Specific Memory Section       ================== */
 /* ================================================================================ */
-
-/* Physical Memory Definitions */
-/* Bit 28 (security alias bit) of address is cleared. */
-#define MXC_PHY_FLASH_MEM_BASE 0x01000000UL
-#define MXC_PHY_FLASH_MEM_SIZE 0x00100000UL
-#define MXC_PHY_FLASH_PAGE_SIZE 0x00002000UL
-
-#define MXC_PHY_SRAM_MEM_BASE 0x20000000UL
-#define MXC_PHY_SRAM_MEM_SIZE 0x00040000UL
-
-#define MXC_PHY_SRAM0_MEM_BASE 0x20000000UL
-#define MXC_PHY_SRAM0_MEM_SIZE 0x00008000UL // 32KB
-#define MXC_PHY_SRAM1_MEM_BASE 0x20008000UL
-#define MXC_PHY_SRAM1_MEM_SIZE 0x00008000UL // 32KB
-#define MXC_PHY_SRAM2_MEM_BASE 0x20010000UL
-#define MXC_PHY_SRAM2_MEM_SIZE 0x00010000UL // 64KB
-#define MXC_PHY_SRAM3_MEM_BASE 0x20020000UL
-#define MXC_PHY_SRAM3_MEM_SIZE 0x00010000UL // 64KB
-#define MXC_PHY_SRAM4_MEM_BASE 0x20030000UL
-#define MXC_PHY_SRAM4_MEM_SIZE 0x00010000UL // 64KB
 
 /* Non-secure Regions */
 #define MXC_FLASH_NS_MEM_BASE 0x01000000UL
@@ -310,22 +284,22 @@ typedef void __ns_call (*mxc_ns_call_t) (void);
 #endif
 
 /******************************************************************************/
-/*                                                            RSTZ Controller */
+/*                                                             SVM Controller */
 
 /* Non-secure Mapping */
-#define MXC_BASE_RSTZ_NS ((uint32_t)0x40004800UL)
-#define MXC_RSTZ_NS ((mxc_rstz_regs_t *)MXC_BASE_RSTZ_S)
+#define MXC_BASE_SVM_NS ((uint32_t)0x40004800UL)
+#define MXC_SVM_NS 0 //TODO(ME30): Add SVM controller registers.
 
 /* Secure Mapping */
-#define MXC_BASE_RSTZ_S ((uint32_t)0x50004800UL)
-#define MXC_RSTZ_S ((mxc_rstz_regs_t *)MXC_BASE_RSTZ_S)
+#define MXC_BASE_SVM_S ((uint32_t)0x50004800UL)
+#define MXC_SVM_S 0 //TODO(ME30): Add SVM controller registers.
 
 #if IS_SECURE_ENVIRONMENT
-#define MXC_BASE_RSTZ MXC_BASE_RSTZ_S
-#define MXC_RSTZ MXC_RSTZ_S //TODO(ME30): Add SVM controller registers
+#define MXC_BASE_SVM MXC_BASE_SVM_S
+#define MXC_SVM MXC_SVM_S //TODO(ME30): Add SVM controller registers
 #else
-#define MXC_BASE_RSTZ MXC_BASE_RSTZ_NS
-#define MXC_RSTZ MXC_RSTZ_NS
+#define MXC_BASE_SVM MXC_BASE_SVM_NS
+#define MXC_SVM MXC_SVM_NS
 #endif
 
 /******************************************************************************/
@@ -333,11 +307,11 @@ typedef void __ns_call (*mxc_ns_call_t) (void);
 
 /* Non-secure Mapping */
 #define MXC_BASE_BOOST_NS ((uint32_t)0x40004C00UL)
-#define MXC_BOOST_NS ((mxc_boost_regs_t *)MXC_BASE_BOOST_NS)
+#define MXC_BOOST_NS 0 //TODO(ME30): Add Boost controller registers.
 
 /* Secure Mapping */
 #define MXC_BASE_BOOST_S ((uint32_t)0x50004C00UL)
-#define MXC_BOOST_S ((mxc_boost_regs_t *)MXC_BASE_BOOST_S)
+#define MXC_BOOST_S 0 //TODO(ME30): Add Boost controller registers.
 
 #if IS_SECURE_ENVIRONMENT
 #define MXC_BASE_BOOST MXC_BASE_BOOST_S
@@ -633,15 +607,15 @@ We may want to handle GET_IRQ better...
 
 /******************************************************************************/
 /*                                                                        I3C */
-#define MXC_I3C_FIFO_DEPTH (8)
+#define MXC_I3C_FIFO_DEPTH (8) // TODO(ME30): Confirm this is correct.
 
 /* Non-secure Mapping */
-#define MXC_BASE_I3C_NS ((uint32_t)0x40018000UL)
-#define MXC_I3C_NS ((mxc_i3c_regs_t *)MXC_BASE_I3C_NS)
+#define MXC_BASE_I3C_NS ((uint32_t)0x4001D000UL)
+#define MXC_I3C_NS ((mxc_i2c_regs_t *)MXC_BASE_I3C_NS)
 
 /* Secure Mapping */
-#define MXC_BASE_I3C_S ((uint32_t)0x50018000UL)
-#define MXC_I3C_S ((mxc_i3c_regs_t *)MXC_BASE_I3C_S)
+#define MXC_BASE_I3C_S ((uint32_t)0x5001D000UL)
+#define MXC_I3C_S ((mxc_i2c_regs_t *)MXC_BASE_I3C_S)
 
 #if IS_SECURE_ENVIRONMENT
 #define MXC_BASE_I3C MXC_BASE_I3C_S
@@ -820,43 +794,64 @@ We may want to handle GET_IRQ better...
 #endif
 
 /******************************************************************************/
+/*                                                                       BTLE */
+// TODO(ME30): Verify with bluetooth team. This section does not exist in our prev
+//              bluetooth-supported parts.
+/* Non-secure Mapping */
+#define MXC_BASE_BTLE_NS ((uint32_t)0x40050000UL)
+#define MXC_BTLE_NS // TODO(ME30): Add BTLE related registers? This section doesn't exist for ME17.
+
+/* Secure Mapping */
+#define MXC_BASE_BTLE_S ((uint32_t)0x50050000UL)
+#define MXC_BTLE_S // TODO(ME30): Add BTLE related registers? This section doesn't exist for ME17.
+
+#if IS_SECURE_ENVIRONMENT
+// TODO(ME30): Does this have registers?
+#define MXC_BASE_BTLE MXC_BASE_BTLE_S
+#define MXC_BTLE MXC_BTLE_S
+#else
+#define MXC_BASE_BTLE MXC_BASE_BTLE_NS
+#define MXC_BTLE MXC_BTLE_NS
+#endif
+
+/******************************************************************************/
 /*                                          Secure Privilege Control (SPC TZ) */
 
 /* Secure Mapping Only */
 #define MXC_BASE_SPC ((uint32_t)0x50090000UL)
-#define MXC_SPC ((mxc_spc_regs_t *)MXC_BASE_SPC)
-#define MXC_SPC_S MXC_SPC
+#define MXC_SPC // TODO(ME30): Does this have registers?
+#define MXC_SPC_S // TODO(ME30): Does this have registers?
 
 /******************************************************************************/
 /*                                                                        MPC */
 
 /* Secure Mapping Only */
 #define MXC_BASE_MPC_SRAM0 ((uint32_t)0x50091000UL)
-#define MXC_MPC_SRAM0 ((mxc_mpc_regs_t *)MXC_BASE_MPC_SRAM0)
+#define MXC_MPC_SRAM0 // TODO(ME30): Does this have registers?
 #define MXC_BASE_MPC_SRAM1 ((uint32_t)0x50092000UL)
-#define MXC_MPC_SRAM1 ((mxc_mpc_regs_t *)MXC_BASE_MPC_SRAM1)
+#define MXC_MPC_SRAM1 // TODO(ME30): Does this have registers?
 #define MXC_BASE_MPC_SRAM2 ((uint32_t)0x50093000UL)
-#define MXC_MPC_SRAM2 ((mxc_mpc_regs_t *)MXC_BASE_MPC_SRAM2)
+#define MXC_MPC_SRAM2 // TODO(ME30): Does this have registers?
 #define MXC_BASE_MPC_SRAM3 ((uint32_t)0x50094000UL)
-#define MXC_MPC_SRAM3 ((mxc_mpc_regs_t *)MXC_BASE_MPC_SRAM3)
+#define MXC_MPC_SRAM3 // TODO(ME30): Does this have registers?
 #define MXC_BASE_MPC_SRAM4 ((uint32_t)0x50095000UL)
-#define MXC_MPC_SRAM4 ((mxc_mpc_regs_t *)MXC_BASE_MPC_SRAM4)
+#define MXC_MPC_SRAM4 // TODO(ME30): Does this have registers?
 #define MXC_BASE_MPC_FLASH ((uint32_t)0x50096000UL)
-#define MXC_MPC_FLASH ((mxc_mpc_regs_t *)MXC_BASE_MPC_FLASH)
+#define MXC_MPC_FLASH // TODO(ME30): Does this have registers?
 
 /* Added for consistency and explicitness */
 #define MXC_BASE_MPC_SRAM0_S MXC_BASE_MPC_SRAM0
-#define MXC_MPC_SRAM0_S MXC_MPC_SRAM0
+#define MXC_MPC_SRAM0_S // TODO(ME30): Does this have registers?
 #define MXC_BASE_MPC_SRAM1_S MXC_BASE_MPC_SRAM1
-#define MXC_MPC_SRAM1_S MXC_MPC_SRAM1
+#define MXC_MPC_SRAM1_S // TODO(ME30): Does this have registers?
 #define MXC_BASE_MPC_SRAM2_S MXC_BASE_MPC_SRAM2
-#define MXC_MPC_SRAM2_S MXC_MPC_SRAM2
+#define MXC_MPC_SRAM2_S // TODO(ME30): Does this have registers?
 #define MXC_BASE_MPC_SRAM3_S MXC_BASE_MPC_SRAM3
-#define MXC_MPC_SRAM3_S MXC_MPC_SRAM3
+#define MXC_MPC_SRAM3_S // TODO(ME30): Does this have registers?
 #define MXC_BASE_MPC_SRAM4_S MXC_BASE_MPC_SRAM4
-#define MXC_MPC_SRAM4_S MXC_MPC_SRAM4
+#define MXC_MPC_SRAM4_S // TODO(ME30): Does this have registers?
 #define MXC_BASE_MPC_FLASH_S MXC_BASE_MPC_FLASH
-#define MXC_MPC_FLASH_S MXC_MPC_FLASH
+#define MXC_MPC_FLASH_S // TODO(ME30): Does this have registers?
 
 /******************************************************************************/
 /*                                                               Bit Shifting */
