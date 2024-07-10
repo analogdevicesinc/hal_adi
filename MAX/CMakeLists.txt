@@ -40,7 +40,7 @@ set(MSDK_PERIPH_INC_DIR  ${MSDK_PERIPH_DIR}/Include/${TARGET_UC})
 
 zephyr_include_directories(
     ./Include
-    ${MSDK_LIBRARY_DIR}/CMSIS/Include
+    ./Source/${TARGET_UC}
     ${MSDK_CMSIS_DIR}/Include
     ${MSDK_PERIPH_INC_DIR}
 )
