@@ -18,3 +18,4 @@
 
 
 add_subdirectory_ifdef(CONFIG_SOC_FAMILY_MAX32 MAX)
+add_subdirectory_ifdef(CONFIG_SOC_FAMILY_MAX78 MAX)
