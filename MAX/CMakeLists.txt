@@ -40,6 +40,8 @@ set(MSDK_PERIPH_INC_DIR  ${MSDK_PERIPH_DIR}/Include/${TARGET_UC})
 
 zephyr_include_directories(
     ./Include
+    ./Source/${TARGET_UC}
+    ${MSDK_LIBRARY_DIR}/CMSIS/Include
     ${MSDK_CMSIS_DIR}/Include
     ${MSDK_PERIPH_INC_DIR}
 )
@@ -49,6 +51,7 @@ add_subdirectory_ifdef(CONFIG_SOC_MAX32570 Source/MAX32570)
 add_subdirectory_ifdef(CONFIG_SOC_MAX32572 Source/MAX32572)
 add_subdirectory_ifdef(CONFIG_SOC_MAX32650 Source/MAX32650)
 add_subdirectory_ifdef(CONFIG_SOC_MAX32655 Source/MAX32655)
+add_subdirectory_ifdef(CONFIG_SOC_MAX32657 Source/MAX32657)
 add_subdirectory_ifdef(CONFIG_SOC_MAX32660 Source/MAX32660)
 add_subdirectory_ifdef(CONFIG_SOC_MAX32662 Source/MAX32662)
 add_subdirectory_ifdef(CONFIG_SOC_MAX32665 Source/MAX32665)
