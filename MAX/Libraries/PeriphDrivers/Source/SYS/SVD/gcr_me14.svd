@@ -1865,8 +1865,8 @@
         <addressOffset>0x74</addressOffset>
         <fields>
           <field>
-            <name>LDOTXEN</name>
-            <description>LDOTX Enable</description>
+            <name>LDORXEN</name>
+            <description>LDORX Enable</description>
             <bitOffset>0</bitOffset>
             <bitWidth>1</bitWidth>
             <enumeratedValues>
@@ -1883,8 +1883,8 @@
             </enumeratedValues>
           </field>
           <field>
-            <name>LDOTXOPULLD</name>
-            <description>LDOTX PULL Disable</description>
+            <name>LDORXOPULLD</name>
+            <description>LDORX PULL Disable</description>
             <bitOffset>1</bitOffset>
             <bitWidth>1</bitWidth>
             <enumeratedValues>
@@ -1901,24 +1901,24 @@
             </enumeratedValues>
           </field>
           <field>
-            <name>LDOTXVSEL</name>
-            <description>LDOTX Voltage Setting</description>
+            <name>LDORXVSEL</name>
+            <description>LDORX Voltage Setting</description>
             <bitOffset>2</bitOffset>
             <bitWidth>2</bitWidth>
             <enumeratedValues>
               <enumeratedValue>
-                <name>0_7</name>
-                <description>0.7V</description>
-                <value>0</value>
-              </enumeratedValue>
-              <enumeratedValue>
                 <name>0_85</name>
                 <description>0.85V</description>
-                <value>1</value>
+                <value>0</value>
               </enumeratedValue>
               <enumeratedValue>
                 <name>0_9</name>
                 <description>0.9V</description>
+                <value>1</value>
+              </enumeratedValue>
+              <enumeratedValue>
+                <name>1_0</name>
+                <description>1.0V</description>
                 <value>2</value>
               </enumeratedValue>
               <enumeratedValue>
@@ -1929,8 +1929,8 @@
             </enumeratedValues>
           </field>
           <field>
-            <name>LDORXEN</name>
-            <description>LDORX Enable</description>
+            <name>LDOTXEN</name>
+            <description>LDOTX Enable</description>
             <bitOffset>4</bitOffset>
             <bitWidth>1</bitWidth>
             <enumeratedValues>
@@ -1947,8 +1947,8 @@
             </enumeratedValues>
           </field>
           <field>
-            <name>LDORXPULLD</name>
-            <description>LDORX Pulldown</description>
+            <name>LDOTXPULLD</name>
+            <description>LDOTX Pulldown</description>
             <bitOffset>5</bitOffset>
             <bitWidth>1</bitWidth>
             <enumeratedValues>
@@ -1965,24 +1965,24 @@
             </enumeratedValues>
           </field>
           <field>
-            <name>LDORXVSEL</name>
-            <description>LDORX Output Voltage Setting</description>
+            <name>LDOTXVSEL</name>
+            <description>LDOTX Output Voltage Setting</description>
             <bitOffset>6</bitOffset>
             <bitWidth>2</bitWidth>
             <enumeratedValues>
               <enumeratedValue>
-                <name>0_7</name>
-                <description>0.7V</description>
-                <value>0</value>
-              </enumeratedValue>
-              <enumeratedValue>
                 <name>0_85</name>
                 <description>0.85V</description>
-                <value>1</value>
+                <value>0</value>
               </enumeratedValue>
               <enumeratedValue>
                 <name>0_9</name>
                 <description>0.9V</description>
+                <value>1</value>
+              </enumeratedValue>
+              <enumeratedValue>
+                <name>1_0</name>
+                <description>1.0V</description>
                 <value>2</value>
               </enumeratedValue>
               <enumeratedValue>
@@ -1993,45 +1993,9 @@
             </enumeratedValues>
           </field>
           <field>
-            <name>LDORXBYP</name>
-            <description>LDORX Bypass Enable</description>
-            <bitOffset>8</bitOffset>
-            <bitWidth>1</bitWidth>
-            <enumeratedValues>
-              <enumeratedValue>
-                <name>dis</name>
-                <description>disabled.</description>
-                <value>0</value>
-              </enumeratedValue>
-              <enumeratedValue>
-                <name>en</name>
-                <description>enabled.</description>
-                <value>1</value>
-              </enumeratedValue>
-            </enumeratedValues>
-          </field>
-          <field>
-            <name>LDORXDISCH</name>
-            <description>LDORX Discharge</description>
-            <bitOffset>9</bitOffset>
-            <bitWidth>1</bitWidth>
-            <enumeratedValues>
-              <enumeratedValue>
-                <name>dis</name>
-                <description>disabled.</description>
-                <value>0</value>
-              </enumeratedValue>
-              <enumeratedValue>
-                <name>en</name>
-                <description>enabled.</description>
-                <value>1</value>
-              </enumeratedValue>
-            </enumeratedValues>
-          </field>
-          <field>
             <name>LDOTXBYP</name>
             <description>LDOTX Bypass Enable</description>
-            <bitOffset>10</bitOffset>
+            <bitOffset>8</bitOffset>
             <bitWidth>1</bitWidth>
             <enumeratedValues>
               <enumeratedValue>
@@ -2049,7 +2013,7 @@
           <field>
             <name>LDOTXDISCH</name>
             <description>LDOTX Discharge</description>
-            <bitOffset>11</bitOffset>
+            <bitOffset>9</bitOffset>
             <bitWidth>1</bitWidth>
             <enumeratedValues>
               <enumeratedValue>
@@ -2065,9 +2029,27 @@
             </enumeratedValues>
           </field>
           <field>
-            <name>LDOTXENDLY</name>
-            <description>LDOTX Enable Delay</description>
-            <bitOffset>12</bitOffset>
+            <name>LDORXBYP</name>
+            <description>LDORX Bypass Enable</description>
+            <bitOffset>10</bitOffset>
+            <bitWidth>1</bitWidth>
+            <enumeratedValues>
+              <enumeratedValue>
+                <name>dis</name>
+                <description>disabled.</description>
+                <value>0</value>
+              </enumeratedValue>
+              <enumeratedValue>
+                <name>en</name>
+                <description>enabled.</description>
+                <value>1</value>
+              </enumeratedValue>
+            </enumeratedValues>
+          </field>
+          <field>
+            <name>LDORXDISCH</name>
+            <description>LDORX Discharge</description>
+            <bitOffset>11</bitOffset>
             <bitWidth>1</bitWidth>
             <enumeratedValues>
               <enumeratedValue>
@@ -2085,6 +2067,24 @@
           <field>
             <name>LDORXENDLY</name>
             <description>LDORX Enable Delay</description>
+            <bitOffset>12</bitOffset>
+            <bitWidth>1</bitWidth>
+            <enumeratedValues>
+              <enumeratedValue>
+                <name>dis</name>
+                <description>disabled.</description>
+                <value>0</value>
+              </enumeratedValue>
+              <enumeratedValue>
+                <name>en</name>
+                <description>enabled.</description>
+                <value>1</value>
+              </enumeratedValue>
+            </enumeratedValues>
+          </field>
+          <field>
+            <name>LDOTXENDLY</name>
+            <description>LDOTX Enable Delay</description>
             <bitOffset>13</bitOffset>
             <bitWidth>1</bitWidth>
             <enumeratedValues>
@@ -2101,13 +2101,13 @@
             </enumeratedValues>
           </field>
           <field>
-            <name>LDORXBYPENENDLY</name>
+            <name>LDOTXBYPENENDLY</name>
             <description>LDOTX Bypass Enable Delay</description>
             <bitOffset>14</bitOffset>
             <bitWidth>1</bitWidth>
           </field>
           <field>
-            <name>LDOTXBYPENENDLY</name>
+            <name>LDORXBYPENENDLY</name>
             <description>LDORX Bypass Enable Delay</description>
             <bitOffset>15</bitOffset>
             <bitWidth>1</bitWidth>
@@ -2126,14 +2126,14 @@
             <bitWidth>8</bitWidth>
           </field>
           <field>
-            <name>LDORXDLYCNT</name>
-            <description>LDORX Delay Count. Count delay base on PCLK/128.</description>
+            <name>LDOTXDLYCNT</name>
+            <description>LDOTX Delay Count. Count delay base on PCLK/128.</description>
             <bitOffset>8</bitOffset>
             <bitWidth>9</bitWidth>
           </field>
           <field>
-            <name>LDOTXDLYCNT</name>
-            <description>LDOTX Delay Count. Count delay base on PCLK/128.</description>
+            <name>LDORXDLYCNT</name>
+            <description>LDORX Delay Count. Count delay base on PCLK/128.</description>
             <bitOffset>20</bitOffset>
             <bitWidth>9</bitWidth>
           </field>
