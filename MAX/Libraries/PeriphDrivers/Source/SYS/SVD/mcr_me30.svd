@@ -21,6 +21,12 @@
             <bitOffset>0</bitOffset>
             <bitWidth>1</bitWidth>
           </field>
+          <field>
+            <name>RSTZ</name>
+            <description>Reset RSTZ Controller.</description>
+            <bitOffset>1</bitOffset>
+            <bitWidth>1</bitWidth>
+          </field>
         </fields>
       </register>
       <register>
@@ -43,7 +49,7 @@
         <fields>
           <field>
             <name>CLKSEL</name>
-            <description>Clcok Select for the RTC, System, WUT, and Timer.</description>
+            <description>Clock select for RTC, WUTs, and Timers.</description>
             <bitOffset>0</bitOffset>
             <bitWidth>2</bitWidth>
             <enumeratedValues>
@@ -53,49 +59,49 @@
                 <value>0</value>
               </enumeratedValue>
               <enumeratedValue>
-                <name>INRO_DIV4</name>
+                <name>INRO</name>
                 <description>INRO as clock source.</description>
                 <value>1</value>
               </enumeratedValue>
               <enumeratedValue>
-                <name>RTC_IN_DIV8</name>
+                <name>EXTCLK</name>
                 <description>P0.12 div 8 as clock source.</description>
                 <value>2</value>
               </enumeratedValue>
             </enumeratedValues>
           </field>
           <field>
-            <name>ERTCO32K_EN</name>
-            <description>Enable the 32KHz ERTCO.</description>
+            <name>ERTCO_32KHZ_EN</name>
+            <description>Enable ERTCO 32KHz while ERTCO_EN.</description>
             <bitOffset>3</bitOffset>
             <bitWidth>1</bitWidth>
           </field>
           <field>
             <name>ERTCO_EN</name>
-            <description>Enable the ERTCO.</description>
+            <description>Enable ERTCO 4KHz.</description>
             <bitOffset>5</bitOffset>
             <bitWidth>1</bitWidth>
           </field>
         </fields>
       </register>
       <register>
-        <name>BYPASS0</name>
-        <description>This register is used by firmware to bypass chain of trust on a Warm Boot.</description>
+        <name>BBREG0</name>
+        <description>Battery Back Reg0.</description>
         <addressOffset>0x30</addressOffset>
       </register>
       <register>
-        <name>BYPASS1</name>
-        <description>This register is used by firmware to bypass chain of trust on a Warm Boot.</description>
+        <name>BBREG1</name>
+        <description>Battery Back Reg1.</description>
         <addressOffset>0x34</addressOffset>
       </register>
       <register>
-        <name>DATA0</name>
-        <description>Battery Back Data0 Register. Retains value in all modes.</description>
+        <name>BBDATA0</name>
+        <description>Battery Back Data0 Register.</description>
         <addressOffset>0x40</addressOffset>
       </register>
       <register>
-        <name>DATA1</name>
-        <description>Battery Back Data1 Register. Retains value in all modes.</description>
+        <name>BBDATA1</name>
+        <description>Battery Back Data1 Register.</description>
         <addressOffset>0x44</addressOffset>
       </register>
     </registers>
