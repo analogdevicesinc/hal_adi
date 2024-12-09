@@ -1,0 +1,39 @@
+# Copyright (c) 2024 Analog Devices, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+name: ADI HAL_ADI Policy Compliance Scan
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+      - main
+      - release*
+
+jobs:
+  perform-scan:
+    name: Scan sources for policy compliance
+    runs-on: [ubuntu-latest]
+    environment: policy-scan # envrionment to handle secrets and restrictions
+    steps:
+      - name: Run policy compliance scan
+        uses: synopsys-sig/synopsys-action@v1.11.0
+        env:
+          # name and version of a corresponding Black Duck project
+          # project name for first-time projects should correspond to
+          # component's name in catalog-info.yaml file
+          DETECT_PROJECT_NAME: oa_hal_adi_analogdevicesinc
+          # version should correspond to
+          # components's version in catalog-info.yaml file
+          DETECT_PROJECT_VERSION_NAME: ${{ github.ref_name }}
+          # standard set of scan parameters
+          DETECT_BLACKDUCK_SIGNATURE_SCANNER_LICENSE_SEARCH: true
+          DETECT_BLACKDUCK_SIGNATURE_SCANNER_COPYRIGHT_SEARCH: true
+          DETECT_BLACKDUCK_SIGNATURE_SCANNER_INDIVIDUAL_FILE_MATCHING: ALL
+          DETECT_EXCLUDED_DETECTOR_TYPES: GIT
+        with:
+          blackduck_url: ${{ vars.BLACKDUCK_URL }} # configured as GH environment variable
+          blackduck_token: ${{ secrets.BLACKDUCK_TOKEN }} # configured as GH environment secret
+          blackduck_waitForScan: true
+          blackduck_args: "--detect.policy.check.fail.on.severities=BLOCKER,CRITICAL --detect.timeout=900"
