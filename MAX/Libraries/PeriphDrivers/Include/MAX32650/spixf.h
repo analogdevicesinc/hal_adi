@@ -378,54 +378,20 @@ int MXC_SPIXF_SetSSPolActiveLow(void);
 int MXC_SPIXF_GetSSPolarity(void);
 
 /**
- * @brief      Sets both the read and write SPI clock frequency to the given value.
+ * @brief      Set SPI Frequency
  *
  * @param[in]  hz   The frequency the spi will communicating at.
  *
- * @return     See \ref MXC_Error_Codes for the list of error return codes.
+ * @return     Actual SPI frequency the SPIXF module is set to.
  */
 int MXC_SPIXF_SetSPIFrequency(unsigned int hz);
 
 /**
- * @brief      Sets the SPI clock frequency for read operations.
- *
- * @param[in]  hz   The frequency the spi will communicating at.
- *
- * @return     See \ref MXC_Error_Codes for the list of error return codes.
- */
-int MXC_SPIXF_SetSPIFrequencyRead(unsigned int hz);
-
-/**
- * @brief      Sets the SPI clock frequency for write operations.
- *
- * @param[in]  hz   The frequency the spi will communicating at.
- *
- * @return     See \ref MXC_Error_Codes for the list of error return codes.
- */
-int MXC_SPIXF_SetSPIFrequencyWrite(unsigned int hz);
-
-/**
- * @brief      Get the current SPI clock frequency.  If the read and write clock
- *             frequencies have been set to different values, this function will
- *             return the read frequency.
+ * @brief      Get the current SPI Frequency
  *
  * @return     The current frequency that the SPI is communicating at.
  */
 uint32_t MXC_SPIXF_GetSPIFrequency(void);
-
-/**
- * @brief      Get the current SPI clock frequency for read operations.
- *
- * @return     The current frequency that the SPI is communicating at.
- */
-uint32_t MXC_SPIXF_GetSPIFrequencyRead(void);
-
-/**
- * @brief      Get the current SPI clock frequency for write operations.
- *
- * @return     The current frequency that the SPI is communicating at.
- */
-uint32_t MXC_SPIXF_GetSPIFrequencyWrite(void);
 
 /**
  * @brief      Set the slave select active timing. This will control the delay from assertion of slave select to start
