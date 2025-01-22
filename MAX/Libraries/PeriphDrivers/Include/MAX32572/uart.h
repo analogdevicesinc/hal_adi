@@ -37,8 +37,8 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef _MXC_UART_H_
-#define _MXC_UART_H_
+#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32572_UART_H_
+#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32572_UART_H_
 
 /***** Definitions *****/
 #include "uart_regs.h"
@@ -47,8 +47,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#define UART_EXTCLK_FREQ    E_BAD_PARAM
 
 /**
  * @defgroup uart UART
@@ -661,4 +659,4 @@ int MXC_UART_AsyncHandler(mxc_uart_regs_t *uart);
 }
 #endif
 
-#endif /* _MXC_UART_H_ */
+#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32572_UART_H_
