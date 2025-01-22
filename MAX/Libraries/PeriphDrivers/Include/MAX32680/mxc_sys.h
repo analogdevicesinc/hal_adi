@@ -39,8 +39,8 @@
  * @brief   System level header file.
  */
 
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32680_MXC_SYS_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32680_MXC_SYS_H_
+#ifndef _MXC_MXC_SYS_H_
+#define _MXC_MXC_SYS_H_
 
 #include "mxc_device.h"
 #include "gcr_regs.h"
@@ -294,4 +294,4 @@ uint32_t MXC_SYS_RiscVClockRate(void);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32680_MXC_SYS_H_
+#endif /* _MXC_MXC_SYS_H_*/
