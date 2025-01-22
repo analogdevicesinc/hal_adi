@@ -78,11 +78,11 @@ typedef enum {
     PendSV_IRQn = -2,
     SysTick_IRQn = -1,
 
-    /* Device-specific interrupt sources (external to ARM core)          */
-    /*               table entry number                                  */
-    /*               ||||                                                */
-    /*               ||||  table offset address                          */
-    /*               vvvv  vvvvvv                                        */
+    /* Device-specific interrupt sources (external to ARM core)                 */
+    /*                      table entry number                                  */
+    /*                      ||||                                                */
+    /*                      ||||  table offset address                          */
+    /*                      vvvv  vvvvvv                                        */
 
     PF_IRQn = 0, /* 0x10  0x0040  16: Power Fail */
     WDT0_IRQn, /* 0x11  0x0044  17: Watchdog 0 */
@@ -149,7 +149,7 @@ typedef enum {
     RSV62_IRQn, /* 0x4E  0x0138  78: Reserved */
     RSV63_IRQn, /* 0x4F  0x013C  79: Reserved */
     RSV64_IRQn, /* 0x50  0x0140  80: Reserved */
-    PBM_IRQn, /* 0x51  0x0144  81: Pixel Bit Manipulator */
+    RSV65_IRQn, /* 0x51  0x0144  81: Reserved */
     SDHC_IRQn, /* 0x52  0x0148  82: SDIO/SDHC */
     OWM_IRQn, /* 0x53  0x014C  83: One Wire Master */
     DMA4_IRQn, /* 0x54  0x0150  84: DMA4 */
