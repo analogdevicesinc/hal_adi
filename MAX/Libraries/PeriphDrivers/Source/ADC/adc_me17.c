@@ -259,11 +259,11 @@ int MXC_ADC_Convert(mxc_adc_conversion_req_t* req)
     return MXC_ADC_RevA_Convert((mxc_adc_reva_regs_t*)MXC_ADC, req);
 }
 
-int MXC_ADC_ConvertAsync(mxc_adc_conversion_req_t* req)
+int MXC_ADC_ConvertAsync(mxc_adc_conversion_req_t req)
 {
-    initGPIOForChannel(req->channel);
-    
-    return MXC_ADC_RevA_ConvertAsync((mxc_adc_reva_regs_t*) MXC_ADC, req);
+    initGPIOForChannel(req.channel);
+
+    return MXC_ADC_RevA_ConvertAsync((mxc_adc_reva_regs_t*)MXC_ADC, req);
 }
 
 void MXC_ADC_Monitor(mxc_adc_monitor_req_t req)
