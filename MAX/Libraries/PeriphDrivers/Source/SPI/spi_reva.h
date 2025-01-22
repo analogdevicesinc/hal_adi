@@ -31,9 +31,6 @@
  *
  *************************************************************************** */
 
-#ifndef _SPI_REVA_H_
-#define _SPI_REVA_H_
-
 #include <stdio.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -46,10 +43,6 @@
 #include "spi_reva_regs.h"
 #include "spi.h"
 #include "dma.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 typedef enum {
     SPI_REVA_WIDTH_3WIRE,
@@ -127,9 +120,3 @@ void MXC_SPI_RevA_DMACallback(int ch, int error);
 int MXC_SPI_RevA_SetDefaultTXData(mxc_spi_reva_regs_t *spi, unsigned int defaultTXData);
 void MXC_SPI_RevA_AbortAsync(mxc_spi_reva_regs_t *spi);
 void MXC_SPI_RevA_AsyncHandler(mxc_spi_reva_regs_t *spi);
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* _SPI_REVA_H_ */
