@@ -163,7 +163,7 @@ typedef enum {
  */
 typedef enum {
     MXC_CAN_BITRATE_SEL_NOMINAL,                            ///< Set bitrate for classic CAN frames
-    MXC_CAN_BITRATE_SEL_FD_DATA,                            ///< Reserved for future use. Not supported on MAX32662, included to prevent build errors.
+    MXC_CAN_BITRATE_SEL_FD_DATA,                            ///< Set bitrate for the data phase of CAN FD frames
 } mxc_can_bitrate_sel_t;
 
 /**
@@ -405,8 +405,6 @@ int MXC_CAN_GetClock(uint32_t can_idx);
  * @param sel       Select which bitrate to return
  *
  * @return  Success/Fail, see \ref MXC_Error_Codes for a list of return codes. If successful, returns value of bit rate.
- * 
- * @warning MAX32662 does not support CAN FD, passing MXC_CAN_BITRATE_SEL_FD_DATA will return an error.
  */
 int MXC_CAN_GetBitRate(uint32_t can_idx, mxc_can_bitrate_sel_t sel);
 
@@ -419,8 +417,6 @@ int MXC_CAN_GetBitRate(uint32_t can_idx, mxc_can_bitrate_sel_t sel);
  * @param bit_segments  Mask of number of time quanta in each bit segment see MXC_CAN_BIT_SEGMENTS(seg1_tq, seg2_tq, sjw_tq) defined above     
  *
  * @return  Success/Fail, see \ref MXC_Error_Codes for a list of return codes.
- * 
- * @warning MAX32662 does not support CAN FD, passing MXC_CAN_BITRATE_SEL_FD_DATA will return an error.
  */
 int MXC_CAN_SetBitRate(uint32_t can_idx, mxc_can_bitrate_sel_t sel, uint32_t bitrate, uint32_t bit_segments);
 
@@ -475,8 +471,6 @@ int MXC_CAN_ObjectConfigure(uint32_t can_idx, mxc_can_obj_cfg_t cfg, uint8_t map
  * @param size      Number of data bytes in "data"
  * 
  * @return  Success/Fail, see \ref MXC_Error_Codes for a list of return codes.
- * 
- * @warning MAX32662 does not support CAN FD, setting info->fdf will return an error.
  */ 
 int MXC_CAN_WriteTXFIFO(uint32_t can_idx, mxc_can_msg_info_t* info, const uint8_t* data, uint8_t size);
 
@@ -489,8 +483,6 @@ int MXC_CAN_WriteTXFIFO(uint32_t can_idx, mxc_can_msg_info_t* info, const uint8_
  * @param size      Maximum number of data bytes that can be stored in "data"
  * 
  * @return  Success/Fail, see \ref MXC_Error_Codes for a list of return codes.
- * 
- * @warning MAX32662 does not support CAN FD, setting info->fdf will return an error.
  */ 
 int MXC_CAN_ReadRXFIFO(uint32_t can_idx, mxc_can_msg_info_t* info, uint8_t* data, uint8_t size);
 
@@ -501,8 +493,6 @@ int MXC_CAN_ReadRXFIFO(uint32_t can_idx, mxc_can_msg_info_t* info, uint8_t* data
  * @param req       Contains information about the format and data of message to send
  *
  * @return  Success/Fail, see \ref MXC_Error_Codes for a list of return codes.
- * 
- * @warning MAX32662 does not support CAN FD, setting req->msg_info->fdf will return an error.
  */
 int MXC_CAN_MessageSend(uint32_t can_idx, mxc_can_req_t* req);
 
@@ -513,8 +503,6 @@ int MXC_CAN_MessageSend(uint32_t can_idx, mxc_can_req_t* req);
  * @param req       Contains information about the format and data of message to send
  *
  * @return  Success/Fail, see \ref MXC_Error_Codes for a list of return codes.
- * 
- * @warning MAX32662 does not support CAN FD, setting req->msg_info->fdf will return an error.
  */
 int MXC_CAN_MessageSendAsync(uint32_t can_idx, mxc_can_req_t* req);
 
@@ -525,8 +513,6 @@ int MXC_CAN_MessageSendAsync(uint32_t can_idx, mxc_can_req_t* req);
  * @param req       Contains information about the format and data of message to send
  *
  * @return  Success/Fail, see \ref MXC_Error_Codes for a list of return codes.
- * 
- * @warning MAX32662 does not support CAN FD, setting req->msg_info->fdf will return an error.
  */
 int MXC_CAN_MessageSendDMA(uint32_t can_idx, mxc_can_req_t* req);
 
@@ -537,8 +523,6 @@ int MXC_CAN_MessageSendDMA(uint32_t can_idx, mxc_can_req_t* req);
  * @param req       Pointer to struct that stores CAN message information
  *
  * @return  Success/Fail, see \ref MXC_Error_Codes for a list of return codes.
- * 
- * @warning MAX32662 does not support CAN FD, setting req->msg_info->fdf will return an error.
  */
 int MXC_CAN_MessageRead(uint32_t can_idx, mxc_can_req_t* req);
 
@@ -549,8 +533,6 @@ int MXC_CAN_MessageRead(uint32_t can_idx, mxc_can_req_t* req);
  * @param req       Pointer to struct that stores CAN message information
  *
  * @return  Success/Fail, see \ref MXC_Error_Codes for a list of return codes.
- * 
- * @warning MAX32662 does not support CAN FD, setting req->msg_info->fdf will return an error.
  */
 int MXC_CAN_MessageReadAsync(uint32_t can_idx, mxc_can_req_t* req);
 
@@ -561,8 +543,6 @@ int MXC_CAN_MessageReadAsync(uint32_t can_idx, mxc_can_req_t* req);
  * @param req       Pointer to struct that stores CAN message information, initialize "msg_info" to expected configuration of the message to be received (Needed to ensure proper DMA length is set, if these are not known use MXC_CAN_MessageReadAsync instead.) 
  * @param dma_cb    Pointer to DMA callback function.
  * @return  Success/Fail, see \ref MXC_Error_Codes for a list of return codes.
- * 
- * @warning MAX32662 does not support CAN FD, setting req->msg_info->fdf will return an error.
  */
 int MXC_CAN_MessageReadDMA(uint32_t can_idx, mxc_can_req_t* req, void (*dma_cb) (int, int));
 
@@ -583,8 +563,6 @@ int MXC_CAN_Handler(uint32_t can_idx);
  * @param ctrl_arg  Depends on ctrl. RETRANSMISSION: 1-Enable, 0-Disable; TRANSCEIVER_DELAY: number of time quanta to delay; any other value of control this parameter is ignored
  *
  * @return  Success/Fail, see \ref MXC_Error_Codes for a list of return codes.
- * 
- * @warning MAX32662 does not support CAN FD, passing MXC_CAN_CTRL_SET_FD_MODE will return an error.
  */
 int MXC_CAN_Control(uint32_t can_idx, mxc_can_ctrl_t ctrl, uint32_t ctrl_arg);
 
