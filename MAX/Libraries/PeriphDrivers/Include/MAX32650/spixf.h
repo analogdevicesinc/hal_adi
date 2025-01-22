@@ -39,8 +39,8 @@
  **************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_SPIXF_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_SPIXF_H_
+#ifndef _SPIXF_H_
+#define _SPIXF_H_
 
 /* **** Includes **** */
 #include "mxc_sys.h"
@@ -996,4 +996,4 @@ unsigned int MXC_SPIXF_GetBusIdle(void);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_SPIXF_H_
+#endif /* _SPIXF_H_ */

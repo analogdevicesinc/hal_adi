@@ -36,8 +36,8 @@
  *
  ******************************************************************************/
 
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78002_NVIC_TABLE_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78002_NVIC_TABLE_H_
+#ifndef _NVIC_TABLE_H
+#define _NVIC_TABLE_H
 
 #ifndef __riscv
 
@@ -121,4 +121,4 @@ NVIC_GetVector(IRQn_Type irqn)
 
 #endif /* !__riscv */
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78002_NVIC_TABLE_H_
+#endif /* _NVIC_TABLE_H */

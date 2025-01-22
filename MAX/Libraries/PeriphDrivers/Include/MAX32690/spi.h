@@ -38,9 +38,8 @@
  * $Revision$
  *
  *************************************************************************** */
-
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32690_SPI_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32690_SPI_H_
+#ifndef _SPI_H_
+#define _SPI_H_
 
 /***** includes *******/
 #include <stdbool.h>
@@ -671,4 +670,4 @@ void MXC_SPI_AsyncHandler(mxc_spi_regs_t *spi);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32690_SPI_H_
+#endif /* _SPI_H_ */

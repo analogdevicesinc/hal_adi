@@ -40,8 +40,8 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32665_RPU_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32665_RPU_H_
+#ifndef _RPU_H_
+#define _RPU_H_
 
 /* **** Includes **** */
 #include "rpu_regs.h"
@@ -164,4 +164,4 @@ int MXC_RPU_IsAllowed(void);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32665_RPU_H_
+#endif /* _RPU_H_ */

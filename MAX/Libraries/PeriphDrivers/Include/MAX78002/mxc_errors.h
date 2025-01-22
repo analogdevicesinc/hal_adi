@@ -39,8 +39,8 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78002_MXC_ERRORS_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78002_MXC_ERRORS_H_
+#ifndef _MXC_ERRORS_H_
+#define _MXC_ERRORS_H_
 
 /**
  * @ingroup syscfg
@@ -95,4 +95,4 @@
 #define E_UNDERRUN -19
 /**@} end of MXC_Error_Codes group */
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78002_MXC_ERRORS_H_
+#endif /* _MXC_ERRORS_H_ */

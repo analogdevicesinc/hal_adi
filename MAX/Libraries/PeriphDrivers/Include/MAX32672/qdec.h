@@ -40,8 +40,8 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32672_QDEC_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32672_QDEC_H_
+#ifndef _QDEC_H_
+#define _QDEC_H_
 
 /* **** Includes **** */
 #include <stdint.h>
@@ -275,4 +275,4 @@ int MXC_QDEC_GetDirection(void);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32672_QDEC_H_
+#endif /* _QDEC_H_ */

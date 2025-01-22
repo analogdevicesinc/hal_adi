@@ -94,6 +94,7 @@ typedef struct {
 #else
     uint8_t payload[MAILBOX_SIZE - MAILBOX_OVERHEAD];
 #endif
+
 } mxcSemaBox_t;
 mxcSemaBox_t *mxcSemaBox0 = (mxcSemaBox_t *)&_mailbox_0;
 mxcSemaBox_t *mxcSemaBox1 = (mxcSemaBox_t *)&_mailbox_1;

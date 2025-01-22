@@ -36,8 +36,8 @@
  *
  ******************************************************************************/
 
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32672_MXC_SYS_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32672_MXC_SYS_H_
+#ifndef _MXC_MXC_SYS_H_
+#define _MXC_MXC_SYS_H_
 
 #include "mxc_device.h"
 #include "gcr_regs.h"
@@ -237,4 +237,4 @@ void MXC_SYS_Reset_Periph(mxc_sys_reset_t reset);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32672_MXC_SYS_H_
+#endif /* _MXC_MXC_SYS_H_*/
