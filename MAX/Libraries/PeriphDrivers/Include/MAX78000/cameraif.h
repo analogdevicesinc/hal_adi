@@ -40,8 +40,8 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78000_CAMERAIF_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78000_CAMERAIF_H_
+#ifndef _CAMERAIF_H_
+#define _CAMERAIF_H_
 
 /* **** Includes **** */
 #include "mxc_device.h"
@@ -169,4 +169,4 @@ unsigned int MXC_PCIF_GetData(void);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78000_CAMERAIF_H_
+#endif /* _CAMERAIF_H_ */
