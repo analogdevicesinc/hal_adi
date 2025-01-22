@@ -37,8 +37,8 @@
  ******************************************************************************/
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32662_CAN_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32662_CAN_H_
+#ifndef _CAN_H_
+#define _CAN_H_
 
 /* **** Includes **** */
 #include <stdint.h>
@@ -656,4 +656,4 @@ void MXC_CAN_SignalObjectEvent(uint32_t can_idx, mxc_can_obj_evt_t event);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32662_CAN_H_
+#endif /* _CAN_H_ */

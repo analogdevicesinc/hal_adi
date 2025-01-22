@@ -34,9 +34,6 @@
  *
  ******************************************************************************/
 
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32665_CORE1_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32665_CORE1_H_
-
 /**
  * @file    core1.h
  * @brief   Startup Code for MAX32665 Family CPU1
@@ -73,5 +70,3 @@ void PreInit_Core1(void);
  *        Sets interrupt vector
  */
 void SystemInit_Core1(void);
-
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32665_CORE1_H_

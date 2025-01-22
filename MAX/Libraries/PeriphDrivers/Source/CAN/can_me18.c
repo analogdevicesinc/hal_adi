@@ -34,11 +34,6 @@
 #include "can.h"
 #include "can_reva.h"
 
-#define MXC_CAN_OBJCAPABILITIES_ERROR      \
-    {                                      \
-        -1, -1, -1, -1, -1, -1, -1, -1, -1 \
-    }
-
 static int8_t last_stat_update = -1;
 
 /**********************************************************************************************************************************************************************/
@@ -213,7 +208,7 @@ mxc_can_obj_capabilities_t MXC_CAN_ObjectGetCapabilities(uint32_t can_idx)
 {
     mxc_can_regs_t *can = MXC_CAN_GET_CAN(can_idx);
     if (can == 0) {
-        return (mxc_can_obj_capabilities_t)MXC_CAN_OBJCAPABILITIES_ERROR;
+        return (mxc_can_obj_capabilities_t){ -1, -1, -1, -1, -1, -1, -1, -1, -1 };
     }
 
     return MXC_CAN_RevA_ObjectGetCapabilities((mxc_can_reva_regs_t *)can);

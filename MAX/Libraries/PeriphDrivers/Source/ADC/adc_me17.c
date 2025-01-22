@@ -33,7 +33,6 @@
  * $Revision: 37424 $
  *
  *************************************************************************** */
-#include <stdio.h>
 #include "adc.h"
 #include "adc_regs.h"
 #include "adc_reva.h"
@@ -44,6 +43,7 @@
 #include "mcr_regs.h"
 #include "mxc_lock.h"
 #include "mxc_pins.h"
+#include <stdio.h>
 
 static void initGPIOForChannel(mxc_adc_chsel_t channel)
 {
