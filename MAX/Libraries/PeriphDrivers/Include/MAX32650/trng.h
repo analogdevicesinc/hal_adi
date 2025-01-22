@@ -40,12 +40,15 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_TRNG_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_TRNG_H_
+#ifndef _TRNG_H_
+#define _TRNG_H_
 
 /* **** Includes **** */
 #include <stdint.h>
 #include "mxc_sys.h"
+#include "trng_regs.h"
+
+/***** Includes *****/
 #include "trng_regs.h"
 
 #ifdef __cplusplus
@@ -141,4 +144,4 @@ void MXC_TRNG_GenerateKey(void);
 #endif
 /**@} end of group trng */
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_TRNG_H_
+#endif /* _TRNG_H_ */

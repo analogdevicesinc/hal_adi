@@ -36,8 +36,8 @@
  *
  **************************************************************************** */
 
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78002_MXC_PINS_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78002_MXC_PINS_H_
+#ifndef _MXC_PINS_H_
+#define _MXC_PINS_H_
 
 #include "gpio.h"
 
@@ -114,4 +114,4 @@ extern const mxc_gpio_cfg_t gpio_cfg_cmp3;
 
 extern const mxc_gpio_cfg_t gpio_cfg_sdhc;
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78002_MXC_PINS_H_
+#endif /* _MXC_PINS_H_ */

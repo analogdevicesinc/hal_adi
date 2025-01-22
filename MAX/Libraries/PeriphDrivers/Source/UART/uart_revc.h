@@ -31,9 +31,6 @@
  *
  *************************************************************************** */
 
-#ifndef LIBRARIES_PERIPHDRIVERS_SOURCE_UART_UART_REVC_H_
-#define LIBRARIES_PERIPHDRIVERS_SOURCE_UART_UART_REVC_H_
-
 #include "mxc_device.h"
 #include "mxc_assert.h"
 #include "dma.h"
@@ -94,5 +91,3 @@ int MXC_UART_RevC_AsyncHandler(mxc_uart_revc_regs_t *uart);
 int MXC_UART_RevC_AsyncStop(mxc_uart_revc_regs_t *uart);
 int MXC_UART_RevC_AsyncCallback(mxc_uart_revc_regs_t *uart, int retVal);
 void MXC_UART_RevC_DMACallback(int ch, int error);
-
-#endif // LIBRARIES_PERIPHDRIVERS_SOURCE_UART_UART_REVC_H_

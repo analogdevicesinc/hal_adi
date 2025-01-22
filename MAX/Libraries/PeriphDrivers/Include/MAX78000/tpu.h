@@ -218,10 +218,13 @@ uint32_t MXC_TPU_CheckFeatures(void);
 
 /**
  * @brief   Enable TPU Interrupts
- *
- * @param   enable  enable the TPU interrupt
  */
-void MXC_TPU_IntEnable(int enable);
+void MXC_TPU_EnableInt();
+
+/**
+ * @brief   Disable TPU Interrupts
+ */
+void MXC_TPU_DisableInt();
 
 /**
  * @brief   Checks the global TPU Ready Status

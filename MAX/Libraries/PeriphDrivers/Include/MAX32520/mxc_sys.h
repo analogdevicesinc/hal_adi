@@ -36,8 +36,8 @@
  *
  ******************************************************************************/
 
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32520_MXC_SYS_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32520_MXC_SYS_H_
+#ifndef _MXC_MXC_SYS_H_
+#define _MXC_MXC_SYS_H_
 
 #include "mxc_device.h"
 #include "gcr_regs.h"
@@ -202,4 +202,4 @@ int MXC_SYS_GetUSN(uint8_t *serialNumber, int len);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32520_MXC_SYS_H_
+#endif /* _MXC_MXC_SYS_H_*/
