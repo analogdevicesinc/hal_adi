@@ -31,9 +31,6 @@
  *
  *************************************************************************** */
 
-#ifndef LIBRARIES_PERIPHDRIVERS_SOURCE_EMCC_EMCC_REVA_H_
-#define LIBRARIES_PERIPHDRIVERS_SOURCE_EMCC_EMCC_REVA_H_
-
 /***** Includes *****/
 #include "emcc_reva_regs.h"
 #include "mxc_device.h"
@@ -64,5 +61,3 @@ void MXC_EMCC_RevA_WriteAllocateDisable(mxc_emcc_reva_regs_t *emcc);
 void MXC_EMCC_RevA_CriticalWordFirstEnable(mxc_emcc_reva_regs_t *emcc);
 void MXC_EMCC_RevA_CriticalWordFirstDisable(mxc_emcc_reva_regs_t *emcc);
 uint32_t MXC_EMCC_RevA_Ready(mxc_emcc_reva_regs_t *emcc);
-
-#endif // LIBRARIES_PERIPHDRIVERS_SOURCE_EMCC_EMCC_REVA_H_

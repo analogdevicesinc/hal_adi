@@ -31,10 +31,6 @@
  *
  *************************************************************************** */
 
-#ifndef LIBRARIES_PERIPHDRIVERS_SOURCE_LPCMP_LPCMP_REVA_H_
-#define LIBRARIES_PERIPHDRIVERS_SOURCE_LPCMP_LPCMP_REVA_H_
-
-#include <stdio.h>
 #include "lpcmp_reva_regs.h"
 #include "lpcmp.h"
 #include "mxc_device.h"
@@ -43,6 +39,7 @@
 #include "mxc_sys.h"
 #include "mcr_regs.h"
 #include "mxc_lock.h"
+#include <stdio.h>
 
 int MXC_LPCMP_RevA_Init(mxc_lpcmp_ctrl_reg_t ctrl_reg);
 
@@ -57,5 +54,3 @@ int MXC_LPCMP_RevA_GetFlags(mxc_lpcmp_ctrl_reg_t ctrl_reg);
 int MXC_LPCMP_RevA_ClearFlags(mxc_lpcmp_ctrl_reg_t ctrl_reg);
 
 int MXC_LPCMP_RevA_SelectPolarity(mxc_lpcmp_ctrl_reg_t ctrl_reg, mxc_lpcmp_polarity_t pol);
-
-#endif // LIBRARIES_PERIPHDRIVERS_SOURCE_LPCMP_LPCMP_REVA_H_

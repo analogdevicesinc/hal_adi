@@ -37,8 +37,8 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32665_HTMR_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32665_HTMR_H_
+#ifndef _HTMR_H_
+#define _HTMR_H_
 
 /* **** Includes **** */
 #include <stdint.h>
@@ -178,4 +178,4 @@ int MXC_HTMR_GetLongCount(mxc_htmr_regs_t *htmr);
 #endif
 
 /**@} end of group htmr */
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32665_HTMR_H_
+#endif /* _HTMR_H_ */

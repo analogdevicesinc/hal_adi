@@ -34,9 +34,6 @@
  *
  **************************************************************************** */
 
-#ifndef LIBRARIES_PERIPHDRIVERS_SOURCE_OWM_OWM_REVA_H_
-#define LIBRARIES_PERIPHDRIVERS_SOURCE_OWM_OWM_REVA_H_
-
 /* **** Includes **** */
 #include "owm.h"
 #include "mxc_device.h"
@@ -84,5 +81,3 @@ int MXC_OWM_RevA_BitBang_Init(mxc_owm_reva_regs_t *owm, int initialState);
 int MXC_OWM_RevA_BitBang_Read(mxc_owm_reva_regs_t *owm);
 int MXC_OWM_RevA_BitBang_Write(mxc_owm_reva_regs_t *owm, int state);
 int MXC_OWM_RevA_BitBang_Disable(mxc_owm_reva_regs_t *owm);
-
-#endif // LIBRARIES_PERIPHDRIVERS_SOURCE_OWM_OWM_REVA_H_

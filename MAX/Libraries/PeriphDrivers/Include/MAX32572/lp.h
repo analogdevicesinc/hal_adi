@@ -37,8 +37,8 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32572_LP_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32572_LP_H_
+#ifndef _LP_H_
+#define _LP_H_
 
 /* **** Includes **** */
 #include <stdint.h>
@@ -419,4 +419,4 @@ void MXC_LP_ROMPowerUp(void);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32572_LP_H_
+#endif /* _LP_H_ */

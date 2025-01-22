@@ -37,8 +37,8 @@
  *
  *************************************************************************** */
 
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32670_FLC_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32670_FLC_H_
+#ifndef _FLC_H_
+#define _FLC_H_
 
 /* **** Includes **** */
 #include "flc_regs.h"
@@ -205,4 +205,4 @@ int MXC_FLC_BlockPageRead(uint32_t address);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32670_FLC_H_
+#endif /* _FLC_H_ */

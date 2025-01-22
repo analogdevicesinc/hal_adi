@@ -37,8 +37,8 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32670_I2C_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32670_I2C_H_
+#ifndef _MXC_I2C_H_
+#define _MXC_I2C_H_
 
 #include <stdint.h>
 #include "mxc_sys.h"
@@ -870,4 +870,4 @@ void MXC_I2C_DMACallback(int ch, int error);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32670_I2C_H_
+#endif /* _MXC_I2C_H_ */

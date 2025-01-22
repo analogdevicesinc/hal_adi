@@ -31,7 +31,6 @@
  *
  *************************************************************************** */
 
-#include <stdio.h>
 #include "lpcmp.h"
 #include "lpcmp_regs.h"
 #include "lpcmp_reva.h"
@@ -42,6 +41,7 @@
 #include "mcr_regs.h"
 #include "mxc_lock.h"
 #include "mxc_pins.h"
+#include <stdio.h>
 
 static int init = 0;
 static const mxc_lpcmp_ctrl_reg_t lpcmp_ctrl_regs[] = { &MXC_MCR->cmp_ctrl, &MXC_LPCMP->ctrl[0],

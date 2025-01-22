@@ -31,9 +31,6 @@
  *
  *************************************************************************** */
 
-#ifndef LIBRARIES_PERIPHDRIVERS_SOURCE_ICC_ICC_COMMON_H_
-#define LIBRARIES_PERIPHDRIVERS_SOURCE_ICC_ICC_COMMON_H_
-
 /* **** Includes **** */
 #include "mxc_sys.h"
 
@@ -51,5 +48,3 @@ void MXC_ICC_Com_Flush(void);
 #ifdef __cplusplus
 }
 #endif
-
-#endif // LIBRARIES_PERIPHDRIVERS_SOURCE_ICC_ICC_COMMON_H_
