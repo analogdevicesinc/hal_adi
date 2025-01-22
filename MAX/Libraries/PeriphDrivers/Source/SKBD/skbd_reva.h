@@ -31,15 +31,13 @@
  *
  **************************************************************************** */
 
-#ifndef LIBRARIES_PERIPHDRIVERS_SOURCE_SKBD_SKBD_REVA_H_
-#define LIBRARIES_PERIPHDRIVERS_SOURCE_SKBD_SKBD_REVA_H_
-
 #include <stddef.h>
 #include "mxc_device.h"
 #include "mxc_assert.h"
 #include "mxc_pins.h"
 #include "mxc_lock.h"
 #include "mxc_delay.h"
+#include "mxc_device.h"
 #include "mxc_errors.h"
 #include "nvic_table.h"
 #include "skbd.h"
@@ -134,7 +132,7 @@ typedef enum {
  *
  */
 typedef struct {
-    uint16_t ioselect; ///< I/O pin direction selection for the corresponding keypad pins
+    unsigned short ioselect; ///< I/O pin direction selection for the corresponding keypad pins
     unsigned int reg_erase; ///< key register erase flag on key is released
     int outputs; ///< Specifies the keypad pins to be configured as output
     int inputs; ///< Specifies the keypad pins to be configured as input
@@ -164,10 +162,10 @@ typedef struct {
      *      key(x) bits[7-4] : Output scan code
      *      key(x) bit[8]    : Next Key Flag
      */
-    uint16_t key0_reva; ///< Key0 scan code
-    uint16_t key1_reva; ///< Key1 scan code
-    uint16_t key2_reva; ///< Key2 scan code
-    uint16_t key3_reva; ///< Key3 scan code
+    unsigned short key0_reva; ///< Key0 scan code
+    unsigned short key1_reva; ///< Key1 scan code
+    unsigned short key2_reva; ///< Key2 scan code
+    unsigned short key3_reva; ///< Key3 scan code
 } mxc_skbd_reva_keys_t;
 
 int MXC_SKBD_RevA_PreInit(void);
@@ -185,5 +183,3 @@ int MXC_SKBD_RevA_InterruptStatus(mxc_skbd_reva_regs_t *skbd, unsigned int *stat
 int MXC_SKBD_RevA_ReadKeys(mxc_skbd_reva_regs_t *skbd, mxc_skbd_reva_keys_t *keys);
 
 int MXC_SKBD_RevA_Close(void);
-
-#endif // LIBRARIES_PERIPHDRIVERS_SOURCE_SKBD_SKBD_REVA_H_

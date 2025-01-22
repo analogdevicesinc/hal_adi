@@ -232,7 +232,8 @@ int MXC_SPIXR_Init(mxc_spixr_cfg_t *cfg)
 
     MXC_SYS_ClockEnable(MXC_SYS_PERIPH_CLOCK_SPIXIP);
 
-    MXC_GPIO_Config(&gpio_cfg_spixr);
+    // TODO: Add SPIX pins
+    //    MXC_GPIO_Config(&gpio_cfg_spixr);         //Configure GPIO for spid
 
     return MXC_SPIXR_RevA_Init((mxc_spixr_reva_regs_t *)MXC_SPIXR, (mxc_spixr_reva_cfg_t *)cfg);
 }

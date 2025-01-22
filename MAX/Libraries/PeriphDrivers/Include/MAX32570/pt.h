@@ -37,12 +37,11 @@
  ***************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32570_PT_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32570_PT_H_
+#ifndef _MXC_PT_H_
+#define _MXC_PT_H_
 
 /* **** Includes **** */
 
-#include <stdio.h>
 #include "gcr_regs.h"
 #include "pt_regs.h"
 #include "ptg_regs.h"
@@ -51,6 +50,7 @@
 #include "mxc_assert.h"
 #include "mxc_sys.h"
 #include "mcr_regs.h"
+#include <stdio.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -239,4 +239,4 @@ void MXC_PT_Resync(uint32_t pts);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32570_PT_H_
+#endif /* _MXC_PT_H_ */

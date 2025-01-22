@@ -40,10 +40,9 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_MXC_DELAY_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_MXC_DELAY_H_
+#ifndef _DELAY_H_
+#define _DELAY_H_
 
-#include <stdint.h>
 #include "mxc_errors.h"
 
 /**
@@ -60,7 +59,7 @@
  * x = SEC(3) // 3 seconds -> x = 3,000,000 
  * \endcode
  */
-#define MXC_DELAY_SEC(s) (((uint32_t)s) * 1000000UL)
+#define MXC_DELAY_SEC(s) (((unsigned long)s) * 1000000UL)
 /**
  * Macro used to specify a microsecond timing parameter in milliseconds.
  * \code
@@ -94,7 +93,7 @@ typedef void (*mxc_delay_complete_t)(int result);
  * @param      us    microseconds to delay
  * @return     #E_NO_ERROR if no errors, @ref MXC_Error_Codes "error" if unsuccessful.
  */
-int MXC_Delay(uint32_t us);
+int MXC_Delay(unsigned long us);
 
 /**
  * @brief      Starts a non-blocking delay for the specified number of
@@ -109,7 +108,7 @@ int MXC_Delay(uint32_t us);
  * @return     #E_NO_ERROR if no errors, #E_BUSY if currently servicing another
  *             delay request.
  */
-int MXC_DelayAsync(uint32_t us, mxc_delay_complete_t callback);
+int MXC_DelayAsync(unsigned long us, mxc_delay_complete_t callback);
 
 /**
  * @brief      Returns the status of a non-blocking delay request
@@ -133,4 +132,4 @@ void MXC_DelayHandler(void);
 
 /**@} end of group MXC_delay */
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_MXC_DELAY_H_
+#endif /* _DELAY_H_ */
