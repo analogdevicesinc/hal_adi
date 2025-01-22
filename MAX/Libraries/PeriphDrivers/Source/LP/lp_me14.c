@@ -39,7 +39,6 @@
 #include "mxc_sys.h"
 #include "tmr.h"
 #include "mxc_delay.h"
-#include "mxc_assert.h"
 
 extern void Reset_Handler(void);
 extern void Backup_Handler(void);
@@ -330,10 +329,9 @@ void MXC_LP_SIMOVregDPowerUp(void)
     MXC_PWRSEQ->lpvddpd &= ~MXC_F_PWRSEQ_LPVDDPD_VREGODPD;
 }
 
-void __attribute__((deprecated("Causes SIMO soft start in wakeup"))) MXC_LP_FastWakeupEnable(void)
+void MXC_LP_FastWakeupEnable(void)
 {
-    // Deprecated due to issues with SIMO in wakeup.
-    // MXC_PWRSEQ->lpcn |= MXC_F_PWRSEQ_LPCN_FWKM;
+    MXC_PWRSEQ->lpcn |= MXC_F_PWRSEQ_LPCN_FWKM;
 }
 
 void MXC_LP_FastWakeupDisable(void)
