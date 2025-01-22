@@ -1,6 +1,6 @@
 /**
- * @file    aes_key_regs.h
- * @brief   Registers, Bit Masks and Bit Positions for the AES_KEY Peripheral Module.
+ * @file    trimsir_regs.h
+ * @brief   Registers, Bit Masks and Bit Positions for the TRIMSIR Peripheral Module.
  * @note    This file is @generated.
  */
 
@@ -37,8 +37,8 @@
 *
 ******************************************************************************/
 
-#ifndef _AES_KEY_REGS_H_
-#define _AES_KEY_REGS_H_
+#ifndef _TRIMSIR_REGS_H_
+#define _TRIMSIR_REGS_H_
 
 /* **** Includes **** */
 #include <stdint.h>
@@ -75,41 +75,37 @@ extern "C" {
 /* **** Definitions **** */
 
 /**
- * @ingroup     aes_key
- * @defgroup    aes_key_registers AES_KEY_Registers
- * @brief       Registers, Bit Masks and Bit Positions for the AES_KEY Peripheral Module.
- * @details AES Key Registers.
+ * @ingroup     trimsir
+ * @defgroup    trimsir_registers TRIMSIR_Registers
+ * @brief       Registers, Bit Masks and Bit Positions for the TRIMSIR Peripheral Module.
+ * @details Trim System Initilazation Registers
  */
 
 /**
- * @ingroup aes_key_registers
- * Structure type to access the AES_KEY Registers.
+ * @ingroup trimsir_registers
+ * Structure type to access the TRIMSIR Registers.
  */
 typedef struct {
-    __IO uint32_t aes_key0;             /**< <tt>\b 0x000:</tt> AES_KEY AES_KEY0 Register */
-    __R  uint32_t rsv_0x4_0x7f[31];
-    __IO uint32_t aes_key1;             /**< <tt>\b 0x080:</tt> AES_KEY AES_KEY1 Register */
-    __R  uint32_t rsv_0x84_0xff[31];
-    __IO uint32_t aes_key2;             /**< <tt>\b 0x100:</tt> AES_KEY AES_KEY2 Register */
-    __R  uint32_t rsv_0x104_0x17f[31];
-    __IO uint32_t aes_key3;             /**< <tt>\b 0x180:</tt> AES_KEY AES_KEY3 Register */
-} mxc_aes_key_regs_t;
+    __IO uint32_t rsv0;                 /**< <tt>\b 0x00:</tt> TRIMSIR RSV0 Register */
+    __R  uint32_t rsv_0x4;
+    __I  uint32_t bb_sir2;              /**< <tt>\b 0x08:</tt> TRIMSIR BB_SIR2 Register */
+    __I  uint32_t bb_sir3;              /**< <tt>\b 0x0C:</tt> TRIMSIR BB_SIR3 Register */
+} mxc_trimsir_regs_t;
 
-/* Register offsets for module AES_KEY */
+/* Register offsets for module TRIMSIR */
 /**
- * @ingroup    aes_key_registers
- * @defgroup   AES_KEY_Register_Offsets Register Offsets
- * @brief      AES_KEY Peripheral Register Offsets from the AES_KEY Base Peripheral Address.
+ * @ingroup    trimsir_registers
+ * @defgroup   TRIMSIR_Register_Offsets Register Offsets
+ * @brief      TRIMSIR Peripheral Register Offsets from the TRIMSIR Base Peripheral Address.
  * @{
  */
- #define MXC_R_AES_KEY_AES_KEY0             ((uint32_t)0x00000000UL) /**< Offset from AES_KEY Base Address: <tt> 0x0000</tt> */
- #define MXC_R_AES_KEY_AES_KEY1             ((uint32_t)0x00000080UL) /**< Offset from AES_KEY Base Address: <tt> 0x0080</tt> */
- #define MXC_R_AES_KEY_AES_KEY2             ((uint32_t)0x00000100UL) /**< Offset from AES_KEY Base Address: <tt> 0x0100</tt> */
- #define MXC_R_AES_KEY_AES_KEY3             ((uint32_t)0x00000180UL) /**< Offset from AES_KEY Base Address: <tt> 0x0180</tt> */
-/**@} end of group aes_key_registers */
+ #define MXC_R_TRIMSIR_RSV0                 ((uint32_t)0x00000000UL) /**< Offset from TRIMSIR Base Address: <tt> 0x0000</tt> */
+ #define MXC_R_TRIMSIR_BB_SIR2              ((uint32_t)0x00000008UL) /**< Offset from TRIMSIR Base Address: <tt> 0x0008</tt> */
+ #define MXC_R_TRIMSIR_BB_SIR3              ((uint32_t)0x0000000CUL) /**< Offset from TRIMSIR Base Address: <tt> 0x000C</tt> */
+/**@} end of group trimsir_registers */
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _AES_KEY_REGS_H_ */
+#endif /* _TRIMSIR_REGS_H_ */
