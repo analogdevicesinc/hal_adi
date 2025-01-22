@@ -37,8 +37,8 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32570_CLCD_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32570_CLCD_H_
+#ifndef _CLCD_H_
+#define _CLCD_H_
 
 /* **** Includes **** */
 #include "mxc_device.h"
@@ -388,4 +388,4 @@ int MXC_CLCD_Config(mxc_clcd_cfg_t *clcd_cfg);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32570_CLCD_H_
+#endif /* _CLCD_H_ */

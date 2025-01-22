@@ -40,8 +40,8 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32665_DVS_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32665_DVS_H_
+#ifndef _DVS_H_
+#define _DVS_H_
 
 /* **** Includes **** */
 #include "mxc_config.h"
@@ -59,4 +59,4 @@ extern "C" {
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32665_DVS_H_
+#endif /* _DVS_H_ */
