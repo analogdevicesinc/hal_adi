@@ -37,17 +37,16 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32675_TMR_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32675_TMR_H_
+#ifndef _TMR_H_
+#define _TMR_H_
 
 /* **** Includes **** */
-#include <stdint.h>
-#include <stdbool.h>
 #include "mxc_device.h"
 #include "tmr_regs.h"
 #include "mxc_sys.h"
 #include "gcr_regs.h"
 #include "mcr_regs.h"
+#include "stdbool.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -277,7 +276,7 @@ void MXC_TMR_SetCount(mxc_tmr_regs_t *tmr, uint32_t cnt);
  * @param   tmr   The timer
  * @param   us    microseconds to delay for
  */
-void MXC_TMR_Delay(mxc_tmr_regs_t *tmr, uint32_t us);
+void MXC_TMR_Delay(mxc_tmr_regs_t *tmr, unsigned long us);
 
 /**
  * @brief   Start a timer that will time out after a certain number of microseconds
@@ -286,7 +285,7 @@ void MXC_TMR_Delay(mxc_tmr_regs_t *tmr, uint32_t us);
  * @param   tmr   The timer
  * @param   us    microseconds to time out after
  */
-void MXC_TMR_TO_Start(mxc_tmr_regs_t *tmr, uint32_t us);
+void MXC_TMR_TO_Start(mxc_tmr_regs_t *tmr, unsigned long us);
 
 /**
  * @brief   Check on time out timer
@@ -363,4 +362,4 @@ int MXC_TMR_GetTime(mxc_tmr_regs_t *tmr, uint32_t ticks, uint32_t *time, mxc_tmr
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32675_TMR_H_
+#endif /* _TMR_H_ */

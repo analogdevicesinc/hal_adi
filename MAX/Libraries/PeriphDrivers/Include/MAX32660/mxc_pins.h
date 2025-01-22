@@ -36,8 +36,8 @@
  *
  **************************************************************************** */
 
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32660_MXC_PINS_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32660_MXC_PINS_H_
+#ifndef _MXC_PINS_H_
+#define _MXC_PINS_H_
 
 #include "gpio.h"
 
@@ -70,4 +70,4 @@ extern const mxc_gpio_cfg_t gpio_cfg_32kcal;
 extern const mxc_gpio_cfg_t gpio_cfg_i2s0a;
 extern const mxc_gpio_cfg_t gpio_cfg_i2s0b;
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32660_MXC_PINS_H_
+#endif /* _MXC_PINS_H_ */

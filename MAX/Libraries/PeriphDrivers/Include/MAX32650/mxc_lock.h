@@ -40,8 +40,8 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_MXC_LOCK_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_MXC_LOCK_H_
+#ifndef _MXC_LOCK_H_
+#define _MXC_LOCK_H_
 
 /* **** Includes **** */
 #include "mxc_errors.h"
@@ -91,4 +91,4 @@ void MXC_FreeLock(uint32_t *lock);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_MXC_LOCK_H_
+#endif /* _MXC_LOCK_H_ */

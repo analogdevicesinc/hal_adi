@@ -40,8 +40,8 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_SPI_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_SPI_H_
+#ifndef _SPI_H_
+#define _SPI_H_
 
 /* **** Includes **** */
 #include "spi_regs.h"
@@ -659,4 +659,4 @@ void MXC_SPI_AsyncHandler(mxc_spi_regs_t *spi);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX32650_SPI_H_
+#endif /* _SPI_H_ */
