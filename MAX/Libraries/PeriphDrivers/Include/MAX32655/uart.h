@@ -48,8 +48,6 @@
 extern "C" {
 #endif
 
-#define UART_EXTCLK_FREQ E_BAD_PARAM
-
 /**
  * @defgroup uart UART
  * @ingroup periphlibs
@@ -90,12 +88,15 @@ typedef enum {
 /**
  * @brief      Clock settings */
 typedef enum {
-    /*Only available for UARTS 0-2*/
+    /*For UART3 APB clock source is the 8MHz clock*/
     MXC_UART_APB_CLK = 0,
-    /*Available for all UARTs*/
+    MXC_UART_EXT_CLK = 1,
+    /*IBRO and ERFO clock can only be used for UART 0, 1 & 2*/
     MXC_UART_IBRO_CLK = 2,
+    MXC_UART_ERFO_CLK = 3,
     /*ERTCO clock can only be used for UART3*/
     MXC_UART_ERTCO_CLK = 4,
+    MXC_UART_INRO_CLK = 5
 } mxc_uart_clock_t;
 
 /**

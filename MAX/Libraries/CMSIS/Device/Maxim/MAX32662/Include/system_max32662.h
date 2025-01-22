@@ -49,20 +49,9 @@ extern "C" {
   Define clocks
  *----------------------------------------------------------------------------*/
 
-/*  This define is included to prevent build errors in existing code.
-    New code should update HF_EXTCLK_FREQ to match the frequency of the external clock. */
+/* NOTE: EXTCLK needs to be defined by user based on the clock they supply */
 #ifndef EXTCLK_FREQ
 #define EXTCLK_FREQ 75000000
-#endif
-
-/* NOTE: HF_EXTCLK_FREQ needs to be defined by user based on the clock they supply */
-#ifndef HF_EXTCLK_FREQ
-#define HF_EXTCLK_FREQ EXTCLK_FREQ
-#endif
-
-/* NOTE: LP_EXTCLK_FREQ needs to be defined by user based on the clock they supply */
-#ifndef LP_EXTCLK_FREQ
-#define LP_EXTCLK_FREQ 12500000
 #endif
 
 /* NOTE: This is the nominal value for INRO. The actual value may vary from chip to chip. 
