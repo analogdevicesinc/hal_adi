@@ -441,10 +441,7 @@ void memcpy_callback(int ch, int error)
 
     callback(memcpy_resource[ch].dest);
 
-    // Release global objects and local resources
-    callback                         = NULL;
-    memcpy_resource[ch].userCallback = NULL;
-    memcpy_resource[ch].dest         = NULL;
+    callback = NULL;
     MXC_DMA_ReleaseChannel(ch);
 }
 
