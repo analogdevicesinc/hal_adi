@@ -38,6 +38,7 @@
 #include "trng_revb.h"
 #include "trng.h"
 
+
 /* ************************************************************************* */
 /* Global Control/Configuration functions                                    */
 /* ************************************************************************* */
@@ -47,9 +48,9 @@
 int MXC_TRNG_Init(void)
 {
     MXC_SYS_ClockEnable(MXC_SYS_PERIPH_CLOCK_TRNG);
-
+    
     MXC_TRNG_RevB_Init();
-
+    
     return E_NO_ERROR;
 }
 
@@ -66,9 +67,9 @@ void MXC_TRNG_DisableInt()
 int MXC_TRNG_Shutdown(void)
 {
     int error = MXC_TRNG_RevB_Shutdown();
-
+    
     MXC_SYS_ClockDisable(MXC_SYS_PERIPH_CLOCK_TRNG);
-
+    
     return error;
 }
 
