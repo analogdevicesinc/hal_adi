@@ -60,6 +60,7 @@
 #define MXC_SPIXF_HEADER_WIDTH_POS 9
 #define MXC_SPIXF_HEADER_DEASS_SS_POS 13
 
+uint8_t mxc_spixf_busy(void);
 static int SPIXFC_ReadRXFIFO(mxc_spixfc_reva_regs_t *spixfc, mxc_spixfc_fifo_reva_regs_t *fifo,
                              uint8_t *data, int len);
 static void SPIXFC_TransHandler(mxc_spixfc_reva_regs_t *spixfc,
@@ -73,6 +74,15 @@ typedef struct {
 static spixf_req_head_t states;
 
 /****** Functions ******/
+uint8_t mxc_spixf_busy(void)
+{
+    if (MXC_SPIXF_GetSSDriveOutput() == 1) {
+        return 1;
+    }
+
+    return 0;
+}
+
 int MXC_SPIXF_RevA_Init(mxc_spixfc_reva_regs_t *spixfc, mxc_spixfm_reva_regs_t *spixfm,
                         uint32_t cmdval, uint32_t frequency)
 {
@@ -711,6 +721,10 @@ int MXC_SPIXF_RevA_GetFlags(mxc_spixfc_reva_regs_t *spixfc)
 int MXC_SPIXF_RevA_SetMode(mxc_spixfc_reva_regs_t *spixfc, mxc_spixfm_reva_regs_t *spixfm,
                            mxc_spixf_mode_t mode)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     MXC_SETFIELD(spixfm->cfg, MXC_F_SPIXFM_REVA_CFG_MODE, mode << MXC_F_SPIXFM_REVA_CFG_MODE_POS);
     MXC_SETFIELD(spixfc->cfg, MXC_F_SPIXFC_REVA_CFG_MODE, mode << MXC_F_SPIXFC_REVA_CFG_MODE_POS);
     return E_NO_ERROR;
@@ -724,6 +738,10 @@ mxc_spixf_mode_t MXC_SPIXF_RevA_GetMode(mxc_spixfc_reva_regs_t *spixfc)
 int MXC_SPIXF_RevA_SetSSPolActiveHigh(mxc_spixfc_reva_regs_t *spixfc,
                                       mxc_spixfm_reva_regs_t *spixfm)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfm->cfg &= ~MXC_F_SPIXFM_REVA_CFG_SSPOL;
     spixfc->ss_pol |= MXC_F_SPIXFC_REVA_SS_POL_SS_POLARITY;
     return E_NO_ERROR;
@@ -731,6 +749,10 @@ int MXC_SPIXF_RevA_SetSSPolActiveHigh(mxc_spixfc_reva_regs_t *spixfc,
 
 int MXC_SPIXF_RevA_SetSSPolActiveLow(mxc_spixfc_reva_regs_t *spixfc, mxc_spixfm_reva_regs_t *spixfm)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfm->cfg |= MXC_F_SPIXFM_REVA_CFG_SSPOL;
     spixfc->ss_pol &= (~MXC_F_SPIXFC_REVA_SS_POL_SS_POLARITY);
     return E_NO_ERROR;
@@ -745,6 +767,10 @@ int MXC_SPIXF_RevA_SetSPIFrequency(mxc_spixfc_reva_regs_t *spixfc, mxc_spixfm_re
                                    unsigned int hz)
 {
     uint32_t clocks, hi_clk, lo_clk;
+
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
 
     if (spixfm) {
         // Check if frequency is too high
@@ -846,6 +872,10 @@ uint32_t MXC_SPIXF_RevA_GetSPIFrequencyWrite(mxc_spixfc_reva_regs_t *spixfc)
 int MXC_SPIXF_RevA_SetSSActiveTime(mxc_spixfc_reva_regs_t *spixfc, mxc_spixfm_reva_regs_t *spixfm,
                                    mxc_spixf_ssact_t ssact)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     MXC_SETFIELD(spixfm->cfg, MXC_F_SPIXFM_REVA_CFG_SSACT,
                  ssact << MXC_F_SPIXFM_REVA_CFG_SSACT_POS);
     MXC_SETFIELD(spixfc->cfg, MXC_F_SPIXFC_REVA_CFG_SSACT,
@@ -861,6 +891,10 @@ mxc_spixf_ssact_t MXC_SPIXF_RevA_GetSSActiveTime(mxc_spixfc_reva_regs_t *spixfc)
 int MXC_SPIXF_RevA_SetSSInactiveTime(mxc_spixfc_reva_regs_t *spixfc, mxc_spixfm_reva_regs_t *spixfm,
                                      mxc_spixf_ssiact_t ssiact)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     MXC_SETFIELD(spixfm->cfg, MXC_F_SPIXFM_REVA_CFG_SSIACT,
                  ssiact << MXC_F_SPIXFM_REVA_CFG_SSIACT_POS);
     MXC_SETFIELD(spixfc->cfg, MXC_F_SPIXFC_REVA_CFG_SSIACT,
@@ -877,6 +911,10 @@ int MXC_SPIXF_RevA_SetCmdWidth(mxc_spixfm_reva_regs_t *spixfm, mxc_spixf_spiwidt
 {
     MXC_ASSERT(width < MXC_SPIXF_INVALID);
 
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     MXC_SETFIELD(spixfm->fetch_ctrl, MXC_F_SPIXFM_REVA_FETCH_CTRL_CMD_WIDTH,
                  width << MXC_F_SPIXFM_REVA_FETCH_CTRL_CMD_WIDTH_POS);
     return E_NO_ERROR;
@@ -891,6 +929,10 @@ mxc_spixf_spiwidth_t MXC_SPIXF_RevA_GetCmdWidth(mxc_spixfm_reva_regs_t *spixfm)
 int MXC_SPIXF_RevA_SetAddrWidth(mxc_spixfm_reva_regs_t *spixfm, mxc_spixf_spiwidth_t width)
 {
     MXC_ASSERT(width < MXC_SPIXF_INVALID);
+
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
 
     MXC_SETFIELD(spixfm->fetch_ctrl, MXC_F_SPIXFM_REVA_FETCH_CTRL_ADDR_WIDTH,
                  width << MXC_F_SPIXFM_REVA_FETCH_CTRL_ADDR_WIDTH_POS);
@@ -907,6 +949,10 @@ int MXC_SPIXF_RevA_SetDataWidth(mxc_spixfm_reva_regs_t *spixfm, mxc_spixf_spiwid
 {
     MXC_ASSERT(width < MXC_SPIXF_INVALID);
 
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     MXC_SETFIELD(spixfm->fetch_ctrl, MXC_F_SPIXFM_REVA_FETCH_CTRL_DATA_WIDTH,
                  width << MXC_F_SPIXFM_REVA_FETCH_CTRL_DATA_WIDTH_POS);
     return E_NO_ERROR;
@@ -920,12 +966,20 @@ mxc_spixf_spiwidth_t MXC_SPIXF_RevA_GetDataWidth(mxc_spixfm_reva_regs_t *spixfm)
 
 int MXC_SPIXF_RevA_Set4ByteAddr(mxc_spixfm_reva_regs_t *spixfm)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfm->fetch_ctrl |= MXC_F_SPIXFM_REVA_FETCH_CTRL_FOUR_BYTE_ADDR;
     return E_NO_ERROR;
 }
 
 int MXC_SPIXF_RevA_Set3ByteAddr(mxc_spixfm_reva_regs_t *spixfm)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfm->fetch_ctrl &= (~MXC_F_SPIXFM_REVA_FETCH_CTRL_FOUR_BYTE_ADDR);
     return E_NO_ERROR;
 }
@@ -941,6 +995,10 @@ unsigned int MXC_SPIXF_RevA_GetBytesPerAddr(mxc_spixfm_reva_regs_t *spixfm)
 
 int MXC_SPIXF_RevA_SetModeClk(mxc_spixfm_reva_regs_t *spixfm, uint8_t mdclk)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     MXC_SETFIELD(spixfm->mode_ctrl, MXC_F_SPIXFM_REVA_MODE_CTRL_MDCLK, mdclk);
     return E_NO_ERROR;
 }
@@ -953,12 +1011,20 @@ uint8_t MXC_SPIXF_RevA_GetModeClk(mxc_spixfm_reva_regs_t *spixfm)
 
 int MXC_SPIXF_RevA_SetCmdModeEveryTrans(mxc_spixfm_reva_regs_t *spixfm)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfm->mode_ctrl &= ~(MXC_F_SPIXFM_REVA_MODE_CTRL_NO_CMD);
     return E_NO_ERROR;
 }
 
 int MXC_SPIXF_RevA_SetCmdModeFirstTrans(mxc_spixfm_reva_regs_t *spixfm)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfm->mode_ctrl |= MXC_F_SPIXFM_REVA_MODE_CTRL_NO_CMD;
     return E_NO_ERROR;
 }
@@ -974,12 +1040,20 @@ mxc_spixf_cmd_t MXC_SPIXF_RevA_GetCmdMode(mxc_spixfm_reva_regs_t *spixfm)
 
 int MXC_SPIXF_RevA_BBDataOutputEnable(mxc_spixfc_reva_regs_t *spixfc, uint8_t mask)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->gen_ctrl |= (mask << MXC_F_SPIXFC_REVA_GEN_CTRL_BB_DATA_OUT_EN_POS);
     return E_NO_ERROR;
 }
 
 int MXC_SPIXF_RevA_BBDataOutputDisable(mxc_spixfc_reva_regs_t *spixfc, uint8_t mask)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->gen_ctrl &= ~(mask << MXC_F_SPIXFC_REVA_GEN_CTRL_BB_DATA_OUT_EN_POS);
     return E_NO_ERROR;
 }
@@ -1005,6 +1079,10 @@ uint8_t MXC_SPIXF_RevA_GetBBDataInputValue(mxc_spixfc_reva_regs_t *spixfc)
 int MXC_SPIXF_RevA_SetModeData(mxc_spixfc_reva_regs_t *spixfc, mxc_spixfm_reva_regs_t *spixfm,
                                uint16_t data)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     MXC_SETFIELD(spixfm->mode_data, MXC_F_SPIXFM_REVA_MODE_DATA_DATA,
                  data << MXC_F_SPIXFM_REVA_MODE_DATA_DATA_POS);
     return E_NO_ERROR;
@@ -1018,6 +1096,10 @@ uint16_t MXC_SPIXF_RevA_GetModeData(mxc_spixfm_reva_regs_t *spixfm)
 
 int MXC_SPIXF_RevA_SetSCKInverted(mxc_spixfc_reva_regs_t *spixfc, mxc_spixfm_reva_regs_t *spixfm)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfm->fb_ctrl |= MXC_F_SPIXFM_REVA_FB_CTRL_INVERT_EN;
     spixfc->gen_ctrl |= MXC_F_SPIXFC_REVA_GEN_CTRL_SCLK_FB_INVERT;
     return E_NO_ERROR;
@@ -1025,6 +1107,10 @@ int MXC_SPIXF_RevA_SetSCKInverted(mxc_spixfc_reva_regs_t *spixfc, mxc_spixfm_rev
 
 int MXC_SPIXF_RevA_SetSCKNonInverted(mxc_spixfc_reva_regs_t *spixfc, mxc_spixfm_reva_regs_t *spixfm)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfm->fb_ctrl &= (~MXC_F_SPIXFM_REVA_FB_CTRL_INVERT_EN);
     spixfc->gen_ctrl &= (~MXC_F_SPIXFC_REVA_GEN_CTRL_SCLK_FB_INVERT);
     return E_NO_ERROR;
@@ -1037,6 +1123,10 @@ int MXC_SPIXF_RevA_GetSCKInverted(mxc_spixfm_reva_regs_t *spixfm)
 
 int MXC_SPIXF_RevA_SCKFeedbackEnable(mxc_spixfc_reva_regs_t *spixfc, mxc_spixfm_reva_regs_t *spixfm)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfm->fb_ctrl |= MXC_F_SPIXFM_REVA_FB_CTRL_FB_EN;
     spixfc->gen_ctrl |= MXC_F_SPIXFC_REVA_GEN_CTRL_SCLK_FB;
     return E_NO_ERROR;
@@ -1045,6 +1135,10 @@ int MXC_SPIXF_RevA_SCKFeedbackEnable(mxc_spixfc_reva_regs_t *spixfc, mxc_spixfm_
 int MXC_SPIXF_RevA_SCKFeedbackDisable(mxc_spixfc_reva_regs_t *spixfc,
                                       mxc_spixfm_reva_regs_t *spixfm)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfm->fb_ctrl &= (~MXC_F_SPIXFM_REVA_FB_CTRL_FB_EN);
     spixfc->gen_ctrl &= (~MXC_F_SPIXFC_REVA_GEN_CTRL_SCLK_FB);
     return E_NO_ERROR;
@@ -1057,6 +1151,10 @@ int MXC_SPIXF_RevA_SCKFeedbackIsEnabled(mxc_spixfm_reva_regs_t *spixfm)
 
 int MXC_SPIXF_RevA_SetSCKSampleDelay(mxc_spixfc_reva_regs_t *spixfc, uint8_t delay)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     MXC_SETFIELD(spixfc->cfg, MXC_F_SPIXFC_REVA_CFG_IOSMPL,
                  delay << MXC_F_SPIXFC_REVA_CFG_IOSMPL_POS);
     return E_NO_ERROR;
@@ -1069,6 +1167,10 @@ uint8_t MXC_SPIXF_RevA_GetSCKSampleDelay(mxc_spixfc_reva_regs_t *spixfc)
 
 int MXC_SPIXF_RevA_SetCmdValue(mxc_spixfm_reva_regs_t *spixfm, uint8_t cmdval)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     MXC_SETFIELD(spixfm->fetch_ctrl, MXC_F_SPIXFM_REVA_FETCH_CTRL_CMDVAL,
                  cmdval << MXC_F_SPIXFM_REVA_FETCH_CTRL_CMDVAL_POS);
     return E_NO_ERROR;
@@ -1093,12 +1195,20 @@ mxc_spixf_page_size_t MXC_SPIXF_RevA_GetPageSize(mxc_spixfc_reva_regs_t *spixfc)
 
 int MXC_SPIXF_RevA_SimpleRXEnabled(mxc_spixfc_reva_regs_t *spixfc)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->gen_ctrl |= MXC_F_SPIXFC_REVA_GEN_CTRL_SIMPLE_RX;
     return E_NO_ERROR;
 }
 
 int MXC_SPIXF_RevA_SimpleRXDisable(mxc_spixfc_reva_regs_t *spixfc)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->gen_ctrl &= (~MXC_F_SPIXFC_REVA_GEN_CTRL_SIMPLE_RX);
     return E_NO_ERROR;
 }
@@ -1110,12 +1220,20 @@ int MXC_SPIXF_RevA_SimpleRXIsEnabled(mxc_spixfc_reva_regs_t *spixfc)
 
 int MXC_SPIXF_RevA_SimpleModeEnable(mxc_spixfc_reva_regs_t *spixfc)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->gen_ctrl |= MXC_F_SPIXFC_REVA_GEN_CTRL_SIMPLE;
     return E_NO_ERROR;
 }
 
 int MXC_SPIXF_RevA_SimpleModeDisable(mxc_spixfc_reva_regs_t *spixfc)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->gen_ctrl &= (~MXC_F_SPIXFC_REVA_GEN_CTRL_SIMPLE);
     return E_NO_ERROR;
 }
@@ -1127,6 +1245,10 @@ int MXC_SPIXF_RevA_SimpleModeIsEnabled(mxc_spixfc_reva_regs_t *spixfc)
 
 int MXC_SPIXF_RevA_SampleOutputEnable(mxc_spixfc_reva_regs_t *spixfc, uint8_t mask)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->sp_ctrl |= (mask << MXC_F_SPIXFC_REVA_SP_CTRL_SDIO_OUT_EN_POS);
     return E_NO_ERROR;
     {
@@ -1135,6 +1257,10 @@ int MXC_SPIXF_RevA_SampleOutputEnable(mxc_spixfc_reva_regs_t *spixfc, uint8_t ma
 
 int MXC_SPIXF_RevA_SampleOutputDisable(mxc_spixfc_reva_regs_t *spixfc, uint8_t mask)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->sp_ctrl &= ~(mask << MXC_F_SPIXFC_REVA_SP_CTRL_SDIO_OUT_EN_POS);
     return E_NO_ERROR;
 }
@@ -1239,12 +1365,20 @@ uint8_t MXC_SPIXF_RevA_GetSSDriveOutput(mxc_spixfc_reva_regs_t *spixfc)
 
 int MXC_SPIXF_RevA_BitBangModeEnable(mxc_spixfc_reva_regs_t *spixfc)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->gen_ctrl |= MXC_F_SPIXFC_REVA_GEN_CTRL_BBMODE;
     return E_NO_ERROR;
 }
 
 int MXC_SPIXF_RevA_BitBangModeDisable(mxc_spixfc_reva_regs_t *spixfc)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->gen_ctrl &= (~MXC_F_SPIXFC_REVA_GEN_CTRL_BBMODE);
     return E_NO_ERROR;
 }
@@ -1256,12 +1390,20 @@ int MXC_SPIXF_RevA_BitBangModeIsEnabled(mxc_spixfc_reva_regs_t *spixfc)
 
 int MXC_SPIXF_RevA_RXFIFOEnable(mxc_spixfc_reva_regs_t *spixfc)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->gen_ctrl |= MXC_F_SPIXFC_REVA_GEN_CTRL_RX_FIFO_EN;
     return E_NO_ERROR;
 }
 
 int MXC_SPIXF_RevA_RXFIFODisable(mxc_spixfc_reva_regs_t *spixfc)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->gen_ctrl &= (~MXC_F_SPIXFC_REVA_GEN_CTRL_RX_FIFO_EN);
     return E_NO_ERROR;
 }
@@ -1273,12 +1415,20 @@ int MXC_SPIXF_RevA_RXFIFOIsEnabled(mxc_spixfc_reva_regs_t *spixfc)
 
 int MXC_SPIXF_RevA_TXFIFOEnable(mxc_spixfc_reva_regs_t *spixfc)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->gen_ctrl |= MXC_F_SPIXFC_REVA_GEN_CTRL_TX_FIFO_EN;
     return E_NO_ERROR;
 }
 
 int MXC_SPIXF_RevA_TXFIFODisable(mxc_spixfc_reva_regs_t *spixfc)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->gen_ctrl &= (~MXC_F_SPIXFC_REVA_GEN_CTRL_TX_FIFO_EN);
     return E_NO_ERROR;
 }
@@ -1290,12 +1440,20 @@ int MXC_SPIXF_RevA_TXFIFOIsEnabled(mxc_spixfc_reva_regs_t *spixfc)
 
 int MXC_SPIXF_RevA_Enable(mxc_spixfc_reva_regs_t *spixfc)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->gen_ctrl |= MXC_F_SPIXFC_REVA_GEN_CTRL_ENABLE;
     return E_NO_ERROR;
 }
 
 int MXC_SPIXF_RevA_Disable(mxc_spixfc_reva_regs_t *spixfc)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfc->gen_ctrl &= (~MXC_F_SPIXFC_REVA_GEN_CTRL_ENABLE);
     return E_NO_ERROR;
 }
@@ -1307,6 +1465,10 @@ int MXC_SPIXF_RevA_IsEnabled(mxc_spixfc_reva_regs_t *spixfc)
 
 int MXC_SPIXF_RevA_SetBusIdle(mxc_spixfm_reva_regs_t *spixfm, unsigned int busidle)
 {
+    if (mxc_spixf_busy()) {
+        return E_BUSY;
+    }
+
     spixfm->bus_idle = busidle;
     return E_NO_ERROR;
 }

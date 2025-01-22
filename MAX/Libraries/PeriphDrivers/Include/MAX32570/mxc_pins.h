@@ -42,8 +42,6 @@
 #include "gpio.h"
 
 /***** Global Variables *****/
-typedef enum { MAP_A, MAP_B } sys_map_t;
-
 // Predefined GPIO Configurations
 extern const mxc_gpio_cfg_t gpio_cfg_i2c0;
 extern const mxc_gpio_cfg_t gpio_cfg_i2c1;
