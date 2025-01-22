@@ -268,8 +268,7 @@ void MXC_CTB_RevA_Handler(mxc_trng_reva_regs_t *trng)
 
     if (features & MXC_CTB_REVA_FEATURE_HASH) {
         req = saved_requests[HSH_ID];
-        MXC_CTB_DoneClear(MXC_CTB_REVA_FEATURE_HASH | MXC_CTB_REVA_FEATURE_DMA |
-                          MXC_CTB_REVA_FEATURE_CIPHER);
+        MXC_CTB_DoneClear(MXC_CTB_REVA_FEATURE_HASH | MXC_CTB_REVA_FEATURE_DMA | MXC_CTB_REVA_FEATURE_CIPHER);
         features &= ~(MXC_CTB_REVA_FEATURE_HASH | MXC_CTB_REVA_FEATURE_CIPHER);
 
         async_i++;
