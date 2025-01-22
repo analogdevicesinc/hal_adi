@@ -55,11 +55,8 @@ static uint8_t* TRNG_data;
 /* Global Control/Configuration functions                                    */
 /* ************************************************************************* */
 
-int MXC_TRNG_RevB_Init(mxc_trng_revb_regs_t* trng)
+int MXC_TRNG_RevB_Init(void)
 {
-    // trng->ctrl &= ~MXC_F_TRNG_REVB_CTRL_ODHT;
-    // while(trng->status & MXC_F_TRNG_REVB_STATUS_ODHT);
-
     return E_NO_ERROR;
 }
 
@@ -158,31 +155,8 @@ void MXC_TRNG_RevB_RandomAsync(mxc_trng_revb_regs_t* trng, uint8_t* data, uint32
 void MXC_TRNG_RevB_GenerateKey(mxc_trng_revb_regs_t* trng)
 {
     /*Generate AES Key */
-    trng->ctrl |= MXC_F_TRNG_REVB_CTRL_AESKG_USR;
+    trng->ctrl |= MXC_F_TRNG_REVB_CTRL_KEYGEN;
 
-    while (trng->ctrl & MXC_F_TRNG_REVB_CTRL_AESKG_USR)
+    while (trng->ctrl & MXC_F_TRNG_REVB_CTRL_KEYGEN)
         ;
-}
-
-int MXC_TRNG_RevB_HealthTest(mxc_trng_revb_regs_t* trng)
-{
-    /* Clear on-going test if necessary */
-    if (trng->ctrl & MXC_F_TRNG_REVB_CTRL_ODHT) {
-        trng->ctrl &= ~MXC_F_TRNG_REVB_CTRL_ODHT;
-        while (trng->status & MXC_F_TRNG_REVB_STATUS_ODHT)
-            ;
-    }
-
-    /* Start on-demand health test */
-    trng->ctrl |= MXC_F_TRNG_REVB_CTRL_ODHT;
-
-    /* Wait for test to finish */
-    while (trng->status & MXC_F_TRNG_REVB_STATUS_ODHT)
-        ;
-
-    /* Check results of test */
-    if (trng->status & MXC_F_TRNG_REVB_STATUS_HT) {
-        return E_BAD_STATE;
-    }
-    return E_NO_ERROR;
 }
