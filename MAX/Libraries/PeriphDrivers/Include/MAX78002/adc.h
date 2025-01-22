@@ -40,8 +40,8 @@
  *************************************************************************** */
 
 /* Define to prevent redundant inclusion */
-#ifndef LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78002_ADC_H_
-#define LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78002_ADC_H_
+#ifndef _ADC_H_
+#define _ADC_H_
 
 /* **** Includes **** */
 #include <stdint.h>
@@ -577,4 +577,4 @@ int MXC_ADC_LowPowerModeDividerSelect(mxc_adc_div_lpmode_t div_lpmode);
 }
 #endif
 
-#endif // LIBRARIES_PERIPHDRIVERS_INCLUDE_MAX78002_ADC_H_
+#endif /* _ADC_H_ */

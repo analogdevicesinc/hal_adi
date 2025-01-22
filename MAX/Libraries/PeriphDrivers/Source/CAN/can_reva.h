@@ -31,10 +31,6 @@
  *
  *************************************************************************** */
 
-#ifndef LIBRARIES_PERIPHDRIVERS_SOURCE_CAN_CAN_REVA_H_
-#define LIBRARIES_PERIPHDRIVERS_SOURCE_CAN_CAN_REVA_H_
-
-#include <stdio.h>
 #include "can.h"
 #include "can_reva_regs.h"
 #include "dma.h"
@@ -45,6 +41,7 @@
 #include "mxc_assert.h"
 #include "mxc_sys.h"
 #include "mxc_lock.h"
+#include <stdio.h>
 
 /***** FUNCTIONS *****/
 mxc_can_drv_version_t MXC_CAN_RevA_GetVersion(void);
@@ -111,5 +108,3 @@ mxc_can_stat_t MXC_CAN_RevA_GetStatus(mxc_can_reva_regs_t *can);
 void MXC_CAN_RevA_SignalUnitEvent(uint32_t can_idx, mxc_can_unit_evt_t event);
 
 void MXC_CAN_RevA_SignalObjectEvent(uint32_t can_idx, mxc_can_obj_evt_t event);
-
-#endif // LIBRARIES_PERIPHDRIVERS_SOURCE_CAN_CAN_REVA_H_
